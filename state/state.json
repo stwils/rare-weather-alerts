@@ -1,15 +1,4 @@
 {
- "updated": 1784489115,
- "opportunities": [
-  {
-   "id": "welches:sunrise_sunset:1784638800",
-   "spot": "welches",
-   "phenomenon": "sunrise_sunset",
-   "start": 1784638800,
-   "end": 1784642400,
-   "peak_score": 1.0,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional"
-  }
- ]
+ "updated": 1784495176,
+ "opportunities": []
 }

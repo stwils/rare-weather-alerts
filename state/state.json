@@ -1,4 +1,15 @@
 {
- "updated": 1784460037,
- "opportunities": []
+ "updated": 1784469054,
+ "opportunities": [
+  {
+   "id": "oswald-west:sunrise_sunset:1784692800",
+   "spot": "oswald-west",
+   "phenomenon": "sunrise_sunset",
+   "start": 1784692800,
+   "end": 1784696400,
+   "peak_score": 0.7291666666666667,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  }
+ ]
 }

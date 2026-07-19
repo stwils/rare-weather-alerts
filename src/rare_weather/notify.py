@@ -36,12 +36,18 @@ def send(
     sent = []
     topic = os.environ.get("NTFY_TOPIC")
     if topic:
-        headers = {"Title": title, "Priority": str(ntfy_prio), "Tags": "camera"}
+        # JSON publish endpoint, not headers: titles contain emoji/em-dashes,
+        # and HTTP headers are latin-1 only.
+        payload = {
+            "topic": topic,
+            "title": title,
+            "message": body,
+            "priority": ntfy_prio,
+            "tags": ["camera"],
+        }
         if click_url:
-            headers["Click"] = click_url
-        requests.post(
-            f"{ntfy_url}/{topic}", data=body.encode(), headers=headers, timeout=30
-        ).raise_for_status()
+            payload["click"] = click_url
+        requests.post(ntfy_url, json=payload, timeout=30).raise_for_status()
         sent.append("ntfy")
 
     po_token = os.environ.get("PUSHOVER_TOKEN")

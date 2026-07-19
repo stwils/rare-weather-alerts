@@ -1,0 +1,115 @@
+# Curated Spots within ~2.5 hours' drive of Portland, OR.
+# A Spot is the photographic subject the weather is scored at; picking a
+# viewpoint is the photographer's job. Phenomena: fog, storm_light,
+# sunrise_sunset, lenticular.
+spots:
+  - id: larch-mountain
+    name: Larch Mountain
+    latitude: 45.5290
+    longitude: -122.0890
+    phenomena: [fog, sunrise_sunset]
+  - id: multnomah-falls
+    name: Multnomah Falls
+    latitude: 45.5762
+    longitude: -122.1158
+    phenomena: [fog]
+  - id: welches
+    name: Welches
+    latitude: 45.3390
+    longitude: -121.9580
+    phenomena: [fog, sunrise_sunset]
+  - id: crown-point
+    name: Crown Point / Vista House
+    latitude: 45.5395
+    longitude: -122.2440
+    phenomena: [fog, sunrise_sunset]
+  - id: rowena-crest
+    name: Rowena Crest
+    latitude: 45.6828
+    longitude: -121.3025
+    phenomena: [sunrise_sunset, storm_light]
+  - id: mt-hood
+    name: Mt. Hood
+    latitude: 45.3735
+    longitude: -121.6959
+    phenomena: [lenticular]
+  - id: mt-st-helens
+    name: Mt. St. Helens
+    latitude: 46.1912
+    longitude: -122.1944
+    phenomena: [lenticular]
+  - id: mt-adams
+    name: Mt. Adams
+    latitude: 46.2024
+    longitude: -121.4906
+    phenomena: [lenticular]
+  - id: mt-jefferson
+    name: Mt. Jefferson
+    latitude: 44.6743
+    longitude: -121.7997
+    phenomena: [lenticular]
+  - id: trillium-lake
+    name: Trillium Lake
+    latitude: 45.2670
+    longitude: -121.7398
+    phenomena: [fog, sunrise_sunset]
+  - id: lost-lake
+    name: Lost Lake
+    latitude: 45.4890
+    longitude: -121.8200
+    phenomena: [fog, sunrise_sunset]
+  - id: cannon-beach
+    name: Cannon Beach
+    latitude: 45.8918
+    longitude: -123.9615
+    phenomena: [fog, sunrise_sunset, storm_light]
+  - id: oswald-west
+    name: Oswald West / Neahkahnie
+    latitude: 45.7460
+    longitude: -123.9650
+    phenomena: [fog, sunrise_sunset]
+  - id: ecola-state-park
+    name: Ecola State Park
+    latitude: 45.9200
+    longitude: -123.9740
+    phenomena: [fog, sunrise_sunset]
+  - id: astoria
+    name: Astoria
+    latitude: 46.1810
+    longitude: -123.8180
+    phenomena: [fog, sunrise_sunset]
+  - id: sauvie-island
+    name: Sauvie Island
+    latitude: 45.7030
+    longitude: -122.8180
+    phenomena: [fog, sunrise_sunset]
+  - id: pittock-mansion
+    name: Pittock Mansion
+    latitude: 45.5252
+    longitude: -122.7163
+    phenomena: [fog, sunrise_sunset]
+  - id: silver-falls
+    name: Silver Falls State Park
+    latitude: 44.8783
+    longitude: -122.6558
+    phenomena: [fog]
+  - id: government-camp
+    name: Government Camp
+    latitude: 45.3010
+    longitude: -121.7560
+    phenomena: [fog, lenticular]
+  - id: hood-river
+    name: Hood River
+    latitude: 45.7090
+    longitude: -121.5120
+    phenomena: [sunrise_sunset, lenticular]
+  - id: dufur
+    name: Dufur
+    latitude: 45.4530
+    longitude: -121.1280
+    phenomena: [storm_light, sunrise_sunset]
+  - id: maupin
+    name: Maupin
+    latitude: 45.1750
+    longitude: -121.0810
+    phenomena: [storm_light]

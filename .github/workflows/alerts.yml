@@ -1,0 +1,39 @@
+name: alerts
+
+on:
+  schedule:
+    - cron: "8 * * * *" # hourly; GitHub may delay runs by a few minutes
+  workflow_dispatch:
+
+permissions:
+  contents: write # to commit state/state.json back
+
+concurrency:
+  group: alerts
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install .
+      - name: Run alert pass
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
+          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+          RWA_ROOT: ${{ github.workspace }}
+        run: rare-weather run
+      - name: Persist state
+        run: |
+          if [ -n "$(git status --porcelain state/state.json)" ]; then
+            git config user.name "rare-weather-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add state/state.json
+            git commit -m "chore: update opportunity state"
+            git push
+          fi

@@ -1,0 +1,15 @@
+# Local / Synology deployment. Put secrets in a .env file next to this:
+#   NTFY_TOPIC=...
+#   PUSHOVER_TOKEN=...
+#   PUSHOVER_USER=...
+services:
+  rare-weather:
+    build: .
+    restart: unless-stopped
+    environment:
+      NTFY_TOPIC: ${NTFY_TOPIC}
+      PUSHOVER_TOKEN: ${PUSHOVER_TOKEN}
+      PUSHOVER_USER: ${PUSHOVER_USER}
+      RWA_INTERVAL_MINUTES: "60"
+    volumes:
+      - ./state:/app/state

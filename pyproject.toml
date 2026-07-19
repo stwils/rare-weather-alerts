@@ -1,0 +1,19 @@
+[project]
+name = "rare-weather"
+version = "0.1.0"
+description = "Alerts a photographer when weather near home is unusually photogenic"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "PyYAML>=6.0",
+]
+
+[project.scripts]
+rare-weather = "rare_weather.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

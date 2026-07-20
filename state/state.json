@@ -1,45 +1,25 @@
 {
- "updated": 1784545983,
+ "updated": 1784557831,
  "opportunities": [
-  {
-   "id": "astoria:sunrise_sunset:1784779200",
-   "spot": "astoria",
-   "phenomenon": "sunrise_sunset",
-   "start": 1784779200,
-   "end": 1784782800,
-   "peak_score": 0.7291666666666667,
-   "tier": "notable",
-   "alerted_tier": "notable"
-  },
   {
    "id": "rowena-crest:storm_light:1784689200",
    "spot": "rowena-crest",
    "phenomenon": "storm_light",
    "start": 1784689200,
    "end": 1784692800,
-   "peak_score": 0.28551724137931034,
+   "peak_score": 0.4563380281690141,
    "tier": "notable",
    "alerted_tier": "notable"
   },
   {
-   "id": "sauvie-island:sunrise_sunset:1784638800",
-   "spot": "sauvie-island",
+   "id": "pittock-mansion:sunrise_sunset:1784779200",
+   "spot": "pittock-mansion",
    "phenomenon": "sunrise_sunset",
-   "start": 1784638800,
-   "end": 1784642400,
-   "peak_score": 0.9883333333333334,
+   "start": 1784779200,
+   "end": 1784782800,
+   "peak_score": 0.9941666666666666,
    "tier": "exceptional",
    "alerted_tier": "exceptional"
-  },
-  {
-   "id": "maupin:storm_light:1784689200",
-   "spot": "maupin",
-   "phenomenon": "storm_light",
-   "start": 1784689200,
-   "end": 1784692800,
-   "peak_score": 0.286875,
-   "tier": "notable",
-   "alerted_tier": "notable"
   }
  ]
 }

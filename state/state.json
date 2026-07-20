@@ -1,16 +1,6 @@
 {
- "updated": 1784520012,
+ "updated": 1784532257,
  "opportunities": [
-  {
-   "id": "welches:sunrise_sunset:1784689200",
-   "spot": "welches",
-   "phenomenon": "sunrise_sunset",
-   "start": 1784689200,
-   "end": 1784692800,
-   "peak_score": 0.7895833333333333,
-   "tier": "notable",
-   "alerted_tier": "notable"
-  },
   {
    "id": "welches:sunrise_sunset:1784635200",
    "spot": "welches",
@@ -20,6 +10,16 @@
    "peak_score": 1.0,
    "tier": "exceptional",
    "alerted_tier": "exceptional"
+  },
+  {
+   "id": "astoria:sunrise_sunset:1784779200",
+   "spot": "astoria",
+   "phenomenon": "sunrise_sunset",
+   "start": 1784779200,
+   "end": 1784782800,
+   "peak_score": 0.7291666666666667,
+   "tier": "notable",
+   "alerted_tier": "notable"
   }
  ]
 }

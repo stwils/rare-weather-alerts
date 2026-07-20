@@ -1,5 +1,5 @@
 {
- "updated": 1784566005,
+ "updated": 1784574460,
  "opportunities": [
   {
    "id": "rowena-crest:storm_light:1784689200",
@@ -10,16 +10,6 @@
    "peak_score": 0.4563380281690141,
    "tier": "notable",
    "alerted_tier": "notable"
-  },
-  {
-   "id": "pittock-mansion:sunrise_sunset:1784779200",
-   "spot": "pittock-mansion",
-   "phenomenon": "sunrise_sunset",
-   "start": 1784779200,
-   "end": 1784782800,
-   "peak_score": 0.9941666666666666,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional"
   }
  ]
 }

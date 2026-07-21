@@ -1,5 +1,5 @@
 {
- "updated": 1784658296,
+ "updated": 1784665751,
  "opportunities": [
   {
    "id": "oswald-west:fog:1784635200",
@@ -12,74 +12,14 @@
    "alerted_tier": "exceptional"
   },
   {
-   "id": "larch-mountain:fog:1784811600",
-   "spot": "larch-mountain",
-   "phenomenon": "fog",
-   "start": 1784811600,
-   "end": 1784818800,
-   "peak_score": 0.758779411764706,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional"
-  },
-  {
-   "id": "welches:fog:1784811600",
-   "spot": "welches",
-   "phenomenon": "fog",
-   "start": 1784811600,
-   "end": 1784818800,
-   "peak_score": 0.7453758169934637,
-   "tier": "notable",
-   "alerted_tier": "notable"
-  },
-  {
-   "id": "trillium-lake:fog:1784808000",
-   "spot": "trillium-lake",
-   "phenomenon": "fog",
-   "start": 1784811600,
-   "end": 1784818800,
-   "peak_score": 0.3976470588235294,
-   "tier": "notable",
-   "alerted_tier": "exceptional"
-  },
-  {
-   "id": "lost-lake:fog:1784811600",
-   "spot": "lost-lake",
-   "phenomenon": "fog",
-   "start": 1784811600,
-   "end": 1784822400,
-   "peak_score": 0.4076470588235292,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional"
-  },
-  {
-   "id": "crown-point:fog:1784808000",
+   "id": "crown-point:sunrise_sunset:1784779200",
    "spot": "crown-point",
-   "phenomenon": "fog",
-   "start": 1784811600,
-   "end": 1784818800,
-   "peak_score": 0.5441176470588236,
-   "tier": "notable",
-   "alerted_tier": "notable"
-  },
-  {
-   "id": "oswald-west:fog:1784721600",
-   "spot": "oswald-west",
-   "phenomenon": "fog",
-   "start": 1784721600,
-   "end": 1784725200,
-   "peak_score": 0.6078317401960784,
+   "phenomenon": "sunrise_sunset",
+   "start": 1784779200,
+   "end": 1784782800,
+   "peak_score": 1.0,
    "tier": "exceptional",
    "alerted_tier": "exceptional"
-  },
-  {
-   "id": "astoria:fog:1784815200",
-   "spot": "astoria",
-   "phenomenon": "fog",
-   "start": 1784815200,
-   "end": 1784818800,
-   "peak_score": 0.5938657592592593,
-   "tier": "notable",
-   "alerted_tier": "notable"
   }
  ]
 }

@@ -1,4 +1,65 @@
 {
- "updated": 1784592525,
- "opportunities": []
+ "updated": 1784605393,
+ "opportunities": [
+  {
+   "id": "cannon-beach:fog:1784635200",
+   "spot": "cannon-beach",
+   "phenomenon": "fog",
+   "start": 1784635200,
+   "end": 1784642400,
+   "peak_score": 0.6794117647058823,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  },
+  {
+   "id": "cannon-beach:fog:1784721600",
+   "spot": "cannon-beach",
+   "phenomenon": "fog",
+   "start": 1784721600,
+   "end": 1784725200,
+   "peak_score": 0.5540112499999998,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  },
+  {
+   "id": "oswald-west:fog:1784635200",
+   "spot": "oswald-west",
+   "phenomenon": "fog",
+   "start": 1784635200,
+   "end": 1784642400,
+   "peak_score": 0.6155470588235294,
+   "tier": "exceptional",
+   "alerted_tier": "exceptional"
+  },
+  {
+   "id": "oswald-west:fog:1784721600",
+   "spot": "oswald-west",
+   "phenomenon": "fog",
+   "start": 1784721600,
+   "end": 1784732400,
+   "peak_score": 0.6218727777777777,
+   "tier": "exceptional",
+   "alerted_tier": "exceptional"
+  },
+  {
+   "id": "ecola-state-park:fog:1784635200",
+   "spot": "ecola-state-park",
+   "phenomenon": "fog",
+   "start": 1784635200,
+   "end": 1784642400,
+   "peak_score": 0.6258823529411764,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  },
+  {
+   "id": "ecola-state-park:fog:1784721600",
+   "spot": "ecola-state-park",
+   "phenomenon": "fog",
+   "start": 1784721600,
+   "end": 1784725200,
+   "peak_score": 0.7223202614379086,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  }
+ ]
 }

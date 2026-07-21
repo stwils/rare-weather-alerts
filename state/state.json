@@ -1,25 +1,4 @@
 {
- "updated": 1784585519,
- "opportunities": [
-  {
-   "id": "rowena-crest:sunrise_sunset:1784635200",
-   "spot": "rowena-crest",
-   "phenomenon": "sunrise_sunset",
-   "start": 1784635200,
-   "end": 1784638800,
-   "peak_score": 0.9245833333333333,
-   "tier": "notable",
-   "alerted_tier": "notable"
-  },
-  {
-   "id": "lost-lake:sunrise_sunset:1784638800",
-   "spot": "lost-lake",
-   "phenomenon": "sunrise_sunset",
-   "start": 1784638800,
-   "end": 1784642400,
-   "peak_score": 0.7895833333333333,
-   "tier": "notable",
-   "alerted_tier": "notable"
-  }
- ]
+ "updated": 1784592525,
+ "opportunities": []
 }

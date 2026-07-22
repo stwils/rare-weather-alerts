@@ -1,23 +1,13 @@
 {
- "updated": 1784702539,
+ "updated": 1784713011,
  "opportunities": [
   {
-   "id": "oswald-west:fog:1784635200",
+   "id": "oswald-west:fog:1784898000",
    "spot": "oswald-west",
    "phenomenon": "fog",
-   "start": 1784642400,
-   "end": 1784646000,
-   "peak_score": 0.5260156862745099,
-   "tier": "notable",
-   "alerted_tier": "exceptional"
-  },
-  {
-   "id": "rowena-crest:storm_light:1784772000",
-   "spot": "rowena-crest",
-   "phenomenon": "storm_light",
-   "start": 1784772000,
-   "end": 1784775600,
-   "peak_score": 0.6,
+   "start": 1784898000,
+   "end": 1784905200,
+   "peak_score": 0.6794117647058823,
    "tier": "exceptional",
    "alerted_tier": "exceptional"
   }

@@ -1,5 +1,5 @@
 {
- "updated": 1784730027,
+ "updated": 1784738527,
  "opportunities": [
   {
    "id": "larch-mountain:fog:1784898000",
@@ -32,42 +32,12 @@
    "alerted_tier": "notable"
   },
   {
-   "id": "astoria:fog:1784721600",
-   "spot": "astoria",
-   "phenomenon": "fog",
-   "start": 1784725200,
-   "end": 1784736000,
-   "peak_score": 0.7427009803921568,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional"
-  },
-  {
    "id": "government-camp:fog:1784898000",
    "spot": "government-camp",
    "phenomenon": "fog",
    "start": 1784898000,
    "end": 1784901600,
    "peak_score": 0.5073529411764706,
-   "tier": "notable",
-   "alerted_tier": "notable"
-  },
-  {
-   "id": "rowena-crest:sunrise_sunset:1784779200",
-   "spot": "rowena-crest",
-   "phenomenon": "sunrise_sunset",
-   "start": 1784779200,
-   "end": 1784782800,
-   "peak_score": 1.0,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional"
-  },
-  {
-   "id": "pittock-mansion:sunrise_sunset:1784779200",
-   "spot": "pittock-mansion",
-   "phenomenon": "sunrise_sunset",
-   "start": 1784779200,
-   "end": 1784782800,
-   "peak_score": 0.795,
    "tier": "notable",
    "alerted_tier": "notable"
   }

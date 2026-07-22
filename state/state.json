@@ -1,5 +1,5 @@
 {
- "updated": 1784678654,
+ "updated": 1784691653,
  "opportunities": [
   {
    "id": "oswald-west:fog:1784635200",
@@ -12,32 +12,12 @@
    "alerted_tier": "exceptional"
   },
   {
-   "id": "crown-point:sunrise_sunset:1784779200",
-   "spot": "crown-point",
-   "phenomenon": "sunrise_sunset",
-   "start": 1784779200,
-   "end": 1784782800,
-   "peak_score": 1.0,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional"
-  },
-  {
-   "id": "welches:sunrise_sunset:1784689200",
-   "spot": "welches",
-   "phenomenon": "sunrise_sunset",
-   "start": 1784689200,
-   "end": 1784692800,
-   "peak_score": 0.8316666666666666,
-   "tier": "notable",
-   "alerted_tier": "notable"
-  },
-  {
-   "id": "oswald-west:fog:1784728800",
-   "spot": "oswald-west",
-   "phenomenon": "fog",
-   "start": 1784728800,
-   "end": 1784732400,
-   "peak_score": 0.5882352941176471,
+   "id": "rowena-crest:storm_light:1784772000",
+   "spot": "rowena-crest",
+   "phenomenon": "storm_light",
+   "start": 1784772000,
+   "end": 1784775600,
+   "peak_score": 0.6,
    "tier": "exceptional",
    "alerted_tier": "exceptional"
   }

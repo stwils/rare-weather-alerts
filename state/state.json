@@ -1,13 +1,13 @@
 {
- "updated": 1784802951,
+ "updated": 1784810929,
  "opportunities": [
   {
    "id": "trillium-lake:fog:1784811600",
    "spot": "trillium-lake",
    "phenomenon": "fog",
-   "start": 1784815200,
-   "end": 1784818800,
-   "peak_score": 0.4179084967320259,
+   "start": 1784808000,
+   "end": 1784811600,
+   "peak_score": 0.318323311546841,
    "tier": "notable",
    "alerted_tier": "notable"
   },
@@ -16,8 +16,8 @@
    "spot": "cannon-beach",
    "phenomenon": "fog",
    "start": 1784894400,
-   "end": 1784901600,
-   "peak_score": 0.6250882352941176,
+   "end": 1784898000,
+   "peak_score": 0.54325,
    "tier": "notable",
    "alerted_tier": "exceptional"
   },
@@ -36,9 +36,9 @@
    "spot": "ecola-state-park",
    "phenomenon": "fog",
    "start": 1784894400,
-   "end": 1784901600,
-   "peak_score": 0.760235294117647,
-   "tier": "exceptional",
+   "end": 1784898000,
+   "peak_score": 0.6138529411764707,
+   "tier": "notable",
    "alerted_tier": "exceptional"
   },
   {
@@ -57,7 +57,7 @@
    "phenomenon": "lenticular",
    "start": 1785013200,
    "end": 1785020400,
-   "peak_score": 0.5625,
+   "peak_score": 0.444375,
    "tier": "notable",
    "alerted_tier": "notable"
   },

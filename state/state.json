@@ -1,5 +1,5 @@
 {
- "updated": 1784781021,
+ "updated": 1784792808,
  "opportunities": [
   {
    "id": "trillium-lake:fog:1784811600",
@@ -7,7 +7,7 @@
    "phenomenon": "fog",
    "start": 1784815200,
    "end": 1784818800,
-   "peak_score": 0.3321568627450982,
+   "peak_score": 0.29215686274509806,
    "tier": "notable",
    "alerted_tier": "notable"
   },
@@ -50,6 +50,36 @@
    "peak_score": 0.6428300653594771,
    "tier": "notable",
    "alerted_tier": "notable"
+  },
+  {
+   "id": "mt-hood:lenticular:1785002400",
+   "spot": "mt-hood",
+   "phenomenon": "lenticular",
+   "start": 1785002400,
+   "end": 1785016800,
+   "peak_score": 0.549125,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  },
+  {
+   "id": "mt-st-helens:lenticular:1785013200",
+   "spot": "mt-st-helens",
+   "phenomenon": "lenticular",
+   "start": 1785013200,
+   "end": 1785020400,
+   "peak_score": 0.5625,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  },
+  {
+   "id": "mt-adams:lenticular:1785020400",
+   "spot": "mt-adams",
+   "phenomenon": "lenticular",
+   "start": 1785020400,
+   "end": 1785024000,
+   "peak_score": 0.543375,
+   "tier": "exceptional",
+   "alerted_tier": "exceptional"
   }
  ]
 }

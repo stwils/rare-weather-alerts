@@ -27,7 +27,7 @@ The principle that a Phenomenon's rarity is measured over the whole Travel Radiu
 The lower tier: a Quality Score in the regional top 2% of days for a Phenomenon. Appears on the Dashboard and in the Digest; does **not** push on its own.
 
 **Exceptional**:
-The upper tier: a Quality Score in the regional top 0.5% of days. The only tier that pushes a live Alert (high priority, bypasses Do Not Disturb).
+The upper tier: a Quality Score in the regional top 0.5% of days. The only tier that pushes a live Alert (high priority, but does not bypass Do Not Disturb).
 _Avoid_: Critical, severe
 
 **Dashboard**:

@@ -15,8 +15,8 @@ import requests
 
 # tier -> (ntfy priority 1-5, pushover priority -2..2)
 PRIORITIES = {
-    "exceptional": (5, 1),  # bypasses Do Not Disturb
-    "notable": (3, 0),
+    "exceptional": (4, 0),  # high/prominent, but no Do-Not-Disturb bypass or urgent alarm
+    "notable": (3, 0),      # default priority (used by the daily digest)
 }
 
 

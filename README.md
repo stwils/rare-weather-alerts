@@ -8,7 +8,7 @@ Alerts when weather within 2.5 hours of Portland, OR is unusually photogenic.
 **Phenomena**: fog · dramatic storm light · extreme sunrise/sunset · lenticular clouds
 
 **How you hear about it** (three surfaces, loudest to quietest):
-- **Exceptional** (regional top 0.5%, ~1×/month) → immediate push, bypasses Do Not Disturb.
+- **Exceptional** (regional top 0.5%, ~1×/month) → immediate high-priority push (does not bypass Do Not Disturb).
 - **Digest** → one morning push listing the day's board, only when something's on it.
 - **Dashboard** → a GitHub Pages page you tap into anytime; every Notable+ opportunity, plus the full board. Alerts deep-link to the relevant card.
 

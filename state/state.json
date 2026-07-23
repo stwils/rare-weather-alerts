@@ -1,4 +1,35 @@
 {
- "updated": 1784758574,
- "opportunities": []
+ "updated": 1784765801,
+ "opportunities": [
+  {
+   "id": "trillium-lake:fog:1784811600",
+   "spot": "trillium-lake",
+   "phenomenon": "fog",
+   "start": 1784811600,
+   "end": 1784815200,
+   "peak_score": 0.46300653594771257,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  },
+  {
+   "id": "silver-falls:fog:1784811600",
+   "spot": "silver-falls",
+   "phenomenon": "fog",
+   "start": 1784811600,
+   "end": 1784818800,
+   "peak_score": 0.5938562091503269,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  },
+  {
+   "id": "dufur:storm_light:1784772000",
+   "spot": "dufur",
+   "phenomenon": "storm_light",
+   "start": 1784772000,
+   "end": 1784775600,
+   "peak_score": 0.703125,
+   "tier": "exceptional",
+   "alerted_tier": "exceptional"
+  }
+ ]
 }

@@ -1,1 +1,15 @@
-{"updated": 0, "opportunities": []}
+{
+ "updated": 1784816465,
+ "opportunities": [
+  {
+   "id": "welches:fog:1784894400",
+   "spot": "welches",
+   "phenomenon": "fog",
+   "start": 1784894400,
+   "end": 1784898000,
+   "peak_score": 0.8411764705882353,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  }
+ ]
+}

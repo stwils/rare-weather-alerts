@@ -1,35 +1,55 @@
 {
- "updated": 1784765801,
+ "updated": 1784781021,
  "opportunities": [
   {
    "id": "trillium-lake:fog:1784811600",
    "spot": "trillium-lake",
    "phenomenon": "fog",
-   "start": 1784811600,
-   "end": 1784815200,
-   "peak_score": 0.46300653594771257,
-   "tier": "notable",
-   "alerted_tier": "notable"
-  },
-  {
-   "id": "silver-falls:fog:1784811600",
-   "spot": "silver-falls",
-   "phenomenon": "fog",
-   "start": 1784811600,
+   "start": 1784815200,
    "end": 1784818800,
-   "peak_score": 0.5938562091503269,
+   "peak_score": 0.3321568627450982,
    "tier": "notable",
    "alerted_tier": "notable"
   },
   {
-   "id": "dufur:storm_light:1784772000",
-   "spot": "dufur",
-   "phenomenon": "storm_light",
-   "start": 1784772000,
-   "end": 1784775600,
-   "peak_score": 0.703125,
+   "id": "cannon-beach:fog:1784894400",
+   "spot": "cannon-beach",
+   "phenomenon": "fog",
+   "start": 1784894400,
+   "end": 1784905200,
+   "peak_score": 0.9529411764705882,
    "tier": "exceptional",
    "alerted_tier": "exceptional"
+  },
+  {
+   "id": "oswald-west:fog:1784898000",
+   "spot": "oswald-west",
+   "phenomenon": "fog",
+   "start": 1784898000,
+   "end": 1784905200,
+   "peak_score": 0.7699509803921568,
+   "tier": "exceptional",
+   "alerted_tier": "exceptional"
+  },
+  {
+   "id": "ecola-state-park:fog:1784894400",
+   "spot": "ecola-state-park",
+   "phenomenon": "fog",
+   "start": 1784894400,
+   "end": 1784901600,
+   "peak_score": 0.9058823529411765,
+   "tier": "exceptional",
+   "alerted_tier": "exceptional"
+  },
+  {
+   "id": "astoria:fog:1784894400",
+   "spot": "astoria",
+   "phenomenon": "fog",
+   "start": 1784894400,
+   "end": 1784898000,
+   "peak_score": 0.6428300653594771,
+   "tier": "notable",
+   "alerted_tier": "notable"
   }
  ]
 }

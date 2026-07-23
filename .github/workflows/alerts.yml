@@ -6,7 +6,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # to commit state/state.json back
+  contents: write # commit state/state.json back
+  pages: write # publish the dashboard
+  id-token: write # required by deploy-pages
 
 concurrency:
   group: alerts
@@ -15,17 +17,21 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install .
-      - name: Run alert pass
+      - name: Run alert pass (fetch, score, rebuild dashboard, push Exceptional)
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
           PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
           RWA_ROOT: ${{ github.workspace }}
         run: rare-weather run
       - name: Persist state
@@ -37,3 +43,9 @@ jobs:
             git commit -m "chore: update opportunity state"
             git push
           fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

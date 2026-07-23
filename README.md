@@ -1,12 +1,16 @@
 # Rare Weather Alerts
 
-Pushes an alert when weather within 2.5 hours of Portland, OR is unusually
-photogenic. "Rare" means a phenomenon's Quality Score is in the top percentile
-of its own 10-year history at that Spot — see [CONTEXT.md](CONTEXT.md) for the
-domain language and [docs/adr/](docs/adr/) for why.
+Alerts when weather within 2.5 hours of Portland, OR is unusually photogenic.
+"Rare" means a phenomenon's Quality Score is in the top percentile of its
+10-year history — judged *regionally*, across all spots at once — see
+[CONTEXT.md](CONTEXT.md) for the domain language and [docs/adr/](docs/adr/) for why.
 
 **Phenomena**: fog · dramatic storm light · extreme sunrise/sunset · lenticular clouds
-**Tiers**: Notable (top 2% of days) → normal push · Exceptional (top 0.5%) → bypasses Do Not Disturb
+
+**How you hear about it** (three surfaces, loudest to quietest):
+- **Exceptional** (regional top 0.5%, ~1×/month) → immediate push, bypasses Do Not Disturb.
+- **Digest** → one morning push listing the day's board, only when something's on it.
+- **Dashboard** → a GitHub Pages page you tap into anytime; every Notable+ opportunity, plus the full board. Alerts deep-link to the relevant card.
 
 ## Setup
 
@@ -27,24 +31,36 @@ python3 -m venv .venv && .venv/bin/pip install -e .
    export NTFY_TOPIC=...  PUSHOVER_TOKEN=...  PUSHOVER_USER=...
    rare-weather test-notify
    ```
-4. **Dry-run the live pass**: `rare-weather run --dry-run`, and
-   `rare-weather status` for a read-only table of current scores vs
-   thresholds — the tuning tool.
+4. **Dry-run the live pass**: `rare-weather run --dry-run`, `rare-weather digest
+   --dry-run`, and `rare-weather status` for a read-only table of current scores
+   vs regional thresholds — the tuning tool.
+
+## Commands
+
+| Command | Does |
+|---|---|
+| `rare-weather run` | Fetch, score, rebuild the dashboard, push any Exceptional change. Hourly. |
+| `rare-weather digest` | One push summarizing today's board; silent if empty. Once each morning. |
+| `rare-weather status` | Console table of live scores vs thresholds. |
+| `rare-weather backfill` / `finish` | Rebuild history → thresholds + greatest hits (`finish` reuses the cache). |
 
 ## Deploy
 
-**GitHub Actions** (default): push this repo to GitHub, add `NTFY_TOPIC`,
-`PUSHOVER_TOKEN`, `PUSHOVER_USER` as repository secrets. The workflow in
-[.github/workflows/alerts.yml](.github/workflows/alerts.yml) runs hourly and
-commits `state/state.json` back to persist Opportunity lifecycles.
+**GitHub Actions** (default): add `NTFY_TOPIC` (+ optional `PUSHOVER_TOKEN`,
+`PUSHOVER_USER`) as repository secrets, and set the `DASHBOARD_URL` repository
+variable to the Pages URL. [alerts.yml](.github/workflows/alerts.yml) runs
+hourly (fetch, dashboard publish to Pages, Exceptional pushes, commits
+`state/state.json`); [digest.yml](.github/workflows/digest.yml) sends the
+morning digest. Pages must be enabled with **Source: GitHub Actions**.
 
-**Docker (Mac or Synology)**: create a `.env` with the three secrets, then
-`docker compose up -d`. State persists in `./state`. On Synology, use
-Container Manager with this compose file.
+**Docker (Mac or Synology)**: create a `.env` with the secrets, then
+`docker compose up -d`. The daemon runs hourly and fires the digest once a day
+at `RWA_DIGEST_HOUR` (local, default 6). State persists in `./state`; the
+dashboard is written to `./site` (serve it however you like).
 
 ## Editing spots and thresholds
 
 - Spots: [config/spots.yaml](config/spots.yaml) — add/remove freely; new
-  (Spot, Phenomenon) pairs need a `rare-weather backfill` pass before they alert.
-- Tier percentiles, floors, merge gaps: [config/settings.yaml](config/settings.yaml).
-- Tuning rule of thumb: more than ~2 alerts/week means thresholds are too loose.
+  Phenomena need a `rare-weather backfill` pass before they alert.
+- Tier percentiles, floors, merge/coalesce gaps: [config/settings.yaml](config/settings.yaml).
+- Tuning rule of thumb: more than ~2 pushes/week means the Exceptional bar is too low.

@@ -33,6 +33,7 @@ paths:
   daily_scores: data/daily_scores.json
   raw_cache: data/raw
   greatest_hits: data/greatest_hits.md
+  site: site        # generated dashboard, published to GitHub Pages
 
 backfill:
   era5_start: "2016-07-01"          # 10 years for fog + sunrise/sunset

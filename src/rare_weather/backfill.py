@@ -115,18 +115,18 @@ def _greatest_hits(daily: dict, thr: dict, cfg: Settings) -> None:
                 if d not in best_by_date or score > best_by_date[d][0]:
                     best_by_date[d] = (score, spot_id, explain)
         top = sorted(best_by_date.items(), key=lambda kv: kv[1][0], reverse=True)[:20]
+        rt = thr.get("_regional", {}).get(phen, {})
         lines += [f"## {model.EMOJI} {model.LABEL}", ""]
         if not top or top[0][1][0] == 0:
             lines += ["_No scored days — check the model or data source._", ""]
             continue
         lines += ["| Date | Best spot | Score | Tier | Drivers |", "|---|---|---|---|---|"]
         for d, (score, spot_id, explain) in top:
-            t = thr.get(spot_id, {}).get(phen, {})
             tier = (
                 "EXCEPTIONAL"
-                if score >= t.get("exceptional", 9)
+                if score >= rt.get("exceptional", 9)
                 else "Notable"
-                if score >= t.get("notable", 9)
+                if score >= rt.get("notable", 9)
                 else "—"
             )
             lines.append(f"| {d} | {spots[spot_id].name} | {score:.2f} | {tier} | {explain} |")

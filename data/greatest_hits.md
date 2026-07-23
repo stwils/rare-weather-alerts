@@ -26,7 +26,7 @@ days you remember as epic that are missing (or low) are score-model bugs.
 | 2017-06-05 | Multnomah Falls | 0.92 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
 | 2020-10-22 | Multnomah Falls | 0.92 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
 | 2025-09-26 | Sauvie Island | 0.92 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
-| 2017-05-15 | Sauvie Island | 0.92 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 0 km/h, mid/high cloud 4/9% |
+| 2017-05-15 | Sauvie Island | 0.92 | Notable | spread 0.0°C, RH 100%, wind 0 km/h, mid/high cloud 4/9% |
 
 ## 🌩️ Storm light
 
@@ -44,14 +44,14 @@ days you remember as epic that are missing (or low) are score-model bugs.
 | 2025-08-26 | Dufur | 0.61 | EXCEPTIONAL | CAPE 1040 J/kg, precip 0.0 mm/h, cloud 49%, sun 19° |
 | 2024-11-22 | Cannon Beach | 0.59 | EXCEPTIONAL | CAPE 660 J/kg, precip 0.0 mm/h, cloud 55%, sun 5° |
 | 2025-09-09 | Rowena Crest | 0.59 | EXCEPTIONAL | CAPE 660 J/kg, precip 0.0 mm/h, cloud 59%, sun 4° |
-| 2021-05-14 | Maupin | 0.58 | EXCEPTIONAL | CAPE 620 J/kg, precip 0.0 mm/h, cloud 75%, sun 13° |
-| 2023-05-17 | Rowena Crest | 0.57 | EXCEPTIONAL | CAPE 1360 J/kg, precip 0.0 mm/h, cloud 31%, sun 14° |
-| 2023-06-26 | Rowena Crest | 0.56 | EXCEPTIONAL | CAPE 580 J/kg, precip 0.0 mm/h, cloud 56%, sun 18° |
-| 2024-10-31 | Cannon Beach | 0.56 | EXCEPTIONAL | CAPE 580 J/kg, precip 0.0 mm/h, cloud 65%, sun 17° |
-| 2025-03-27 | Maupin | 0.56 | EXCEPTIONAL | CAPE 580 J/kg, precip 0.0 mm/h, cloud 69%, sun 4° |
-| 2021-12-24 | Cannon Beach | 0.55 | EXCEPTIONAL | CAPE 340 J/kg, precip 4.3 mm/h, cloud 84%, sun 17° |
-| 2021-08-14 | Rowena Crest | 0.55 | EXCEPTIONAL | CAPE 550 J/kg, precip 0.0 mm/h, cloud 52%, sun 12° |
-| 2023-05-18 | Rowena Crest | 0.55 | EXCEPTIONAL | CAPE 550 J/kg, precip 0.0 mm/h, cloud 56%, sun 4° |
+| 2021-05-14 | Maupin | 0.58 | Notable | CAPE 620 J/kg, precip 0.0 mm/h, cloud 75%, sun 13° |
+| 2023-05-17 | Rowena Crest | 0.57 | Notable | CAPE 1360 J/kg, precip 0.0 mm/h, cloud 31%, sun 14° |
+| 2023-06-26 | Rowena Crest | 0.56 | Notable | CAPE 580 J/kg, precip 0.0 mm/h, cloud 56%, sun 18° |
+| 2024-10-31 | Cannon Beach | 0.56 | Notable | CAPE 580 J/kg, precip 0.0 mm/h, cloud 65%, sun 17° |
+| 2025-03-27 | Maupin | 0.56 | Notable | CAPE 580 J/kg, precip 0.0 mm/h, cloud 69%, sun 4° |
+| 2021-12-24 | Cannon Beach | 0.55 | Notable | CAPE 340 J/kg, precip 4.3 mm/h, cloud 84%, sun 17° |
+| 2021-08-14 | Rowena Crest | 0.55 | Notable | CAPE 550 J/kg, precip 0.0 mm/h, cloud 52%, sun 12° |
+| 2023-05-18 | Rowena Crest | 0.55 | Notable | CAPE 550 J/kg, precip 0.0 mm/h, cloud 56%, sun 4° |
 
 ## 🌇 Sunrise/Sunset
 
@@ -93,12 +93,12 @@ days you remember as epic that are missing (or low) are score-model bugs.
 | 2023-04-21 | Mt. Adams | 0.96 | EXCEPTIONAL | 700hPa wind 80 km/h, 700hPa RH 67%, low/mid cloud 2/6% |
 | 2022-01-30 | Hood River | 0.94 | EXCEPTIONAL | 700hPa wind 88 km/h, 700hPa RH 66%, low/mid cloud 0/6% |
 | 2023-02-19 | Hood River | 0.94 | EXCEPTIONAL | 700hPa wind 109 km/h, 700hPa RH 66%, low/mid cloud 5/0% |
-| 2025-12-16 | Hood River | 0.92 | EXCEPTIONAL | 700hPa wind 79 km/h, 700hPa RH 69%, low/mid cloud 0/0% |
-| 2023-02-20 | Mt. Jefferson | 0.91 | EXCEPTIONAL | 700hPa wind 95 km/h, 700hPa RH 67%, low/mid cloud 2/15% |
-| 2025-10-08 | Hood River | 0.91 | EXCEPTIONAL | 700hPa wind 75 km/h, 700hPa RH 67%, low/mid cloud 0/0% |
-| 2022-03-07 | Mt. St. Helens | 0.91 | EXCEPTIONAL | 700hPa wind 86 km/h, 700hPa RH 64%, low/mid cloud 0/0% |
-| 2024-01-09 | Hood River | 0.91 | EXCEPTIONAL | 700hPa wind 98 km/h, 700hPa RH 64%, low/mid cloud 0/0% |
-| 2022-02-04 | Hood River | 0.90 | EXCEPTIONAL | 700hPa wind 85 km/h, 700hPa RH 64%, low/mid cloud 1/0% |
-| 2026-03-29 | Government Camp | 0.89 | EXCEPTIONAL | 700hPa wind 94 km/h, 700hPa RH 67%, low/mid cloud 17/1% |
-| 2026-02-22 | Hood River | 0.89 | EXCEPTIONAL | 700hPa wind 104 km/h, 700hPa RH 70%, low/mid cloud 0/3% |
+| 2025-12-16 | Hood River | 0.92 | Notable | 700hPa wind 79 km/h, 700hPa RH 69%, low/mid cloud 0/0% |
+| 2023-02-20 | Mt. Jefferson | 0.91 | Notable | 700hPa wind 95 km/h, 700hPa RH 67%, low/mid cloud 2/15% |
+| 2025-10-08 | Hood River | 0.91 | Notable | 700hPa wind 75 km/h, 700hPa RH 67%, low/mid cloud 0/0% |
+| 2022-03-07 | Mt. St. Helens | 0.91 | Notable | 700hPa wind 86 km/h, 700hPa RH 64%, low/mid cloud 0/0% |
+| 2024-01-09 | Hood River | 0.91 | Notable | 700hPa wind 98 km/h, 700hPa RH 64%, low/mid cloud 0/0% |
+| 2022-02-04 | Hood River | 0.90 | Notable | 700hPa wind 85 km/h, 700hPa RH 64%, low/mid cloud 1/0% |
+| 2026-03-29 | Government Camp | 0.89 | Notable | 700hPa wind 94 km/h, 700hPa RH 67%, low/mid cloud 17/1% |
+| 2026-02-22 | Hood River | 0.89 | Notable | 700hPa wind 104 km/h, 700hPa RH 70%, low/mid cloud 0/3% |
 | 2025-12-22 | Hood River | 0.89 | Notable | 700hPa wind 83 km/h, 700hPa RH 70%, low/mid cloud 3/0% |

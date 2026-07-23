@@ -3,5 +3,6 @@ __pycache__/
 .venv/
 data/raw/
 data/daily_scores.json
+site/
 .venv/
 .DS_Store

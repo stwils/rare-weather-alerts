@@ -17,15 +17,25 @@ A phenomenon-specific measure of how good the photographs would be at a given pl
 _Avoid_: Severity, intensity
 
 **Rarity Threshold**:
-The percentile of a phenomenon's Quality Score distribution at a Spot above which an Opportunity exists. Rarity is a percentile on quality, not a category of weather.
+The percentile of a Phenomenon's Quality Score above which an Opportunity exists — judged *regionally*, against the distribution of the daily maximum score across all Spots that share the Phenomenon, not per Spot. Rarity is a percentile on quality, not a category of weather.
 _Avoid_: Alert level, severity threshold
 
+**Regional Rarity**:
+The principle that a Phenomenon's rarity is measured over the whole Travel Radius at once (the daily-max score across its Spots), so "top 2%" means top 2% of *days a photographer experiences*, not top 2% at each of a dozen correlated Spots — which would fire far more often. See ADR 0002.
+
 **Notable**:
-The lower alert tier: a Quality Score in the top 2% of days for that (Spot, Phenomenon). Normal-priority push.
+The lower tier: a Quality Score in the regional top 2% of days for a Phenomenon. Appears on the Dashboard and in the Digest; does **not** push on its own.
 
 **Exceptional**:
-The upper alert tier: a Quality Score in the top 0.5% of days for that (Spot, Phenomenon). High-priority push that bypasses Do Not Disturb.
+The upper tier: a Quality Score in the regional top 0.5% of days. The only tier that pushes a live Alert (high priority, bypasses Do Not Disturb).
 _Avoid_: Critical, severe
+
+**Dashboard**:
+The published web page showing every active Opportunity and the full board of best-upcoming scores per Spot. The pull surface — a photographer taps into it — as opposed to Alerts and the Digest, which are pushed.
+
+**Digest**:
+A single daily push summarizing the day's board (all Notable+ Opportunities). Sent once each morning, and only when the board is non-empty.
+_Avoid_: Summary, roundup
 
 **Spot**:
 A curated, named real place within the Travel Radius where Quality Scores are computed, tagged with which Phenomena apply there. A Spot is the photographic subject or area the weather is scored at (e.g. "Mt. Hood" for lenticulars); choosing a viewpoint is the photographer's job, not the system's.
@@ -44,7 +54,7 @@ A contiguous span of above-threshold Quality Scores for one (Spot, Phenomenon) p
 _Avoid_: Alert (an alert is a notification about an Opportunity, not the thing itself)
 
 **Alert**:
-A notification about an Opportunity lifecycle change: detected, upgraded (score jumps a tier), or cancelled (forecast fell apart). Each Opportunity alerts at most once per lifecycle change — never per forecast refresh. Alerts for the same Phenomenon with overlapping time windows coalesce into a single push, led by the highest-scoring Spot.
+A push about an *Exceptional* Opportunity's lifecycle change: detected, upgraded (crossed into Exceptional), or cancelled (forecast fell apart). At most one per lifecycle change — never per forecast refresh. Alerts for the same Phenomenon with overlapping windows coalesce into a single push, led by the highest-scoring Spot. Notable Opportunities never raise an Alert; they surface on the Dashboard and Digest.
 _Avoid_: Notification, message
 
 **Forecast Alert**:

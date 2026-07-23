@@ -1,312 +1,268 @@
 {
- "astoria": {
-  "fog": {
-   "exceptional": 0.7313,
-   "n_days": 3664,
-   "notable": 0.5585,
-   "raw_p98": 0.5585,
-   "raw_p995": 0.7313
+ "_by_spot": {
+  "astoria": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.5585,
+    "p995": 0.7313
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.6951,
+    "p995": 0.8049
+   }
   },
-  "sunrise_sunset": {
-   "exceptional": 0.8049,
-   "n_days": 3664,
-   "notable": 0.6951,
-   "raw_p98": 0.6951,
-   "raw_p995": 0.8049
+  "cannon-beach": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.5382,
+    "p995": 0.7294
+   },
+   "storm_light": {
+    "n_days": 1929,
+    "p98": 0.3273,
+    "p995": 0.5062
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.7016,
+    "p995": 0.8063
+   }
+  },
+  "crown-point": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.4697,
+    "p995": 0.701
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.7587,
+    "p995": 0.9077
+   }
+  },
+  "dufur": {
+   "storm_light": {
+    "n_days": 1929,
+    "p98": 0.2152,
+    "p995": 0.4368
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.8583,
+    "p995": 0.9846
+   }
+  },
+  "ecola-state-park": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.5382,
+    "p995": 0.7294
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.7016,
+    "p995": 0.8063
+   }
+  },
+  "government-camp": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.4721,
+    "p995": 0.6776
+   },
+   "lenticular": {
+    "n_days": 1929,
+    "p98": 0.606,
+    "p995": 0.8186
+   }
+  },
+  "hood-river": {
+   "lenticular": {
+    "n_days": 1929,
+    "p98": 0.7452,
+    "p995": 0.8927
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.8063,
+    "p995": 0.9817
+   }
+  },
+  "larch-mountain": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.5299,
+    "p995": 0.6852
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.7677,
+    "p995": 0.9083
+   }
+  },
+  "lost-lake": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.2784,
+    "p995": 0.4015
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.7679,
+    "p995": 0.8933
+   }
+  },
+  "maupin": {
+   "storm_light": {
+    "n_days": 1929,
+    "p98": 0.2437,
+    "p995": 0.4773
+   }
+  },
+  "mt-adams": {
+   "lenticular": {
+    "n_days": 1929,
+    "p98": 0.3778,
+    "p995": 0.5295
+   }
+  },
+  "mt-hood": {
+   "lenticular": {
+    "n_days": 1929,
+    "p98": 0.4489,
+    "p995": 0.659
+   }
+  },
+  "mt-jefferson": {
+   "lenticular": {
+    "n_days": 1929,
+    "p98": 0.4781,
+    "p995": 0.7108
+   }
+  },
+  "mt-st-helens": {
+   "lenticular": {
+    "n_days": 1929,
+    "p98": 0.4378,
+    "p995": 0.6
+   }
+  },
+  "multnomah-falls": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.7245,
+    "p995": 0.8706
+   }
+  },
+  "oswald-west": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.4003,
+    "p995": 0.5388
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.7,
+    "p995": 0.8375
+   }
+  },
+  "pittock-mansion": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.5942,
+    "p995": 0.7732
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.7729,
+    "p995": 0.9077
+   }
+  },
+  "rowena-crest": {
+   "storm_light": {
+    "n_days": 1929,
+    "p98": 0.2571,
+    "p995": 0.5473
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.8196,
+    "p995": 0.9608
+   }
+  },
+  "sauvie-island": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.662,
+    "p995": 0.8245
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.7729,
+    "p995": 0.9231
+   }
+  },
+  "silver-falls": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.5011,
+    "p995": 0.7235
+   }
+  },
+  "trillium-lake": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.2806,
+    "p995": 0.5353
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.7821,
+    "p995": 0.9077
+   }
+  },
+  "welches": {
+   "fog": {
+    "n_days": 3664,
+    "p98": 0.5471,
+    "p995": 0.7557
+   },
+   "sunrise_sunset": {
+    "n_days": 3664,
+    "p98": 0.7835,
+    "p995": 0.9217
+   }
   }
  },
- "cannon-beach": {
+ "_regional": {
   "fog": {
-   "exceptional": 0.7294,
+   "exceptional": 0.9176,
    "n_days": 3664,
-   "notable": 0.5382,
-   "raw_p98": 0.5382,
-   "raw_p995": 0.7294
+   "notable": 0.835,
+   "raw_p98": 0.835,
+   "raw_p995": 0.9176
+  },
+  "lenticular": {
+   "exceptional": 0.9397,
+   "n_days": 1929,
+   "notable": 0.8137,
+   "raw_p98": 0.8137,
+   "raw_p995": 0.9397
   },
   "storm_light": {
-   "exceptional": 0.5062,
+   "exceptional": 0.5881,
    "n_days": 1929,
-   "notable": 0.3273,
-   "raw_p98": 0.3273,
-   "raw_p995": 0.5062
+   "notable": 0.4803,
+   "raw_p98": 0.4803,
+   "raw_p995": 0.5881
   },
   "sunrise_sunset": {
-   "exceptional": 0.8063,
+   "exceptional": 1.0,
    "n_days": 3664,
-   "notable": 0.7016,
-   "raw_p98": 0.7016,
-   "raw_p995": 0.8063
-  }
- },
- "crown-point": {
-  "fog": {
-   "exceptional": 0.701,
-   "n_days": 3664,
-   "notable": 0.4697,
-   "raw_p98": 0.4697,
-   "raw_p995": 0.701
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.9077,
-   "n_days": 3664,
-   "notable": 0.7587,
-   "raw_p98": 0.7587,
-   "raw_p995": 0.9077
-  }
- },
- "dufur": {
-  "storm_light": {
-   "exceptional": 0.4368,
-   "n_days": 1929,
-   "notable": 0.25,
-   "raw_p98": 0.2152,
-   "raw_p995": 0.4368
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.9846,
-   "n_days": 3664,
-   "notable": 0.8583,
-   "raw_p98": 0.8583,
-   "raw_p995": 0.9846
-  }
- },
- "ecola-state-park": {
-  "fog": {
-   "exceptional": 0.7294,
-   "n_days": 3664,
-   "notable": 0.5382,
-   "raw_p98": 0.5382,
-   "raw_p995": 0.7294
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.8063,
-   "n_days": 3664,
-   "notable": 0.7016,
-   "raw_p98": 0.7016,
-   "raw_p995": 0.8063
-  }
- },
- "government-camp": {
-  "fog": {
-   "exceptional": 0.6776,
-   "n_days": 3664,
-   "notable": 0.4721,
-   "raw_p98": 0.4721,
-   "raw_p995": 0.6776
-  },
-  "lenticular": {
-   "exceptional": 0.8186,
-   "n_days": 1929,
-   "notable": 0.606,
-   "raw_p98": 0.606,
-   "raw_p995": 0.8186
-  }
- },
- "hood-river": {
-  "lenticular": {
-   "exceptional": 0.8927,
-   "n_days": 1929,
-   "notable": 0.7452,
-   "raw_p98": 0.7452,
-   "raw_p995": 0.8927
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.9817,
-   "n_days": 3664,
-   "notable": 0.8063,
-   "raw_p98": 0.8063,
-   "raw_p995": 0.9817
-  }
- },
- "larch-mountain": {
-  "fog": {
-   "exceptional": 0.6852,
-   "n_days": 3664,
-   "notable": 0.5299,
-   "raw_p98": 0.5299,
-   "raw_p995": 0.6852
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.9083,
-   "n_days": 3664,
-   "notable": 0.7677,
-   "raw_p98": 0.7677,
-   "raw_p995": 0.9083
-  }
- },
- "lost-lake": {
-  "fog": {
-   "exceptional": 0.4015,
-   "n_days": 3664,
-   "notable": 0.2784,
-   "raw_p98": 0.2784,
-   "raw_p995": 0.4015
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.8933,
-   "n_days": 3664,
-   "notable": 0.7679,
-   "raw_p98": 0.7679,
-   "raw_p995": 0.8933
-  }
- },
- "maupin": {
-  "storm_light": {
-   "exceptional": 0.4773,
-   "n_days": 1929,
-   "notable": 0.25,
-   "raw_p98": 0.2437,
-   "raw_p995": 0.4773
-  }
- },
- "mt-adams": {
-  "lenticular": {
-   "exceptional": 0.5295,
-   "n_days": 1929,
-   "notable": 0.3778,
-   "raw_p98": 0.3778,
-   "raw_p995": 0.5295
-  }
- },
- "mt-hood": {
-  "lenticular": {
-   "exceptional": 0.659,
-   "n_days": 1929,
-   "notable": 0.4489,
-   "raw_p98": 0.4489,
-   "raw_p995": 0.659
-  }
- },
- "mt-jefferson": {
-  "lenticular": {
-   "exceptional": 0.7108,
-   "n_days": 1929,
-   "notable": 0.4781,
-   "raw_p98": 0.4781,
-   "raw_p995": 0.7108
-  }
- },
- "mt-st-helens": {
-  "lenticular": {
-   "exceptional": 0.6,
-   "n_days": 1929,
-   "notable": 0.4378,
-   "raw_p98": 0.4378,
-   "raw_p995": 0.6
-  }
- },
- "multnomah-falls": {
-  "fog": {
-   "exceptional": 0.8706,
-   "n_days": 3664,
-   "notable": 0.7245,
-   "raw_p98": 0.7245,
-   "raw_p995": 0.8706
-  }
- },
- "oswald-west": {
-  "fog": {
-   "exceptional": 0.5388,
-   "n_days": 3664,
-   "notable": 0.4003,
-   "raw_p98": 0.4003,
-   "raw_p995": 0.5388
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.8375,
-   "n_days": 3664,
-   "notable": 0.7,
-   "raw_p98": 0.7,
-   "raw_p995": 0.8375
-  }
- },
- "pittock-mansion": {
-  "fog": {
-   "exceptional": 0.7732,
-   "n_days": 3664,
-   "notable": 0.5942,
-   "raw_p98": 0.5942,
-   "raw_p995": 0.7732
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.9077,
-   "n_days": 3664,
-   "notable": 0.7729,
-   "raw_p98": 0.7729,
-   "raw_p995": 0.9077
-  }
- },
- "rowena-crest": {
-  "storm_light": {
-   "exceptional": 0.5473,
-   "n_days": 1929,
-   "notable": 0.2571,
-   "raw_p98": 0.2571,
-   "raw_p995": 0.5473
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.9608,
-   "n_days": 3664,
-   "notable": 0.8196,
-   "raw_p98": 0.8196,
-   "raw_p995": 0.9608
-  }
- },
- "sauvie-island": {
-  "fog": {
-   "exceptional": 0.8245,
-   "n_days": 3664,
-   "notable": 0.662,
-   "raw_p98": 0.662,
-   "raw_p995": 0.8245
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.9231,
-   "n_days": 3664,
-   "notable": 0.7729,
-   "raw_p98": 0.7729,
-   "raw_p995": 0.9231
-  }
- },
- "silver-falls": {
-  "fog": {
-   "exceptional": 0.7235,
-   "n_days": 3664,
-   "notable": 0.5011,
-   "raw_p98": 0.5011,
-   "raw_p995": 0.7235
-  }
- },
- "trillium-lake": {
-  "fog": {
-   "exceptional": 0.5353,
-   "n_days": 3664,
-   "notable": 0.2806,
-   "raw_p98": 0.2806,
-   "raw_p995": 0.5353
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.9077,
-   "n_days": 3664,
-   "notable": 0.7821,
-   "raw_p98": 0.7821,
-   "raw_p995": 0.9077
-  }
- },
- "welches": {
-  "fog": {
-   "exceptional": 0.7557,
-   "n_days": 3664,
-   "notable": 0.5471,
-   "raw_p98": 0.5471,
-   "raw_p995": 0.7557
-  },
-  "sunrise_sunset": {
-   "exceptional": 0.9217,
-   "n_days": 3664,
-   "notable": 0.7835,
-   "raw_p98": 0.7835,
-   "raw_p995": 0.9217
+   "notable": 0.9942,
+   "raw_p98": 0.9942,
+   "raw_p995": 1.0
   }
  }
 }

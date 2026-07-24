@@ -43,6 +43,7 @@ def build_data(
     active: list,
     collected: dict,
     now: float,
+    archive: list[dict] | None = None,
 ) -> dict:
     spot_by_id = {s.id: s for s in spots}
     tz = cfg.timezone
@@ -101,12 +102,32 @@ def build_data(
             )
     board.sort(key=lambda r: r["score"], reverse=True)
 
+    history = []
+    for a in archive or []:
+        model = MODELS[a["phenomenon"]]
+        history.append(
+            {
+                "label": model.LABEL,
+                "emoji": model.EMOJI,
+                "spot": spot_by_id[a["spot"]].name if a["spot"] in spot_by_id else a["spot"],
+                "tier": a["tier"],
+                "outcome": a["outcome"],
+                "window": _fmt_window(a["start"], a["end"], tz),
+                "peak_score": round(a["peak_score"], 3),
+                "archived_at": a["archived_at"],
+                "archived_str": datetime.fromtimestamp(a["archived_at"], ZoneInfo(tz)).strftime(
+                    "%a %b %-d"
+                ),
+            }
+        )
+
     return {
         "generated": int(now),
         "generated_str": datetime.fromtimestamp(now, ZoneInfo(tz)).strftime("%a %b %-d, %H:%M %Z"),
         "home": cfg.raw["home_base"]["name"],
         "opportunities": opps,
         "board": board,
+        "history": history,
     }
 
 
@@ -154,6 +175,26 @@ def render_html(data: dict) -> str:
             f"<td class='thr'>{r['notable']:.2f} / {r['exceptional']:.2f}</td></tr>"
         )
 
+    OUTCOME = {"cancelled": ("Cancelled", "cancelled"), "ended": ("Ended", "ended")}
+    history_section = ""
+    if data.get("history"):
+        hist_rows = []
+        for hh in data["history"]:
+            otext, ocls = OUTCOME.get(hh["outcome"], (hh["outcome"].title(), "ended"))
+            tier_txt = "Exceptional" if hh["tier"] == "exceptional" else "Notable"
+            hist_rows.append(
+                f"<tr><td><span class='outcome {ocls}'>{otext}</span></td>"
+                f"<td>{hh['emoji']} {_esc(hh['label'])}</td><td>{_esc(hh['spot'])}</td>"
+                f"<td>{_esc(hh['window'])}</td>"
+                f"<td class='thr'>{tier_txt} · {hh['peak_score']:.2f}</td></tr>"
+            )
+        history_section = f"""
+  <h2>Recent history · last 72h</h2>
+  <table>
+    <thead><tr><th>Outcome</th><th>Phenomenon</th><th>Spot</th><th>Window</th><th>Tier · peak</th></tr></thead>
+    <tbody>{''.join(hist_rows)}</tbody>
+  </table>"""
+
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -193,6 +234,10 @@ def render_html(data: dict) -> str:
   tr.notable td:first-child {{ color:#2563eb; font-weight:700; }}
   tr.exceptional td:first-child {{ color:#b45309; font-weight:700; }}
   td.thr {{ color:var(--muted); }}
+  .outcome {{ font-size:.68rem; font-weight:700; padding:2px 7px; border-radius:999px;
+             color:#fff; letter-spacing:.03em; white-space:nowrap; }}
+  .outcome.cancelled {{ background:#9ca3af; }}
+  .outcome.ended {{ background:#6b7280; }}
   footer {{ color:var(--muted); font-size:.75rem; padding:24px 16px; text-align:center; }}
 </style>
 </head>
@@ -209,6 +254,7 @@ def render_html(data: dict) -> str:
     <thead><tr><th>Score</th><th>Phenomenon</th><th>Spot</th><th>Best hour</th><th>Reg. n / e</th></tr></thead>
     <tbody>{''.join(board_rows)}</tbody>
   </table>
+  {history_section}
 </main>
 <footer>Rarity is judged against 10 years of regional history. Exceptional = regional top 0.5%.</footer>
 </body>

@@ -41,9 +41,9 @@ def test_lifecycle():
     a3, ev3 = reconcile(active, {}, now=5 * H, merge_gap_hours=6)
     assert [e["type"] for e in ev3] == ["cancelled"] and a3 == []
 
-    # window already past -> silent expiry, no cancellation push
+    # window already past -> expired (archived, not pushed as a cancellation)
     a4, ev4 = reconcile(active, {}, now=30 * H, merge_gap_hours=6)
-    assert ev4 == [] and a4 == []
+    assert [e["type"] for e in ev4] == ["expired"] and a4 == []
 
 
 def test_upgrade():

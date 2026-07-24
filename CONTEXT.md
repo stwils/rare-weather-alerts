@@ -31,7 +31,11 @@ The upper tier: a Quality Score in the regional top 0.5% of days. The only tier 
 _Avoid_: Critical, severe
 
 **Dashboard**:
-The published web page showing every active Opportunity and the full board of best-upcoming scores per Spot. The pull surface — a photographer taps into it — as opposed to Alerts and the Digest, which are pushed.
+The published web page showing every active Opportunity, the full board of best-upcoming scores per Spot, and a Recent History of past Opportunities. The pull surface — a photographer taps into it — as opposed to Alerts and the Digest, which are pushed.
+
+**Recent History**:
+The archive section at the foot of the Dashboard listing Opportunities that have left the active set — each marked *cancelled* (forecast fell apart) or *ended* (window elapsed) — retained for a fixed window (72h) after leaving, then pruned.
+_Avoid_: Log, past alerts
 
 **Digest**:
 A single daily push summarizing the day's board (all Notable+ Opportunities). Sent once every morning, including an explicit "nothing rare today" when the board is empty.

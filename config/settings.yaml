@@ -21,6 +21,7 @@ tiers:
 merge_gap_hours: 6        # below-threshold gaps shorter than this don't split an Opportunity
 coalesce_gap_hours: 12    # same-phenomenon alerts whose windows are this close go out as one push
 forecast_days: 3
+archive_retention_hours: 72  # how long past opportunities linger in the dashboard history
 
 # Delivery. Secrets come from environment variables:
 #   NTFY_TOPIC, PUSHOVER_TOKEN, PUSHOVER_USER

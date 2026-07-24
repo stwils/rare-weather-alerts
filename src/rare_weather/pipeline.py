@@ -83,6 +83,7 @@ def run_once(dry_run: bool = False) -> None:
     thr = thresholds.load(cfg.path("thresholds"))
     state_path = cfg.path("state")
     active = opportunities.load_state(state_path)
+    archive = opportunities.load_archive(state_path)
     now = time.time()
     tz = cfg.timezone
 
@@ -102,8 +103,34 @@ def run_once(dry_run: bool = False) -> None:
 
     active, events = opportunities.reconcile(active, candidates, now, cfg.merge_gap_hours)
 
-    # Push only Exceptional-tier lifecycle changes; Notable lives on the dashboard.
-    pushable = [e for e in events if e["opp"].alerted_tier == "exceptional"]
+    # Archive opportunities that just left the active set (cancelled or elapsed),
+    # and prune the history to the retention window.
+    retention = cfg.raw.get("archive_retention_hours", 72) * 3600
+    for e in events:
+        if e["type"] in ("cancelled", "expired"):
+            o = e["opp"]
+            archive.append(
+                {
+                    "spot": o.spot,
+                    "phenomenon": o.phenomenon,
+                    "start": o.start,
+                    "end": o.end,
+                    "peak_score": o.peak_score,
+                    "tier": o.tier,
+                    "outcome": "cancelled" if e["type"] == "cancelled" else "ended",
+                    "archived_at": now,
+                }
+            )
+    archive = [a for a in archive if now - a["archived_at"] <= retention]
+    archive.sort(key=lambda a: a["archived_at"], reverse=True)
+
+    # Push only Exceptional cancellations/detections/upgrades; never plain expiry.
+    pushable = [
+        e
+        for e in events
+        if e["type"] in ("detected", "upgraded", "cancelled")
+        and e["opp"].alerted_tier == "exceptional"
+    ]
     for group in _coalesce(pushable, cfg.coalesce_gap_hours):
         group.sort(key=lambda e: e["opp"].peak_score, reverse=True)
         best = group[0]
@@ -129,10 +156,10 @@ def run_once(dry_run: bool = False) -> None:
             click_url=_dashboard_url(cfg, dashboard.anchor(opp.spot, opp.phenomenon)),
         )
 
-    data = dashboard.build_data(cfg, spots, thr, active, collected, now)
+    data = dashboard.build_data(cfg, spots, thr, active, collected, now, archive)
     if not dry_run:
         dashboard.write_site(cfg, data)
-        opportunities.save_state(state_path, active)  # a dry run must not consume detections
+        opportunities.save_state(state_path, active, archive)  # dry run must not consume state
 
     n_exc = sum(1 for o in active if o.tier == "exceptional")
     print(

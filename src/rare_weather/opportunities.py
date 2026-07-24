@@ -112,7 +112,7 @@ def reconcile(
             if upgraded:
                 events.append({"type": "upgraded", "opp": opp, "span": match})
         elif opp.end < now:
-            pass  # ran its course; expire silently
+            events.append({"type": "expired", "opp": opp, "span": None})  # ran its course
         else:
             events.append({"type": "cancelled", "opp": opp, "span": None})
 
@@ -143,7 +143,18 @@ def load_state(path: Path) -> list[Opportunity]:
     return [Opportunity(**o) for o in data.get("opportunities", [])]
 
 
-def save_state(path: Path, active: list[Opportunity]) -> None:
+def load_archive(path: Path) -> list[dict]:
+    """Past opportunities (cancelled or elapsed), kept for the retention window."""
+    if not path.exists():
+        return []
+    return json.loads(path.read_text()).get("archive", [])
+
+
+def save_state(path: Path, active: list[Opportunity], archive: list[dict] | None = None) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    payload = {"updated": int(time.time()), "opportunities": [asdict(o) for o in active]}
+    payload = {
+        "updated": int(time.time()),
+        "opportunities": [asdict(o) for o in active],
+        "archive": archive or [],
+    }
     path.write_text(json.dumps(payload, indent=1))

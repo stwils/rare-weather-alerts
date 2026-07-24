@@ -3,7 +3,8 @@
 Alerts when weather within 2.5 hours of Portland, OR is unusually photogenic.
 "Rare" means a phenomenon's Quality Score is in the top percentile of its
 10-year history — judged *regionally*, across all spots at once — see
-[CONTEXT.md](CONTEXT.md) for the domain language and [docs/adr/](docs/adr/) for why.
+[CONTEXT.md](CONTEXT.md) for the domain language, [docs/adr/](docs/adr/) for why,
+and [ROADMAP.md](ROADMAP.md) for what's known-wrong and what's next.
 
 **Phenomena**: fog · dramatic storm light · extreme sunrise/sunset · lenticular clouds
 

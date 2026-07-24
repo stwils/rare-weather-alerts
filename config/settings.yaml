@@ -26,6 +26,9 @@ forecast_days: 3
 #   NTFY_TOPIC, PUSHOVER_TOKEN, PUSHOVER_USER
 notify:
   ntfy_url: https://ntfy.sh
+  # Every notification links here (Exceptional alerts deep-link to the card).
+  # The DASHBOARD_URL env var, if set, overrides this.
+  dashboard_url: https://stwils.github.io/rare-weather-alerts
 
 paths:
   state: state/state.json

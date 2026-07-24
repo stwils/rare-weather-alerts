@@ -68,12 +68,15 @@ def main() -> None:
         from .config import load_settings
         from .notify import send
 
+        cfg = load_settings()
+        dash = os.environ.get("DASHBOARD_URL") or cfg.raw["notify"].get("dashboard_url")
         send(
             "Rare Weather Alerts — test",
-            "If you can read this, the channel works.",
+            "If you can read this, the channel works. Tap to open the dashboard.",
             "notable",
-            load_settings().raw["notify"]["ntfy_url"],
+            cfg.raw["notify"]["ntfy_url"],
             dry_run=args.dry_run,
+            click_url=dash,
         )
 
 

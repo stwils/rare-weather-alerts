@@ -30,8 +30,8 @@ def _fmt_window(start: float, end: float, tz: str) -> str:
     return f"{day} {s:%H:%M}–{e:%H:%M}"
 
 
-def _dashboard_url(anchor: str | None = None) -> str | None:
-    base = os.environ.get("DASHBOARD_URL")
+def _dashboard_url(cfg: Settings, anchor: str | None = None) -> str | None:
+    base = os.environ.get("DASHBOARD_URL") or cfg.raw["notify"].get("dashboard_url")
     if not base:
         return None
     base = base.rstrip("/")
@@ -126,7 +126,7 @@ def run_once(dry_run: bool = False) -> None:
             body += f"\nAlso: {others}"
         notify.send(
             title, body, "exceptional", cfg.raw["notify"]["ntfy_url"], dry_run,
-            click_url=_dashboard_url(dashboard.anchor(opp.spot, opp.phenomenon)),
+            click_url=_dashboard_url(cfg, dashboard.anchor(opp.spot, opp.phenomenon)),
         )
 
     data = dashboard.build_data(cfg, spots, thr, active, collected, now)
@@ -167,7 +167,7 @@ def digest(dry_run: bool = False) -> None:
     title = f"🌦 Today's board — {n} opportunit{'y' if n == 1 else 'ies'}"
     notify.send(
         title, "\n".join(lines), "notable", cfg.raw["notify"]["ntfy_url"], dry_run,
-        click_url=_dashboard_url(),
+        click_url=_dashboard_url(cfg),
     )
 
 

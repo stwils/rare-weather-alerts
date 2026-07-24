@@ -7,6 +7,7 @@ a few degrees of the horizon.
 Factors (multiplied):
   canvas     mid/high cloud in the sweet range — some cloud to light, not overcast
   low_clear  low cloud blocks both the sun path and the view
+  twilight   how close the sun is to the horizon; colour lives near elevation 0
   dry        active precipitation at the spot ruins the window
 
 Known v1 limitation: a single-column forecast can't see whether the horizon in
@@ -31,7 +32,8 @@ VARIABLES = [
 
 
 def _factors(h: dict, i: int) -> dict[str, float] | None:
-    if not (-7 <= h["solar_elevation"][i] <= 7):
+    elev = h["solar_elevation"][i]
+    if not (-7 <= elev <= 7):
         return None
     low = val(h, "cloud_cover_low", i)
     mid = val(h, "cloud_cover_mid", i)
@@ -40,10 +42,21 @@ def _factors(h: dict, i: int) -> dict[str, float] | None:
     # Peaked, not plateaued: a perfect canvas needs BOTH high cloud near 45%
     # and mid cloud near 35% — saturating one factor alone can't reach 1.0,
     # so the daily-score distribution stays continuous at the top.
-    canvas = clamp(0.75 * peak(high, 45, 45) + 0.45 * peak(mid, 35, 40))
+    #
+    # The weights sum to 1 rather than being clamped from 1.2. A clamp puts
+    # back the flat top peak() exists to remove: taking the regional daily max
+    # over 14 spots then landed on that plateau on 1.94% of backfilled days,
+    # which made the Exceptional threshold compute to exactly 1.00 — ~4x the
+    # intended push rate, with the winning spot chosen arbitrarily among ties.
+    canvas = 0.62 * peak(high, 45, 45) + 0.38 * peak(mid, 35, 40)
     return {
         "canvas": canvas,
         "low_clear": clamp(1 - low / 65),
+        # Colour is a civil-twilight phenomenon: it peaks around and just after
+        # the sun crosses the horizon, not during the golden hour before it.
+        # Continuous in solar elevation, which also guarantees the score can't
+        # tie at the ceiling the way a boxed gate could.
+        "twilight": peak(elev, -1.5, 10.0),
         "dry": 1.0 if precip < 0.5 else 0.2,
     }
 
@@ -65,5 +78,6 @@ def score_hours(h: dict) -> list[float]:
 def explain(h: dict, i: int) -> str:
     return (
         f"cloud low/mid/high {val(h, 'cloud_cover_low', i):.0f}/"
-        f"{val(h, 'cloud_cover_mid', i):.0f}/{val(h, 'cloud_cover_high', i):.0f}%"
+        f"{val(h, 'cloud_cover_mid', i):.0f}/{val(h, 'cloud_cover_high', i):.0f}%, "
+        f"sun {h['solar_elevation'][i]:.1f}°"
     )

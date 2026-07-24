@@ -23,8 +23,11 @@ python3 -m venv .venv && .venv/bin/pip install -e .
    `rare-weather backfill` — writes `data/thresholds.json` and
    `data/greatest_hits.md`.
 2. **Review** `data/greatest_hits.md` against your memory. Days you remember
-   as epic that score low are bugs in `src/rare_weather/scores/*` — tune,
-   then `rare-weather finish` (recomputes from cache, no refetch).
+   as epic that score low are bugs in `src/rare_weather/scores/*` — tune, then
+   re-run `rare-weather backfill`: it re-scores 10 years out of the `data/raw/`
+   cache, so it's fast and fetches only days added since the last pass.
+   (`rare-weather finish` is the weaker move — it recomputes thresholds from
+   *already-scored* days, so it won't pick up a model change.)
 3. **Channels**: install the [ntfy](https://ntfy.sh) app and subscribe to a
    hard-to-guess topic; buy/install Pushover and create an application token.
 
@@ -43,7 +46,8 @@ python3 -m venv .venv && .venv/bin/pip install -e .
 | `rare-weather run` | Fetch, score, rebuild the dashboard, push any Exceptional change. Hourly. |
 | `rare-weather digest` | One push summarizing today's board every morning ("nothing rare today" if empty). |
 | `rare-weather status` | Console table of live scores vs thresholds. |
-| `rare-weather backfill` / `finish` | Rebuild history → thresholds + greatest hits (`finish` reuses the cache). |
+| `rare-weather backfill` | Re-score 10 years from the `data/raw/` cache → thresholds + greatest hits. Run after any score-model change. |
+| `rare-weather finish` | Recompute thresholds from already-scored days. Only for changing tier percentiles/floors. |
 
 ## Deploy
 

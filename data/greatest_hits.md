@@ -57,26 +57,26 @@ days you remember as epic that are missing (or low) are score-model bugs.
 
 | Date | Best spot | Score | Tier | Drivers |
 |---|---|---|---|---|
-| 2016-12-08 | Sauvie Island | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/35/50% |
-| 2017-05-01 | Cannon Beach | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/41/50% |
-| 2017-05-18 | Dufur | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/35/34% |
-| 2017-05-29 | Hood River | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/26/42% |
-| 2017-09-05 | Lost Lake | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/35/35% |
-| 2017-09-07 | Welches | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/29/40% |
-| 2018-04-04 | Sauvie Island | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/31/45% |
-| 2018-04-22 | Larch Mountain | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/25/48% |
-| 2018-06-12 | Sauvie Island | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/35/34% |
-| 2018-06-18 | Welches | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/38/40% |
-| 2018-08-16 | Pittock Mansion | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/33/39% |
-| 2018-09-29 | Crown Point / Vista House | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/34/49% |
-| 2018-10-24 | Dufur | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/23/42% |
-| 2018-11-15 | Hood River | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/26/44% |
-| 2019-05-12 | Hood River | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/41/43% |
-| 2019-05-21 | Oswald West / Neahkahnie | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/43/43% |
-| 2019-05-27 | Rowena Crest | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/28/38% |
-| 2019-07-22 | Hood River | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/29/46% |
-| 2019-08-21 | Larch Mountain | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/20/46% |
-| 2019-08-29 | Welches | 1.00 | EXCEPTIONAL | cloud low/mid/high 0/41/44% |
+| 2017-05-01 | Oswald West / Neahkahnie | 0.91 | EXCEPTIONAL | cloud low/mid/high 0/31/47%, sun -1.3° |
+| 2018-09-29 | Crown Point / Vista House | 0.88 | EXCEPTIONAL | cloud low/mid/high 0/34/49%, sun -2.1° |
+| 2020-06-13 | Rowena Crest | 0.87 | EXCEPTIONAL | cloud low/mid/high 4/31/47%, sun -1.4° |
+| 2021-03-06 | Hood River | 0.87 | EXCEPTIONAL | cloud low/mid/high 1/34/48%, sun -0.8° |
+| 2025-08-26 | Welches | 0.87 | EXCEPTIONAL | cloud low/mid/high 0/48/45%, sun -1.6° |
+| 2024-06-13 | Larch Mountain | 0.86 | EXCEPTIONAL | cloud low/mid/high 3/31/44%, sun -1.0° |
+| 2022-02-23 | Ecola State Park | 0.86 | EXCEPTIONAL | cloud low/mid/high 0/40/40%, sun -1.8° |
+| 2025-08-25 | Dufur | 0.85 | EXCEPTIONAL | cloud low/mid/high 0/31/39%, sun -1.8° |
+| 2023-02-17 | Lost Lake | 0.84 | EXCEPTIONAL | cloud low/mid/high 2/36/52%, sun -1.8° |
+| 2019-08-29 | Sauvie Island | 0.84 | EXCEPTIONAL | cloud low/mid/high 0/31/37%, sun -1.7° |
+| 2021-03-01 | Hood River | 0.83 | EXCEPTIONAL | cloud low/mid/high 0/32/38%, sun -2.0° |
+| 2026-03-19 | Rowena Crest | 0.83 | EXCEPTIONAL | cloud low/mid/high 0/32/48%, sun -2.5° |
+| 2018-04-22 | Rowena Crest | 0.83 | EXCEPTIONAL | cloud low/mid/high 0/35/36%, sun -2.0° |
+| 2021-02-28 | Sauvie Island | 0.83 | EXCEPTIONAL | cloud low/mid/high 6/35/40%, sun -1.3° |
+| 2020-06-12 | Hood River | 0.82 | EXCEPTIONAL | cloud low/mid/high 0/47/49%, sun -1.3° |
+| 2021-07-28 | Pittock Mansion | 0.81 | EXCEPTIONAL | cloud low/mid/high 0/35/45%, sun -3.4° |
+| 2025-10-27 | Hood River | 0.81 | EXCEPTIONAL | cloud low/mid/high 3/38/40%, sun -0.9° |
+| 2024-06-16 | Hood River | 0.81 | EXCEPTIONAL | cloud low/mid/high 0/20/46%, sun -1.1° |
+| 2025-10-30 | Crown Point / Vista House | 0.81 | EXCEPTIONAL | cloud low/mid/high 0/36/34%, sun -1.1° |
+| 2021-06-08 | Hood River | 0.80 | Notable | cloud low/mid/high 0/23/40%, sun -1.7° |
 
 ## ☁️ Lenticular
 

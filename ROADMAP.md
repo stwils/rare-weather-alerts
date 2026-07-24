@@ -8,35 +8,10 @@ idea. Domain terms are as defined in [CONTEXT.md](CONTEXT.md).
 
 ## Now — the system is currently mis-firing
 
-### 1. Sunrise/sunset thresholds are degenerate
+### 1. Sunrise/sunset thresholds are degenerate — **fixed**
 
-Measured over the 10-year backfill (regional daily-max, 14 spots, 3,664 days):
-
-| Phenomenon | Notable (p98) | Exceptional (p99.5) | Days at exactly 1.00 |
-|---|---|---|---|
-| fog | 0.835 | 0.918 | 0 |
-| lenticular | 0.814 | 0.940 | 3 (0.16%) |
-| storm_light | 0.480 | 0.588 | 0 |
-| **sunrise_sunset** | **0.994** | **1.000** | **71 (1.94%)** |
-
-Two failures, both from the same cause:
-
-- The Exceptional threshold is **1.0**, and 1.94% of days hit exactly 1.0 — so
-  sunrise/sunset fires an Exceptional push on ~7 days/year instead of ~1.8, and
-  every one of those days is *tied*, so the "best spot" picked for the push is
-  arbitrary.
-- The Notable band is 0.994–1.000. It is effectively empty: Notable and
-  Exceptional are the same tier.
-
-Root cause: `canvas = clamp(0.75 * peak(high, 45, 45) + 0.45 * peak(mid, 35, 40))`
-in [sunrise_sunset.py:43](src/rare_weather/scores/sunrise_sunset.py:43) sums to a
-max of 1.2 and then clamps — reintroducing exactly the flat top that `peak()` was
-added to remove. The clamp is the bug; taking a regional max over 14 correlated
-spots then guarantees *some* spot lands on the plateau most days.
-
-Fix: make the factors multiplicative (or normalize the weights to sum to 1) so
-1.0 requires every factor perfect, then re-run `rare-weather finish`. Item 6 is
-the deeper fix — it adds a factor that actually discriminates.
+*See [Shipped](#shipped) at the foot of this file. Item 6 remains the deeper
+fix: it adds a factor that discriminates on more than local cloud amounts.*
 
 ### 2. One bad spot fetch kills the entire run
 
@@ -179,3 +154,42 @@ high payoff, and the domain language is already written.
 - **Small cleanups**: dead `others = ""` in
   [dashboard.py:148](src/rare_weather/dashboard.py:148); `_fmt_window` duplicated
   between `dashboard.py` and `pipeline.py`.
+- **Lenticular can still tie at the ceiling** — 3 backfilled days score exactly
+  1.00, because `wave_wind`, `moisture`, `view` and `dry` can all hit their
+  maxima at once on integer-valued inputs. Harmless today (0.16% is well under
+  the 0.5% cutoff, so the threshold is a healthy 0.94), but it's the same latent
+  shape as item 1 and would bite if the spot list grew. A continuous factor —
+  as `twilight` now does for sunrise/sunset — would close it.
+- **Nothing guards against a degenerate threshold.** Item 1 was invisible until
+  measured by hand. `thresholds.compute` should warn when a tier threshold sits
+  at the distribution maximum, or when the Notable→Exceptional band collapses.
+
+---
+
+## Shipped
+
+### Sunrise/sunset thresholds are degenerate (item 1) — 2026-07-24
+
+`canvas` summed two weighted `peak()` terms to a maximum of 1.2 and clamped,
+reintroducing the flat top `peak()` exists to remove. Taking the regional daily
+max over 14 correlated spots then landed on that plateau on **71 of 3,664 days
+(1.94%)** — so the Exceptional threshold computed to exactly 1.00, sunrise/sunset
+pushed ~4x its intended rate, and the spot named in each push was chosen
+arbitrarily among ties.
+
+Two changes in [sunrise_sunset.py](src/rare_weather/scores/sunrise_sunset.py):
+the canvas weights now sum to 1 instead of being clamped, and a new `twilight`
+factor weights the score by how close the sun is to the horizon — faithful to
+the phenomenon (colour is a civil-twilight event, not a golden-hour one) and
+continuous in solar elevation, so scores cannot tie at the ceiling.
+
+Regional daily-max distribution, before → after:
+
+| | Notable | Exceptional | Tier band | Days tied at max | Exceptional rate |
+|---|---|---|---|---|---|
+| before | 0.9942 | **1.0000** | 0.006 | 71 (1.94%) | 1.94% — ~7/yr |
+| after | 0.6866 | 0.8086 | 0.122 | 1 | 0.52% — **1.9/yr** |
+
+The other three phenomena are unchanged. Top-scoring days now sit at solar
+elevation −1° to −2.5° with high cloud 40–50% and clear low cloud, spread across
+seasons and spots.

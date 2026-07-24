@@ -9,7 +9,7 @@ Alerts when weather within 2.5 hours of Portland, OR is unusually photogenic.
 
 **How you hear about it** (three surfaces, loudest to quietest):
 - **Exceptional** (regional top 0.5%, ~1×/month) → immediate high-priority push (does not bypass Do Not Disturb).
-- **Digest** → one morning push listing the day's board, only when something's on it.
+- **Digest** → one morning push listing the day's board every morning ("nothing rare today" when empty).
 - **Dashboard** → a GitHub Pages page you tap into anytime; every Notable+ opportunity, plus the full board. Alerts deep-link to the relevant card.
 
 ## Setup
@@ -40,7 +40,7 @@ python3 -m venv .venv && .venv/bin/pip install -e .
 | Command | Does |
 |---|---|
 | `rare-weather run` | Fetch, score, rebuild the dashboard, push any Exceptional change. Hourly. |
-| `rare-weather digest` | One push summarizing today's board; silent if empty. Once each morning. |
+| `rare-weather digest` | One push summarizing today's board every morning ("nothing rare today" if empty). |
 | `rare-weather status` | Console table of live scores vs thresholds. |
 | `rare-weather backfill` / `finish` | Rebuild history → thresholds + greatest hits (`finish` reuses the cache). |
 

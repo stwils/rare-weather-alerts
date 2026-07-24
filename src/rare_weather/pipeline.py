@@ -142,7 +142,8 @@ def run_once(dry_run: bool = False) -> None:
 
 
 def digest(dry_run: bool = False) -> None:
-    """One morning push summarizing the day's board. Silent if nothing qualifies."""
+    """One morning push summarizing the day's board. Sent every morning, even
+    when nothing qualifies (an explicit "nothing rare today")."""
     cfg = load_settings()
     spot_by_id = {s.id: s for s in load_spots()}
     active = opportunities.load_state(cfg.path("state"))
@@ -152,21 +153,21 @@ def digest(dry_run: bool = False) -> None:
 
     todays = [o for o in active if o.start <= horizon and o.end >= now]
     if not todays:
-        print("digest: nothing on the board today; staying silent")
-        return
-
-    todays.sort(key=lambda o: (o.tier != "exceptional", o.start))
-    lines = []
-    for o in todays:
-        model = MODELS[o.phenomenon]
-        lines.append(
-            f"{model.EMOJI} {model.LABEL} {TIER_LABEL[o.tier]} — "
+        title = "🌦 Today's board — nothing rare"
+        body = "No notable opportunities in the next 24 hours."
+    else:
+        todays.sort(key=lambda o: (o.tier != "exceptional", o.start))
+        lines = [
+            f"{MODELS[o.phenomenon].EMOJI} {MODELS[o.phenomenon].LABEL} {TIER_LABEL[o.tier]} — "
             f"{spot_by_id[o.spot].name}, {_fmt_window(o.start, o.end, tz)}"
-        )
-    n = len(todays)
-    title = f"🌦 Today's board — {n} opportunit{'y' if n == 1 else 'ies'}"
+            for o in todays
+        ]
+        n = len(todays)
+        title = f"🌦 Today's board — {n} opportunit{'y' if n == 1 else 'ies'}"
+        body = "\n".join(lines)
+
     notify.send(
-        title, "\n".join(lines), "notable", cfg.raw["notify"]["ntfy_url"], dry_run,
+        title, body, "notable", cfg.raw["notify"]["ntfy_url"], dry_run,
         click_url=_dashboard_url(cfg),
     )
 

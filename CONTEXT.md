@@ -34,7 +34,7 @@ _Avoid_: Critical, severe
 The published web page showing every active Opportunity and the full board of best-upcoming scores per Spot. The pull surface — a photographer taps into it — as opposed to Alerts and the Digest, which are pushed.
 
 **Digest**:
-A single daily push summarizing the day's board (all Notable+ Opportunities). Sent once each morning, and only when the board is non-empty.
+A single daily push summarizing the day's board (all Notable+ Opportunities). Sent once every morning, including an explicit "nothing rare today" when the board is empty.
 _Avoid_: Summary, roundup
 
 **Spot**:

@@ -68,6 +68,9 @@ dashboard is written to `./site` (serve it however you like).
 - Spots: [config/spots.yaml](config/spots.yaml) — add/remove freely; new
   Phenomena need a `rare-weather backfill` pass before they alert.
 - Tier percentiles, floors, merge/coalesce gaps: [config/settings.yaml](config/settings.yaml).
+  `tier_overrides` lowers or raises the bar for one phenomenon — the tiers say
+  how often you want interrupting, and that isn't the same answer for each.
+  Changing percentiles only needs `rare-weather finish`, not a full backfill.
 - Health knobs, same file: `digest_hour` (local), `stale_after_hours` (when a
   quiet board starts being reported as an outage instead), and
   `max_spot_failure_fraction` (how many spots may fail before a pass aborts

@@ -33,6 +33,10 @@ class Settings:
         return self.raw["tiers"]
 
     @property
+    def tier_overrides(self) -> dict:
+        return self.raw.get("tier_overrides", {})
+
+    @property
     def merge_gap_hours(self) -> int:
         return self.raw["merge_gap_hours"]
 

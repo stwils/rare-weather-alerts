@@ -44,6 +44,18 @@ This is the highest-value model change available: it fixes the documented
 false-positive source **and** supplies the discriminating factor that item 1
 needs to break the ties.
 
+### 6b. Lenticular v2: wind direction and stability
+
+The lenticular model ignores both — its own docstring says so — which makes it
+noisy in *both* directions: windy unstable days score as lenticular days, and
+well-formed waves at moderate wind speeds get missed. Plan, with the data
+availability verified on both endpoints and two prerequisite fixes (viewpoints
+wrongly tagged as lenticular spots; a raw cache that ignores the variable list):
+**[docs/lenticular-v2.md](docs/lenticular-v2.md)**.
+
+The tier override added on 2026-07-25 is a stopgap for exactly this — it should
+be revisited once v2 lands.
+
 ### 7. Lead Time is defined but not implemented
 
 CONTEXT.md makes Lead Time a property of each Phenomenon, and Travel Radius the

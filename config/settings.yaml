@@ -17,6 +17,21 @@ tiers:
     percentile: 0.995
     floor: 0.35
 
+# Per-phenomenon overrides of the tiers above. The tiers encode how often you
+# want to be interrupted, and that answer isn't identical for every Phenomenon.
+tier_overrides:
+  # Lenticular is a discrete, unmistakable subject — when it happens it's worth
+  # the drive, and the score model is conservative (it ignores wind direction
+  # and stability, so it under-rates as often as it over-rates; see
+  # docs/lenticular-v2.md). Lowered a notch pending that model work.
+  #   notable    p98.0 -> p97.0   (7.6 -> 11.1 board days/yr)
+  #   exceptional p99.5 -> p99.0  (2.1 -> 3.8 pushes/yr)
+  lenticular:
+    notable:
+      percentile: 0.97
+    exceptional:
+      percentile: 0.99
+
 # Opportunity lifecycle
 merge_gap_hours: 6        # below-threshold gaps shorter than this don't split an Opportunity
 coalesce_gap_hours: 12    # same-phenomenon alerts whose windows are this close go out as one push

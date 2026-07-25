@@ -240,29 +240,45 @@
    "exceptional": 0.9176,
    "n_days": 3669,
    "notable": 0.835,
-   "raw_p98": 0.835,
-   "raw_p995": 0.9176
+   "percentiles": [
+    0.98,
+    0.995
+   ],
+   "raw_exceptional": 0.9176,
+   "raw_notable": 0.835
   },
   "lenticular": {
-   "exceptional": 0.9397,
+   "exceptional": 0.8899,
    "n_days": 1934,
-   "notable": 0.8137,
-   "raw_p98": 0.8137,
-   "raw_p995": 0.9397
+   "notable": 0.7425,
+   "percentiles": [
+    0.97,
+    0.99
+   ],
+   "raw_exceptional": 0.8899,
+   "raw_notable": 0.7425
   },
   "storm_light": {
    "exceptional": 0.5881,
    "n_days": 1934,
    "notable": 0.4803,
-   "raw_p98": 0.4803,
-   "raw_p995": 0.5881
+   "percentiles": [
+    0.98,
+    0.995
+   ],
+   "raw_exceptional": 0.5881,
+   "raw_notable": 0.4803
   },
   "sunrise_sunset": {
    "exceptional": 0.8086,
    "n_days": 3669,
    "notable": 0.6866,
-   "raw_p98": 0.6866,
-   "raw_p995": 0.8086
+   "percentiles": [
+    0.98,
+    0.995
+   ],
+   "raw_exceptional": 0.8086,
+   "raw_notable": 0.6866
   }
  }
 }

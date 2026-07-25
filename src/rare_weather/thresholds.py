@@ -6,9 +6,13 @@ percentiles of that regional-max distribution. This fixes the volume problem
 where per-spot top-2% thresholds, fired whenever *any* of a dozen correlated
 spots crossed, produced a far-higher-than-2% felt rate (see ADR 0002).
 
+Tier percentiles are global, with optional per-Phenomenon overrides
+(`tier_overrides` in settings.yaml) — see `tier_params`.
+
 Output shape:
   {
-    "_regional": {phenomenon: {notable, exceptional, n_days, raw_p98, raw_p995}},
+    "_regional": {phenomenon: {notable, exceptional, raw_notable, raw_exceptional,
+                               percentiles, n_days}},
     "_by_spot":  {spot: {phenomenon: {p98, p995, n_days}}}   # display only
   }
 """
@@ -27,7 +31,15 @@ def quantile(sorted_values: list[float], q: float) -> float:
     return sorted_values[idx]
 
 
-def compute(daily_scores: dict, tiers: dict) -> dict:
+def tier_params(tiers: dict, overrides: dict | None, phenomenon: str, tier: str) -> dict:
+    """Tier settings for one Phenomenon: the global tier, with any per-Phenomenon
+    override merged over it. Overrides exist because the tiers are a statement
+    about how often you want to be interrupted, and that answer isn't the same
+    for every Phenomenon — a rarer, more reliable one earns a lower bar."""
+    return {**tiers[tier], **(overrides or {}).get(phenomenon, {}).get(tier, {})}
+
+
+def compute(daily_scores: dict, tiers: dict, overrides: dict | None = None) -> dict:
     """daily_scores: {spot_id: {phenomenon: {date: [score, explain]}}}"""
     # Regional daily-max per phenomenon.
     regional_days: dict[str, dict[str, float]] = defaultdict(dict)
@@ -42,13 +54,15 @@ def compute(daily_scores: dict, tiers: dict) -> dict:
     regional: dict[str, dict] = {}
     for phen, days in regional_days.items():
         values = sorted(days.values())
-        p98 = quantile(values, tiers["notable"]["percentile"])
-        p995 = quantile(values, tiers["exceptional"]["percentile"])
+        n = tier_params(tiers, overrides, phen, "notable")
+        e = tier_params(tiers, overrides, phen, "exceptional")
+        q_n, q_e = quantile(values, n["percentile"]), quantile(values, e["percentile"])
         regional[phen] = {
-            "notable": max(p98, tiers["notable"]["floor"]),
-            "exceptional": max(p995, tiers["exceptional"]["floor"]),
-            "raw_p98": p98,
-            "raw_p995": p995,
+            "notable": max(q_n, n["floor"]),
+            "exceptional": max(q_e, e["floor"]),
+            "raw_notable": q_n,
+            "raw_exceptional": q_e,
+            "percentiles": [n["percentile"], e["percentile"]],
             "n_days": len(values),
         }
 

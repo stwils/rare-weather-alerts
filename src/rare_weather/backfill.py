@@ -93,7 +93,7 @@ def finish(daily: dict | None = None) -> None:
     cfg = load_settings()
     if daily is None:
         daily = json.loads(cfg.path("daily_scores").read_text())
-    thr = thresholds.compute(daily, cfg.tiers)
+    thr = thresholds.compute(daily, cfg.tiers, cfg.tier_overrides)
     thresholds.save(thr, cfg.path("thresholds"))
     print(f"wrote {cfg.path('thresholds')}")
     _greatest_hits(daily, thr, cfg)

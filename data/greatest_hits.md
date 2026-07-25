@@ -93,12 +93,12 @@ days you remember as epic that are missing (or low) are score-model bugs.
 | 2023-04-21 | Mt. Adams | 0.96 | EXCEPTIONAL | 700hPa wind 80 km/h, 700hPa RH 67%, low/mid cloud 2/6% |
 | 2022-01-30 | Hood River | 0.94 | EXCEPTIONAL | 700hPa wind 88 km/h, 700hPa RH 66%, low/mid cloud 0/6% |
 | 2023-02-19 | Hood River | 0.94 | EXCEPTIONAL | 700hPa wind 109 km/h, 700hPa RH 66%, low/mid cloud 5/0% |
-| 2025-12-16 | Hood River | 0.92 | Notable | 700hPa wind 79 km/h, 700hPa RH 69%, low/mid cloud 0/0% |
-| 2023-02-20 | Mt. Jefferson | 0.91 | Notable | 700hPa wind 95 km/h, 700hPa RH 67%, low/mid cloud 2/15% |
-| 2025-10-08 | Hood River | 0.91 | Notable | 700hPa wind 75 km/h, 700hPa RH 67%, low/mid cloud 0/0% |
-| 2022-03-07 | Mt. St. Helens | 0.91 | Notable | 700hPa wind 86 km/h, 700hPa RH 64%, low/mid cloud 0/0% |
-| 2024-01-09 | Hood River | 0.91 | Notable | 700hPa wind 98 km/h, 700hPa RH 64%, low/mid cloud 0/0% |
-| 2022-02-04 | Hood River | 0.90 | Notable | 700hPa wind 85 km/h, 700hPa RH 64%, low/mid cloud 1/0% |
-| 2026-03-29 | Government Camp | 0.89 | Notable | 700hPa wind 94 km/h, 700hPa RH 67%, low/mid cloud 17/1% |
-| 2026-02-22 | Hood River | 0.89 | Notable | 700hPa wind 104 km/h, 700hPa RH 70%, low/mid cloud 0/3% |
-| 2025-12-22 | Hood River | 0.89 | Notable | 700hPa wind 83 km/h, 700hPa RH 70%, low/mid cloud 3/0% |
+| 2025-12-16 | Hood River | 0.92 | EXCEPTIONAL | 700hPa wind 79 km/h, 700hPa RH 69%, low/mid cloud 0/0% |
+| 2023-02-20 | Mt. Jefferson | 0.91 | EXCEPTIONAL | 700hPa wind 95 km/h, 700hPa RH 67%, low/mid cloud 2/15% |
+| 2025-10-08 | Hood River | 0.91 | EXCEPTIONAL | 700hPa wind 75 km/h, 700hPa RH 67%, low/mid cloud 0/0% |
+| 2022-03-07 | Mt. St. Helens | 0.91 | EXCEPTIONAL | 700hPa wind 86 km/h, 700hPa RH 64%, low/mid cloud 0/0% |
+| 2024-01-09 | Hood River | 0.91 | EXCEPTIONAL | 700hPa wind 98 km/h, 700hPa RH 64%, low/mid cloud 0/0% |
+| 2022-02-04 | Hood River | 0.90 | EXCEPTIONAL | 700hPa wind 85 km/h, 700hPa RH 64%, low/mid cloud 1/0% |
+| 2026-03-29 | Government Camp | 0.89 | EXCEPTIONAL | 700hPa wind 94 km/h, 700hPa RH 67%, low/mid cloud 17/1% |
+| 2026-02-22 | Hood River | 0.89 | EXCEPTIONAL | 700hPa wind 104 km/h, 700hPa RH 70%, low/mid cloud 0/3% |
+| 2025-12-22 | Hood River | 0.89 | EXCEPTIONAL | 700hPa wind 83 km/h, 700hPa RH 70%, low/mid cloud 3/0% |

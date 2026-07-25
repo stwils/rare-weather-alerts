@@ -10,7 +10,7 @@ and [ROADMAP.md](ROADMAP.md) for what's known-wrong and what's next.
 
 **How you hear about it** (three surfaces, loudest to quietest):
 - **Exceptional** (regional top 0.5%, ~1×/month) → immediate high-priority push (does not bypass Do Not Disturb).
-- **Digest** → one morning push listing the day's board every morning ("nothing rare today" when empty).
+- **Digest** → one morning push listing the day's board every morning ("nothing rare today" when empty, and "not updating" if the pipeline has gone stale — silence here always means something definite).
 - **Dashboard** → a GitHub Pages page you tap into anytime; every Notable+ opportunity, the full board, and a 72h history of past opportunities (cancelled / ended). Alerts deep-link to the relevant card.
 
 ## Setup
@@ -44,7 +44,7 @@ python3 -m venv .venv && .venv/bin/pip install -e .
 | Command | Does |
 |---|---|
 | `rare-weather run` | Fetch, score, rebuild the dashboard, push any Exceptional change. Hourly. |
-| `rare-weather digest` | One push summarizing today's board every morning ("nothing rare today" if empty). |
+| `rare-weather digest` | One push summarizing today's board ("nothing rare today" if empty; an outage notice if state is stale). Only sends during the local `digest_hour` — add `--force` to send now. |
 | `rare-weather status` | Console table of live scores vs thresholds. |
 | `rare-weather backfill` | Re-score 10 years from the `data/raw/` cache → thresholds + greatest hits. Run after any score-model change. |
 | `rare-weather finish` | Recompute thresholds from already-scored days. Only for changing tier percentiles/floors. |
@@ -68,4 +68,8 @@ dashboard is written to `./site` (serve it however you like).
 - Spots: [config/spots.yaml](config/spots.yaml) — add/remove freely; new
   Phenomena need a `rare-weather backfill` pass before they alert.
 - Tier percentiles, floors, merge/coalesce gaps: [config/settings.yaml](config/settings.yaml).
+- Health knobs, same file: `digest_hour` (local), `stale_after_hours` (when a
+  quiet board starts being reported as an outage instead), and
+  `max_spot_failure_fraction` (how many spots may fail before a pass aborts
+  rather than publishing a partial board).
 - Tuning rule of thumb: more than ~2 pushes/week means the Exceptional bar is too low.

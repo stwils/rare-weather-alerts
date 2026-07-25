@@ -44,6 +44,7 @@ def build_data(
     collected: dict,
     now: float,
     archive: list[dict] | None = None,
+    unavailable: list[str] | None = None,
 ) -> dict:
     spot_by_id = {s.id: s for s in spots}
     tz = cfg.timezone
@@ -128,6 +129,10 @@ def build_data(
         "opportunities": opps,
         "board": board,
         "history": history,
+        "stale_after_hours": cfg.raw.get("stale_after_hours", 6),
+        "unavailable": [
+            spot_by_id[s].name if s in spot_by_id else s for s in (unavailable or [])
+        ],
     }
 
 
@@ -173,6 +178,14 @@ def render_html(data: dict) -> str:
             f"<tr class='{tier_cls}'><td>{r['score']:.2f}</td><td>{_esc(r['label'])}</td>"
             f"<td>{_esc(r['spot'])}</td><td>{_esc(r['when'])}</td>"
             f"<td class='thr'>{r['notable']:.2f} / {r['exceptional']:.2f}</td></tr>"
+        )
+
+    unavailable = ""
+    if data.get("unavailable"):
+        names = _esc(", ".join(data["unavailable"]))
+        unavailable = (
+            f'<div class="warn">Forecast unavailable on the last pass for {names} — '
+            "those spots are missing from the board below.</div>"
         )
 
     OUTCOME = {"cancelled": ("Cancelled", "cancelled"), "ended": ("Ended", "ended")}
@@ -238,6 +251,8 @@ def render_html(data: dict) -> str:
              color:#fff; letter-spacing:.03em; white-space:nowrap; }}
   .outcome.cancelled {{ background:#9ca3af; }}
   .outcome.ended {{ background:#6b7280; }}
+  .warn {{ background:#7c2d12; color:#fff; border-radius:10px; padding:11px 14px;
+          margin:10px 0; font-size:.85rem; }}
   footer {{ color:var(--muted); font-size:.75rem; padding:24px 16px; text-align:center; }}
 </style>
 </head>
@@ -247,6 +262,8 @@ def render_html(data: dict) -> str:
   <div class="sub">{_esc(data['home'])} · updated {_esc(data['generated_str'])}</div>
 </header>
 <main>
+  <div id="stale" class="warn" hidden></div>
+  {unavailable}
   <h2>Active opportunities</h2>
   {''.join(op_cards)}
   <h2>Full board · best upcoming hour per spot</h2>
@@ -257,6 +274,20 @@ def render_html(data: dict) -> str:
   {history_section}
 </main>
 <footer>Rarity is judged against 10 years of regional history. Exceptional = regional top 0.5%.</footer>
+<script>
+// This page is static, so freshness has to be judged when it's read, not when
+// it's written: a quiet board is normal here, and indistinguishable from a
+// pipeline that died three days ago.
+(function () {{
+  var age = Date.now() - {data['generated']} * 1000;
+  if (age <= {data['stale_after_hours']} * 3600000) return;
+  var h = Math.round(age / 3600000);
+  var el = document.getElementById('stale');
+  el.textContent = 'Last updated ' + (h < 48 ? h + ' hours' : Math.round(h / 24) + ' days') +
+    ' ago \\u2014 the hourly pass has stopped. Treat a quiet board as unknown, not calm.';
+  el.hidden = false;
+}})();
+</script>
 </body>
 </html>"""
 

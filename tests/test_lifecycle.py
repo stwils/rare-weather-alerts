@@ -1,6 +1,11 @@
 """Opportunity lifecycle + coalescing tests. Run: python tests/test_lifecycle.py"""
 
-from rare_weather.opportunities import Opportunity, reconcile, spans_from_scores
+from rare_weather.opportunities import (
+    Opportunity,
+    partition_unknown,
+    reconcile,
+    spans_from_scores,
+)
 from rare_weather.pipeline import _coalesce
 
 H = 3600
@@ -63,6 +68,28 @@ def _opp(spot, phen, start_h, end_h, score=0.5):
     )
 
 
+def test_unreachable_spot_is_not_a_cancellation():
+    """A failed fetch must not read as 'the forecast fell apart'."""
+    live, dead = _opp("a", "fog", 10, 14), _opp("b", "fog", 10, 14)
+    reconcilable, held = partition_unknown([live, dead], {"b"}, now=5 * H)
+    assert reconcilable == [live] and held == [dead]
+
+    # ...and the held one is carried through untouched, raising no event
+    active, ev = reconcile(reconcilable, {}, now=5 * H, merge_gap_hours=6)
+    active.extend(held)
+    assert [e["type"] for e in ev] == ["cancelled"]  # only the reachable spot
+    assert active == [dead]
+
+
+def test_unreachable_spot_still_expires():
+    """Held ≠ immortal: an elapsed window still retires even if its spot is down."""
+    past = _opp("b", "fog", 10, 14)
+    reconcilable, held = partition_unknown([past], {"b"}, now=30 * H)
+    assert reconcilable == [past] and held == []
+    _, ev = reconcile(reconcilable, {}, now=30 * H, merge_gap_hours=6)
+    assert [e["type"] for e in ev] == ["expired"]
+
+
 def test_coalesce():
     events = [
         {"type": "detected", "opp": _opp("a", "fog", 10, 14, 0.5), "span": None},
@@ -79,5 +106,7 @@ if __name__ == "__main__":
     test_span_merging()
     test_lifecycle()
     test_upgrade()
+    test_unreachable_spot_is_not_a_cancellation()
+    test_unreachable_spot_still_expires()
     test_coalesce()
     print("all tests pass")

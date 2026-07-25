@@ -38,8 +38,12 @@ The archive section at the foot of the Dashboard listing Opportunities that have
 _Avoid_: Log, past alerts
 
 **Digest**:
-A single daily push summarizing the day's board (all Notable+ Opportunities). Sent once every morning, including an explicit "nothing rare today" when the board is empty.
+A single daily push summarizing the day's board (all Notable+ Opportunities). Sent once every morning, including an explicit "nothing rare today" when the board is empty. Gated on the local hour, so it does not drift when daylight saving ends.
 _Avoid_: Summary, roundup
+
+**Stale**:
+State that no successful pass has refreshed within the freshness window (6h). Because the system is calibrated to be quiet, an outage and a calm week look identical — so staleness is reported explicitly rather than inferred: the Digest announces the outage instead of the board, and the Dashboard raises a warning when read. A quiet board means *unknown*, not *calm*.
+_Avoid_: Down, offline (the distinction that matters is whether the data can be trusted, not whether a process is running)
 
 **Spot**:
 A curated, named real place within the Travel Radius where Quality Scores are computed, tagged with which Phenomena apply there. A Spot is the photographic subject or area the weather is scored at (e.g. "Mt. Hood" for lenticulars); choosing a viewpoint is the photographer's job, not the system's.

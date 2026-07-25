@@ -24,6 +24,11 @@ def main() -> None:
         choices=["run", "digest", "status", "daemon", "backfill", "finish", "test-notify"],
     )
     parser.add_argument("--dry-run", action="store_true", help="print alerts instead of pushing")
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="digest: send now, ignoring the configured local digest hour",
+    )
     args = parser.parse_args()
 
     if args.command == "run":
@@ -33,7 +38,7 @@ def main() -> None:
     elif args.command == "digest":
         from .pipeline import digest
 
-        digest(dry_run=args.dry_run)
+        digest(dry_run=args.dry_run, force=args.force)
     elif args.command == "status":
         from .pipeline import status
 
@@ -51,7 +56,7 @@ def main() -> None:
                 run_once(dry_run=args.dry_run)
                 today = datetime.now().date()
                 if datetime.now().hour >= digest_hour and last_digest_day != today:
-                    digest(dry_run=args.dry_run)
+                    digest(dry_run=args.dry_run, force=True)  # daemon does its own scheduling
                     last_digest_day = today
             except Exception:
                 traceback.print_exc()

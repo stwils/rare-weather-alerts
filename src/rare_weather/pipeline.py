@@ -30,6 +30,17 @@ def _fmt_window(start: float, end: float, tz: str) -> str:
     return f"{day} {s:%H:%M}–{e:%H:%M}"
 
 
+def _age(seconds: float) -> str:
+    """Rough human duration: '3 hours', '2 days'."""
+    hours = seconds / 3600
+    if hours < 1:
+        return f"{int(seconds // 60)} minutes"
+    if hours < 48:
+        n = round(hours)
+        return f"{n} hour{'s' if n != 1 else ''}"
+    return f"{round(hours / 24)} days"
+
+
 def _dashboard_url(cfg: Settings, anchor: str | None = None) -> str | None:
     base = os.environ.get("DASHBOARD_URL") or cfg.raw["notify"].get("dashboard_url")
     if not base:
@@ -38,20 +49,31 @@ def _dashboard_url(cfg: Settings, anchor: str | None = None) -> str | None:
     return f"{base}/#{anchor}" if anchor else base
 
 
-def _collect(cfg: Settings, spots: list[Spot]) -> dict[str, dict]:
-    """Fetch + score every spot. Returns {spot_id: {"hours": h, "scores": {phen: [..]}}}."""
+def _collect(cfg: Settings, spots: list[Spot]) -> tuple[dict[str, dict], list[str]]:
+    """Fetch + score every spot, tolerating individual failures.
+
+    Returns ({spot_id: {"hours": h, "scores": {phen: [..]}}}, failed_spot_ids).
+    One unreachable Spot out of two dozen must not cost the whole pass — the
+    caller decides whether too many failed to trust the result.
+    """
     out: dict[str, dict] = {}
+    failed: list[str] = []
     for spot in spots:
         variables = sorted({v for p in spot.phenomena for v in MODELS[p].VARIABLES})
-        raw = openmeteo.fetch_forecast(
-            spot.latitude, spot.longitude, variables, cfg.forecast_days, cfg.timezone
-        )
-        h = hours.prepare(raw, spot.latitude, spot.longitude, cfg.timezone)
+        try:
+            raw = openmeteo.fetch_forecast(
+                spot.latitude, spot.longitude, variables, cfg.forecast_days, cfg.timezone
+            )
+            h = hours.prepare(raw, spot.latitude, spot.longitude, cfg.timezone)
+        except Exception as exc:  # noqa: BLE001 — any failure is one spot's failure
+            print(f"  ! {spot.id}: forecast unavailable ({type(exc).__name__}: {exc})")
+            failed.append(spot.id)
+            continue
         out[spot.id] = {
             "hours": h,
             "scores": {p: MODELS[p].score_hours(h) for p in spot.phenomena},
         }
-    return out
+    return out, failed
 
 
 def _coalesce(events: list[dict], gap_hours: float) -> list[list[dict]]:
@@ -87,11 +109,26 @@ def run_once(dry_run: bool = False) -> None:
     now = time.time()
     tz = cfg.timezone
 
-    collected = _collect(cfg, spots)
+    collected, failed = _collect(cfg, spots)
+    # Too many failures and the remaining picture isn't worth acting on: every
+    # missing Spot looks like a vanished forecast, so publishing would hollow
+    # out the board. Fail loudly and leave state untouched for the next pass.
+    max_fraction = cfg.raw.get("max_spot_failure_fraction", 0.34)
+    if failed and len(failed) > max_fraction * len(spots):
+        raise RuntimeError(
+            f"{len(failed)}/{len(spots)} spot forecasts unavailable "
+            f"({', '.join(failed)}) — aborting without touching state"
+        )
+    if failed:
+        print(f"continuing without {len(failed)} spot(s): {', '.join(failed)}")
+
     candidates: dict[tuple[str, str], list[opportunities.Span]] = {}
     for spot in spots:
-        h = collected[spot.id]["hours"]
-        for phen, scores in collected[spot.id]["scores"].items():
+        c = collected.get(spot.id)
+        if c is None:
+            continue  # fetch failed; held below rather than treated as "gone"
+        h = c["hours"]
+        for phen, scores in c["scores"].items():
             rt = thresholds.regional_for(thr, phen)
             if rt is None:
                 continue  # no baseline yet — backfill hasn't covered this phenomenon
@@ -101,7 +138,10 @@ def run_once(dry_run: bool = False) -> None:
             if spans:
                 candidates[(spot.id, phen)] = spans
 
-    active, events = opportunities.reconcile(active, candidates, now, cfg.merge_gap_hours)
+    # Opportunities at a Spot we couldn't reach are held, not cancelled.
+    reconcilable, held = opportunities.partition_unknown(active, set(failed), now)
+    active, events = opportunities.reconcile(reconcilable, candidates, now, cfg.merge_gap_hours)
+    active.extend(held)
 
     # Archive opportunities that just left the active set (cancelled or elapsed),
     # and prune the history to the retention window.
@@ -156,7 +196,7 @@ def run_once(dry_run: bool = False) -> None:
             click_url=_dashboard_url(cfg, dashboard.anchor(opp.spot, opp.phenomenon)),
         )
 
-    data = dashboard.build_data(cfg, spots, thr, active, collected, now, archive)
+    data = dashboard.build_data(cfg, spots, thr, active, collected, now, archive, failed)
     if not dry_run:
         dashboard.write_site(cfg, data)
         opportunities.save_state(state_path, active, archive)  # dry run must not consume state
@@ -165,18 +205,54 @@ def run_once(dry_run: bool = False) -> None:
     print(
         f"{len(active)} active opportunities ({n_exc} exceptional); "
         f"{len(pushable)} pushed this run"
+        + (f"; {len(held)} held behind failed fetches" if held else "")
     )
 
 
-def digest(dry_run: bool = False) -> None:
+def digest(dry_run: bool = False, force: bool = False) -> None:
     """One morning push summarizing the day's board. Sent every morning, even
-    when nothing qualifies (an explicit "nothing rare today")."""
+    when nothing qualifies (an explicit "nothing rare today").
+
+    Gated on the *local* hour rather than a UTC cron, so the briefing doesn't
+    slide an hour when daylight saving ends. Callers that do their own
+    scheduling (the Docker daemon, a manual run) pass force=True.
+    """
     cfg = load_settings()
-    spot_by_id = {s.id: s for s in load_spots()}
-    active = opportunities.load_state(cfg.path("state"))
-    now = time.time()
     tz = cfg.timezone
+    now = time.time()
+
+    digest_hour = int(os.environ.get("RWA_DIGEST_HOUR", cfg.raw.get("digest_hour", 6)))
+    local_hour = datetime.fromtimestamp(now, ZoneInfo(tz)).hour
+    if not force and local_hour != digest_hour:
+        print(f"not the digest hour (local {local_hour:02d}:00, want {digest_hour:02d}:00) — skipping")
+        return
+
+    state_path = cfg.path("state")
+    spot_by_id = {s.id: s for s in load_spots()}
+    active = opportunities.load_state(state_path)
     horizon = now + 24 * 3600
+
+    # A quiet board is the normal case, so it can't be trusted without knowing
+    # the pipeline actually ran. Report the outage instead of "nothing rare".
+    stale_after = cfg.raw.get("stale_after_hours", 6) * 3600
+    updated = opportunities.load_updated(state_path)
+    if updated is None or now - updated > stale_after:
+        age = "never" if updated is None else _age(now - updated)
+        when = (
+            ""
+            if updated is None
+            else f" (last good pass {datetime.fromtimestamp(updated, ZoneInfo(tz)):%a %b %-d, %H:%M})"
+        )
+        notify.send(
+            "⚠️ Rare Weather Alerts — not updating",
+            f"The hourly pass hasn't succeeded in {age}{when}.\n"
+            "Today's board is stale; treat a quiet dashboard as unknown, not calm.",
+            "notable",
+            cfg.raw["notify"]["ntfy_url"],
+            dry_run,
+            click_url=_dashboard_url(cfg),
+        )
+        return
 
     todays = [o for o in active if o.start <= horizon and o.end >= now]
     if not todays:
@@ -207,13 +283,16 @@ def status() -> None:
         thr = thresholds.load(cfg.path("thresholds"))
     except FileNotFoundError:
         thr = {}
-    collected = _collect(cfg, spots)
+    collected, failed = _collect(cfg, spots)
     tz = cfg.timezone
 
     rows = []
     for spot in spots:
-        h = collected[spot.id]["hours"]
-        for phen, scores in collected[spot.id]["scores"].items():
+        c = collected.get(spot.id)
+        if c is None:
+            continue
+        h = c["hours"]
+        for phen, scores in c["scores"].items():
             i = max(range(len(scores)), key=scores.__getitem__)
             rt = thresholds.regional_for(thr, phen) or {}
             tier = (
@@ -231,3 +310,5 @@ def status() -> None:
         when = datetime.fromtimestamp(epoch, ZoneInfo(tz)).strftime("%a %H:%M")
         thr_s = f"{rt.get('notable', 0):.2f}/{rt.get('exceptional', 0):.2f}" if rt else "—"
         print(f"{score:5.2f}  {tier:<12} {name:<26} {phen:<15} {when:<18} {thr_s}")
+    if failed:
+        print(f"\nforecast unavailable for {len(failed)} spot(s): {', '.join(failed)}")

@@ -13,32 +13,10 @@ idea. Domain terms are as defined in [CONTEXT.md](CONTEXT.md).
 *See [Shipped](#shipped) at the foot of this file. Item 6 remains the deeper
 fix: it adds a factor that discriminates on more than local cloud amounts.*
 
-### 2. One bad spot fetch kills the entire run
+### 2–4. Trustworthy silence — **fixed**
 
-`_collect` in [pipeline.py:41](src/rare_weather/pipeline.py:41) loops 22 spots
-with no error handling. Any spot that still fails after `_fetch`'s 5 retries
-raises out of `run_once`, so the run publishes no dashboard, commits no state,
-and sends nothing — because one of 22 requests failed. Catch per spot, score
-what came back, and surface the gap on the dashboard.
-
-### 3. Silent failure is indistinguishable from "nothing rare"
-
-This project's failure mode is *quiet*, which is also what a calm week looks
-like. If the hourly workflow breaks — API change, quota, malformed response —
-nothing tells you. Worse, `digest` reads committed state and will cheerfully
-report "nothing rare today" off a week-old file.
-
-Add a staleness watchdog: if state is older than N hours, the digest says so
-loudly and the dashboard shows a warning band instead of a stale board. Consider
-a `failure` job on the workflow that pushes to ntfy.
-
-### 4. The digest drifts an hour every winter
-
-[digest.yml](.github/workflows/digest.yml) is `cron: "10 13 * * *"` — UTC, which
-GitHub does not adjust for DST. That's 06:10 PDT in summer but 05:10 PST in
-winter, i.e. it arrives before you'd want it for half the year. Fix by running
-the workflow hourly and exiting unless the *local* hour matches (the Docker
-daemon already does this via `RWA_DIGEST_HOUR`).
+*One bad spot fetch killing the run; silent failure reading as "nothing rare";
+the digest drifting an hour every winter. See [Shipped](#shipped).*
 
 ---
 
@@ -167,6 +145,31 @@ high payoff, and the domain language is already written.
 ---
 
 ## Shipped
+
+### Trustworthy silence (items 2–4) — 2026-07-24
+
+The system is calibrated to be quiet — roughly eight Exceptional pushes a year —
+so a dead pipeline and a calm month produce the identical experience. Three
+changes so that silence can be believed:
+
+**A failed fetch no longer costs the pass, or fakes a cancellation.** `_collect`
+now catches per spot. The subtle half is that a missing Spot previously looked
+to `reconcile` exactly like a vanished forecast, so a network blip would have
+pushed a *false cancellation* — `partition_unknown` holds those Opportunities
+untouched instead, while still letting elapsed ones expire so nothing lingers
+behind a Spot that stays down. Above `max_spot_failure_fraction` (34%) the pass
+aborts without touching state rather than publishing a hollowed-out board.
+
+**The digest reports outages.** It reads `updated` from state and, past
+`stale_after_hours` (6), sends "not updating — the hourly pass hasn't succeeded
+in N hours" instead of a reassuring "nothing rare today". The dashboard judges
+freshness client-side, since a static page is read long after it's written, and
+raises the same warning band on open.
+
+**The morning briefing stopped drifting.** Cron is UTC and never shifts for
+daylight saving, so the single 13:10 entry meant 06:10 in summer and 05:10 in
+winter. Two cron entries now bracket both, and `digest` gates on the *local*
+hour (`digest_hour`), so exactly one fires year-round.
 
 ### Sunrise/sunset thresholds are degenerate (item 1) — 2026-07-24
 

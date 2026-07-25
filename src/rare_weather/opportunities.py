@@ -136,11 +136,39 @@ def reconcile(
     return new_active, events
 
 
+def partition_unknown(
+    active: list[Opportunity], unknown_spots: set[str], now: float
+) -> tuple[list[Opportunity], list[Opportunity]]:
+    """Split active Opportunities into (reconcilable, held).
+
+    A Spot whose forecast failed to fetch has no candidate Spans this pass, and
+    `reconcile` would read that absence as "the forecast fell apart" and cancel
+    — pushing a false cancellation over what is really a network error. Hold
+    those Opportunities unchanged instead. Ones whose window has already elapsed
+    stay reconcilable so they can still expire into the archive rather than
+    lingering forever behind a Spot that keeps failing.
+    """
+    held = [o for o in active if o.spot in unknown_spots and o.end >= now]
+    held_ids = {id(o) for o in held}
+    return [o for o in active if id(o) not in held_ids], held
+
+
 def load_state(path: Path) -> list[Opportunity]:
     if not path.exists():
         return []
     data = json.loads(path.read_text())
     return [Opportunity(**o) for o in data.get("opportunities", [])]
+
+
+def load_updated(path: Path) -> float | None:
+    """Epoch of the last successful `run`, or None if there has never been one.
+
+    The freshness signal: this system's normal state is silence, so a broken
+    pipeline looks exactly like a calm week unless something checks the clock.
+    """
+    if not path.exists():
+        return None
+    return json.loads(path.read_text()).get("updated")
 
 
 def load_archive(path: Path) -> list[dict]:

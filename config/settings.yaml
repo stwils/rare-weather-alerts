@@ -23,6 +23,12 @@ coalesce_gap_hours: 12    # same-phenomenon alerts whose windows are this close 
 forecast_days: 3
 archive_retention_hours: 72  # how long past opportunities linger in the dashboard history
 
+# Health. A quiet board is the normal case here, so it is indistinguishable
+# from a broken pipeline unless something watches the clock.
+digest_hour: 6               # local hour for the morning briefing (RWA_DIGEST_HOUR overrides)
+stale_after_hours: 6         # no successful pass in this long = report the outage, not "nothing rare"
+max_spot_failure_fraction: 0.34  # above this, abort the pass rather than publish a hollowed-out board
+
 # Delivery. Secrets come from environment variables:
 #   NTFY_TOPIC, PUSHOVER_TOKEN, PUSHOVER_USER
 notify:

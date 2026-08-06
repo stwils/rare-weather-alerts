@@ -18,6 +18,10 @@ class Spot:
     latitude: float
     longitude: float
     phenomena: list[str] = field(default_factory=list)
+    # Direction (deg, meteorological) that flow comes FROM when crossing the
+    # local barrier at right angles. Only meaningful for terrain-driven
+    # Phenomena; the Cascade crest runs N-S, so westerly is the default.
+    barrier_bearing: float = 270.0
 
 
 @dataclass

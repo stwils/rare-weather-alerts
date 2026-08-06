@@ -37,9 +37,21 @@ def _chunks(start: str, source: str) -> list[tuple[str, str]]:
 
 
 def _fetch_cached(cache_dir: Path, spot, source: str, variables: list[str], start: str, end: str, tz: str) -> dict:
+    """Cached archive fetch, validated against the variables actually asked for.
+
+    The cache is keyed on (spot, source, span) — not on the variable list — so a
+    model that grows a new input would otherwise be served a stale response
+    lacking it, and die later at `val()`. Checking the payload instead of
+    hashing the request also means a *shrinking* variable list still hits cache,
+    and pre-existing files stay valid.
+    """
     cache = cache_dir / f"{spot.id}_{source}_{start}_{end}.json"
     if cache.exists():
-        return json.loads(cache.read_text())
+        cached = json.loads(cache.read_text())
+        missing = [v for v in variables if v not in cached]
+        if not missing:
+            return cached
+        print(f"    refetching: cache lacks {', '.join(missing)}")
     raw = openmeteo.fetch_archive(source, spot.latitude, spot.longitude, variables, start, end, tz)
     cache.parent.mkdir(parents=True, exist_ok=True)
     cache.write_text(json.dumps(raw))
@@ -70,7 +82,7 @@ def run() -> None:
             for start, end in _chunks(starts[source], source):
                 print(f"{spot.id}: {source} {start}..{end}")
                 raw = _fetch_cached(cache_dir, spot, source, variables, start, end, tz)
-                h = hours.prepare(raw, spot.latitude, spot.longitude, tz)
+                h = hours.prepare(raw, spot.latitude, spot.longitude, tz, spot.barrier_bearing)
                 for phen in phens:
                     m = MODELS[phen]
                     scores = m.score_hours(h)

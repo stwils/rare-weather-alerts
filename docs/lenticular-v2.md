@@ -1,6 +1,7 @@
 # Lenticular model v2 — wind direction and stability
 
-Plan, not a decision. When it's built, the decision goes in an ADR.
+**Status: built (2026-08-06).** The plan below is kept as written; the outcome,
+including the part of it that was wrong, is recorded in [Outcome](#outcome).
 
 ## Why
 
@@ -107,6 +108,61 @@ requires manually purging `data/raw/*_forecast_archive_*`.
    verdict data from roadmap item 5, not a guess.
 
 Cost: ~18 archive requests (6 spots × 3 chunks), a few minutes of scoring.
+
+## Outcome
+
+Calibrated against 94,412 daylight hours at the four volcanoes, 2021+.
+
+**The stability hypothesis was wrong, and the data said so plainly.** The plan
+asserted that v1 "happily scores a windy unstable day as a lenticular day". It
+doesn't, because such days effectively do not occur here at these levels:
+potential temperature across 700→500 hPa is **below 2 K on 0.0% of hours**
+(p05 = 6.1 K, median 10.7 K), and across 850→700 hPa on 0.9%. The free
+troposphere over the Cascades is essentially always stably stratified, so a
+stability *gate* filters nothing. Correlation with the v1 score is +0.04.
+
+Stability shipped anyway, but demoted to a weak ranking modifier spanning
+0.7–1.0 rather than a gate — more stable does mean a stronger wave for a given
+wind, and the top v1 hours are measurably more stable than average (median
+13.1 K vs 10.7 K). Giving it a narrow range is the honest encoding of a weak
+signal. It uses 700→500 hPa, above the summits where the wave propagates,
+rather than the 850→700 layer originally proposed.
+
+**Wind direction was the real win.** Cross-barrier flow separates strongly
+(median 22 km/h over all hours, 59 km/h over the top-400 v1 hours), and so does
+directional coherence (`shear < 30°` covers 74% of all hours but 97% of the top
+400).
+
+**Discrimination test** — v1 and v2 top-20 share 13 days; v2 promotes 7. Every
+promoted day is a textbook setup: shear 0–11°, bearing 249–304°, stability
+14–19 K. Of the 7 dropped, being precise about which were *judgements*:
+
+- **2 rejected on physics.** 2022-03-07 Mt. St. Helens was v1's #2 day in five
+  years at 82 km/h — from **342°**, nearly along the crest, cross-barrier only
+  25 km/h. v2 scores it 0.00. 2025-10-08 Mt. Hood likewise, 219° → 0.07.
+- **1 on weak stratification** (2024-04-02, 6.3 K).
+- **4 merely ranked lower** — cross 53–69 km/h, low shear, good stability,
+  scoring 0.43–0.48. They weren't rejected; the field got more competitive.
+
+So: one unambiguous catch near the very top of v1's list, which is real evidence
+the direction fix matters, and no evidence yet about the promoted days beyond
+their physics reading correctly. That gap is roadmap item 5, not something this
+change could close.
+
+**Threshold movement.** Untagging the two viewpoints mattered more than
+expected on its own: lenticular Notable fell 0.7425 → 0.5464 and Exceptional
+0.8899 → 0.7188 *before any model change*, confirming those two columns were
+frequently winning the regional daily max. After v2 the thresholds are 0.3841 /
+0.5331, with the tier floors not binding (0.25 / 0.35) and one day at the
+distribution maximum — no ties. Rate holds at 3.8 Exceptional days/yr. The
+other three phenomena are unchanged.
+
+**The cache fix took a better form than planned.** Rather than hashing the
+variable list into the filename — which would have invalidated all 132 cached
+files and forced a full 10-year refetch — `_fetch_cached` now validates that the
+cached payload actually contains every requested variable. Content check beats
+request hash: legacy files stay valid, a shrinking variable list still hits
+cache, and only the 12 chunks that genuinely lacked the new fields refetched.
 
 ## How we'll know it worked
 

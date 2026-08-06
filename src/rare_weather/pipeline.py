@@ -64,7 +64,7 @@ def _collect(cfg: Settings, spots: list[Spot]) -> tuple[dict[str, dict], list[st
             raw = openmeteo.fetch_forecast(
                 spot.latitude, spot.longitude, variables, cfg.forecast_days, cfg.timezone
             )
-            h = hours.prepare(raw, spot.latitude, spot.longitude, cfg.timezone)
+            h = hours.prepare(raw, spot.latitude, spot.longitude, cfg.timezone, spot.barrier_bearing)
         except Exception as exc:  # noqa: BLE001 — any failure is one spot's failure
             print(f"  ! {spot.id}: forecast unavailable ({type(exc).__name__}: {exc})")
             failed.append(spot.id)

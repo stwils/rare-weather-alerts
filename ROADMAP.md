@@ -44,17 +44,17 @@ This is the highest-value model change available: it fixes the documented
 false-positive source **and** supplies the discriminating factor that item 1
 needs to break the ties.
 
-### 6b. Lenticular v2: wind direction and stability
+### 6b. Lenticular v2: wind direction and stability — **built**
 
-The lenticular model ignores both — its own docstring says so — which makes it
-noisy in *both* directions: windy unstable days score as lenticular days, and
-well-formed waves at moderate wind speeds get missed. Plan, with the data
-availability verified on both endpoints and two prerequisite fixes (viewpoints
-wrongly tagged as lenticular spots; a raw cache that ignores the variable list):
-**[docs/lenticular-v2.md](docs/lenticular-v2.md)**.
+Shipped 2026-08-06; see [docs/lenticular-v2.md](docs/lenticular-v2.md) for the
+calibration and the honest scorecard, including a hypothesis that the data
+refuted (there is no population of unstable days here to filter out — the
+Cascade free troposphere is stably stratified in ~100% of hours).
 
-The tier override added on 2026-07-25 is a stopgap for exactly this — it should
-be revisited once v2 lands.
+Still open, deliberately deferred: Froude number (needs per-peak effective
+obstacle heights), and which side of the summit the lens sits on. The tier
+override from 2026-07-25 remains in place — deciding whether v2 has earned it
+back needs verdict data (item 5), not another guess.
 
 ### 7. Lead Time is defined but not implemented
 

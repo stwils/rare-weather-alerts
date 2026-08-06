@@ -13,9 +13,11 @@ days you remember as epic that are missing (or low) are score-model bugs.
 | 2025-09-13 | Multnomah Falls | 0.97 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 0 km/h, mid/high cloud 0/0% |
 | 2019-04-28 | Multnomah Falls | 0.96 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
 | 2025-07-15 | Multnomah Falls | 0.95 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
+| 2026-07-25 | Welches | 0.95 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
 | 2020-10-02 | Pittock Mansion | 0.94 | EXCEPTIONAL | spread 0.1°C, RH 100%, wind 0 km/h, mid/high cloud 0/0% |
 | 2021-03-30 | Sauvie Island | 0.94 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
 | 2026-04-27 | Sauvie Island | 0.94 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 2/0% |
+| 2026-07-29 | Multnomah Falls | 0.94 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/9% |
 | 2017-07-08 | Multnomah Falls | 0.94 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/8% |
 | 2019-08-26 | Multnomah Falls | 0.94 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
 | 2020-02-28 | Cannon Beach | 0.94 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
@@ -25,8 +27,6 @@ days you remember as epic that are missing (or low) are score-model bugs.
 | 2023-07-08 | Welches | 0.92 | EXCEPTIONAL | spread 0.1°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
 | 2017-06-05 | Multnomah Falls | 0.92 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
 | 2020-10-22 | Multnomah Falls | 0.92 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
-| 2025-09-26 | Sauvie Island | 0.92 | EXCEPTIONAL | spread 0.0°C, RH 100%, wind 1 km/h, mid/high cloud 0/0% |
-| 2017-05-15 | Sauvie Island | 0.92 | Notable | spread 0.0°C, RH 100%, wind 0 km/h, mid/high cloud 4/9% |
 
 ## 🌩️ Storm light
 
@@ -82,23 +82,23 @@ days you remember as epic that are missing (or low) are score-model bugs.
 
 | Date | Best spot | Score | Tier | Drivers |
 |---|---|---|---|---|
-| 2021-10-28 | Hood River | 1.00 | EXCEPTIONAL | 700hPa wind 87 km/h, 700hPa RH 67%, low/mid cloud 0/0% |
-| 2024-10-04 | Mt. Hood | 1.00 | EXCEPTIONAL | 700hPa wind 97 km/h, 700hPa RH 67%, low/mid cloud 0/0% |
-| 2026-03-19 | Hood River | 1.00 | EXCEPTIONAL | 700hPa wind 96 km/h, 700hPa RH 67%, low/mid cloud 0/0% |
-| 2025-12-14 | Government Camp | 0.99 | EXCEPTIONAL | 700hPa wind 84 km/h, 700hPa RH 67%, low/mid cloud 1/0% |
-| 2026-03-20 | Government Camp | 0.98 | EXCEPTIONAL | 700hPa wind 102 km/h, 700hPa RH 67%, low/mid cloud 3/0% |
-| 2026-03-17 | Hood River | 0.98 | EXCEPTIONAL | 700hPa wind 93 km/h, 700hPa RH 67%, low/mid cloud 0/4% |
-| 2021-11-25 | Government Camp | 0.97 | EXCEPTIONAL | 700hPa wind 86 km/h, 700hPa RH 66%, low/mid cloud 0/0% |
-| 2025-12-17 | Hood River | 0.97 | EXCEPTIONAL | 700hPa wind 90 km/h, 700hPa RH 66%, low/mid cloud 0/0% |
-| 2023-04-21 | Mt. Adams | 0.96 | EXCEPTIONAL | 700hPa wind 80 km/h, 700hPa RH 67%, low/mid cloud 2/6% |
-| 2022-01-30 | Hood River | 0.94 | EXCEPTIONAL | 700hPa wind 88 km/h, 700hPa RH 66%, low/mid cloud 0/6% |
-| 2023-02-19 | Hood River | 0.94 | EXCEPTIONAL | 700hPa wind 109 km/h, 700hPa RH 66%, low/mid cloud 5/0% |
-| 2025-12-16 | Hood River | 0.92 | EXCEPTIONAL | 700hPa wind 79 km/h, 700hPa RH 69%, low/mid cloud 0/0% |
-| 2023-02-20 | Mt. Jefferson | 0.91 | EXCEPTIONAL | 700hPa wind 95 km/h, 700hPa RH 67%, low/mid cloud 2/15% |
-| 2025-10-08 | Hood River | 0.91 | EXCEPTIONAL | 700hPa wind 75 km/h, 700hPa RH 67%, low/mid cloud 0/0% |
-| 2022-03-07 | Mt. St. Helens | 0.91 | EXCEPTIONAL | 700hPa wind 86 km/h, 700hPa RH 64%, low/mid cloud 0/0% |
-| 2024-01-09 | Hood River | 0.91 | EXCEPTIONAL | 700hPa wind 98 km/h, 700hPa RH 64%, low/mid cloud 0/0% |
-| 2022-02-04 | Hood River | 0.90 | EXCEPTIONAL | 700hPa wind 85 km/h, 700hPa RH 64%, low/mid cloud 1/0% |
-| 2026-03-29 | Government Camp | 0.89 | EXCEPTIONAL | 700hPa wind 94 km/h, 700hPa RH 67%, low/mid cloud 17/1% |
-| 2026-02-22 | Hood River | 0.89 | EXCEPTIONAL | 700hPa wind 104 km/h, 700hPa RH 70%, low/mid cloud 0/3% |
-| 2025-12-22 | Hood River | 0.89 | EXCEPTIONAL | 700hPa wind 83 km/h, 700hPa RH 70%, low/mid cloud 3/0% |
+| 2024-10-04 | Mt. Hood | 0.89 | EXCEPTIONAL | cross-barrier 95 km/h (700hPa 97 from 257°), shear 12°, stability 13.2K, RH 67%, low/mid cloud 0/0% |
+| 2026-03-20 | Mt. Jefferson | 0.83 | EXCEPTIONAL | cross-barrier 86 km/h (700hPa 87 from 263°), shear 5°, stability 12.1K, RH 66%, low/mid cloud 0/0% |
+| 2021-11-25 | Mt. Hood | 0.82 | EXCEPTIONAL | cross-barrier 91 km/h (700hPa 92 from 265°), shear 11°, stability 14.3K, RH 71%, low/mid cloud 0/0% |
+| 2022-01-11 | Mt. Jefferson | 0.73 | EXCEPTIONAL | cross-barrier 79 km/h (700hPa 80 from 272°), shear 11°, stability 13.4K, RH 70%, low/mid cloud 3/0% |
+| 2026-03-29 | Mt. Jefferson | 0.72 | EXCEPTIONAL | cross-barrier 98 km/h (700hPa 98 from 267°), shear 2°, stability 14.6K, RH 73%, low/mid cloud 4/8% |
+| 2026-03-18 | Mt. Adams | 0.71 | EXCEPTIONAL | cross-barrier 94 km/h (700hPa 94 from 267°), shear 3°, stability 13.4K, RH 67%, low/mid cloud 0/43% |
+| 2021-09-17 | Mt. Hood | 0.67 | EXCEPTIONAL | cross-barrier 70 km/h (700hPa 72 from 258°), shear 2°, stability 13.6K, RH 67%, low/mid cloud 2/0% |
+| 2026-03-19 | Mt. Hood | 0.67 | EXCEPTIONAL | cross-barrier 85 km/h (700hPa 85 from 267°), shear 0°, stability 14.2K, RH 58%, low/mid cloud 0/0% |
+| 2021-11-30 | Mt. Hood | 0.66 | EXCEPTIONAL | cross-barrier 83 km/h (700hPa 100 from 304°), shear 0°, stability 16.7K, RH 77%, low/mid cloud 2/0% |
+| 2023-02-20 | Mt. Jefferson | 0.66 | EXCEPTIONAL | cross-barrier 78 km/h (700hPa 95 from 305°), shear 23°, stability 16.9K, RH 67%, low/mid cloud 2/15% |
+| 2026-03-16 | Mt. Hood | 0.64 | EXCEPTIONAL | cross-barrier 74 km/h (700hPa 81 from 293°), shear 7°, stability 14.1K, RH 72%, low/mid cloud 0/0% |
+| 2024-09-26 | Mt. St. Helens | 0.62 | EXCEPTIONAL | cross-barrier 66 km/h (700hPa 67 from 266°), shear 3°, stability 13.4K, RH 67%, low/mid cloud 0/0% |
+| 2026-01-30 | Mt. Hood | 0.61 | EXCEPTIONAL | cross-barrier 92 km/h (700hPa 94 from 258°), shear 1°, stability 14.4K, RH 67%, low/mid cloud 46/14% |
+| 2024-06-11 | Mt. Hood | 0.61 | EXCEPTIONAL | cross-barrier 66 km/h (700hPa 66 from 269°), shear 1°, stability 15.5K, RH 70%, low/mid cloud 0/0% |
+| 2022-12-19 | Mt. Jefferson | 0.61 | EXCEPTIONAL | cross-barrier 71 km/h (700hPa 75 from 287°), shear 4°, stability 13.3K, RH 68%, low/mid cloud 2/16% |
+| 2025-12-14 | Mt. Hood | 0.61 | EXCEPTIONAL | cross-barrier 84 km/h (700hPa 85 from 261°), shear 13°, stability 13.2K, RH 60%, low/mid cloud 19/0% |
+| 2026-06-05 | Mt. Hood | 0.61 | EXCEPTIONAL | cross-barrier 70 km/h (700hPa 71 from 262°), shear 9°, stability 19.3K, RH 61%, low/mid cloud 1/0% |
+| 2025-11-03 | Mt. Jefferson | 0.57 | EXCEPTIONAL | cross-barrier 82 km/h (700hPa 88 from 249°), shear 8°, stability 15.1K, RH 76%, low/mid cloud 4/24% |
+| 2026-03-17 | Mt. Hood | 0.56 | EXCEPTIONAL | cross-barrier 96 km/h (700hPa 96 from 273°), shear 11°, stability 14.9K, RH 77%, low/mid cloud 16/11% |
+| 2021-10-27 | Mt. Jefferson | 0.53 | EXCEPTIONAL | cross-barrier 78 km/h (700hPa 84 from 291°), shear 5°, stability 14.5K, RH 69%, low/mid cloud 41/15% |

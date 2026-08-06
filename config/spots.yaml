@@ -28,25 +28,32 @@ spots:
     latitude: 45.6828
     longitude: -121.3025
     phenomena: [sunrise_sunset, storm_light]
+  # Cascade volcanoes. barrier_bearing is the direction cross-barrier flow comes
+  # FROM when it crosses the crest at right angles; the Cascade crest runs
+  # roughly N-S here, so westerly (270) is the wave-making direction.
   - id: mt-hood
     name: Mt. Hood
     latitude: 45.3735
     longitude: -121.6959
+    barrier_bearing: 270
     phenomena: [lenticular]
   - id: mt-st-helens
     name: Mt. St. Helens
     latitude: 46.1912
     longitude: -122.1944
+    barrier_bearing: 270
     phenomena: [lenticular]
   - id: mt-adams
     name: Mt. Adams
     latitude: 46.2024
     longitude: -121.4906
+    barrier_bearing: 270
     phenomena: [lenticular]
   - id: mt-jefferson
     name: Mt. Jefferson
     latitude: 44.6743
     longitude: -121.7997
+    barrier_bearing: 270
     phenomena: [lenticular]
   - id: trillium-lake
     name: Trillium Lake
@@ -97,12 +104,17 @@ spots:
     name: Government Camp
     latitude: 45.3010
     longitude: -121.7560
-    phenomena: [fog, lenticular]
+    # Not lenticular: this is a place you stand, not the subject. Scoring the
+    # air column over the village double-counts Mt. Hood's wave and inflates
+    # the regional max the thresholds are percentiles of.
+    phenomena: [fog]
   - id: hood-river
     name: Hood River
     latitude: 45.7090
     longitude: -121.5120
-    phenomena: [sunrise_sunset, lenticular]
+    # Not lenticular: a viewpoint 50 km from the peak, not the peak. See
+    # government-camp above.
+    phenomena: [sunrise_sunset]
   - id: dufur
     name: Dufur
     latitude: 45.4530

@@ -130,9 +130,8 @@ high payoff, and the domain language is already written.
   commits are `chore: update opportunity state`, and they caused repeated push
   rejections during development. Move state to an orphan branch, an Actions
   cache, or fold it into the published Pages artifact.
-- **Remove `continue-on-error` from the three Pages steps** in
-  [alerts.yml](.github/workflows/alerts.yml). It was scaffolding for before Pages
-  was enabled; now it hides real deploy failures.
+- ~~**Remove `continue-on-error` from the three Pages steps.**~~ Done
+  2026-08-06, alongside splitting publishing into its own job — see Shipped.
 - **Tests cover only the Opportunity lifecycle, and nothing runs them in CI.**
   No coverage of score models, threshold math, dashboard rendering, or digest
   text. Add pytest + a CI workflow.
@@ -157,6 +156,25 @@ high payoff, and the domain language is already written.
 ---
 
 ## Shipped
+
+### Publishing can no longer block alerting — 2026-08-06
+
+Found by accident: two hourly runs sat in `pending`/`waiting` for six hours
+while a GitHub Pages deployment hung in `waiting` (GitHub-side; even the cancel
+API was returning 502s). The cause on our side was that `environment:
+github-pages` was declared at *job* level, so the Pages deployment queue gated
+the entire job — fetch, scoring, pushes and the state commit included, none of
+which involve Pages.
+
+Split into two jobs: `run` carries no environment and does all the alerting;
+`deploy` holds the environment and publishes. `continue-on-error` came off the
+Pages steps at the same time — it was masking failures, and now a deploy failure
+is both visible and harmless to alerting. The deploy job uses
+`cancel-in-progress: true`, so a hung deployment is superseded by the next hour
+rather than accumulating a queue.
+
+The staleness watchdog from items 2–4 would have caught this within six hours;
+this makes the underlying coupling go away.
 
 ### Trustworthy silence (items 2–4) — 2026-07-24
 

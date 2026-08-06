@@ -5,21 +5,18 @@ on:
     - cron: "8 * * * *" # hourly; GitHub may delay runs by a few minutes
   workflow_dispatch:
 
-permissions:
-  contents: write # commit state/state.json back
-  pages: write # publish the dashboard
-  id-token: write # required by deploy-pages
-
-concurrency:
-  group: alerts
-  cancel-in-progress: false
-
 jobs:
+  # Fetch, score, push, persist. Deliberately carries no `environment:` — when
+  # the whole job was gated on github-pages, a Pages deployment stuck in
+  # `waiting` blocked alerting for hours even though nothing here needs Pages.
+  # Publishing is a separate job for exactly that reason.
   run:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+    permissions:
+      contents: write # commit state/state.json back
+    concurrency:
+      group: alerts-run
+      cancel-in-progress: false # never interrupt a pass mid-push
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -43,14 +40,26 @@ jobs:
             git commit -m "chore: update opportunity state"
             git push
           fi
-      # Pages steps are non-fatal until Pages is enabled (Source: GitHub Actions);
-      # the alert push + state commit above have already happened.
-      - uses: actions/configure-pages@v5
-        continue-on-error: true
       - uses: actions/upload-pages-artifact@v3
-        continue-on-error: true
         with:
           path: site
+
+  # Publishing the dashboard. Failures here are visible (no continue-on-error)
+  # but cannot touch alerting, and a superseded deploy is cancelled rather than
+  # queued, so a hung Pages deployment self-heals on the next hourly run.
+  deploy:
+    needs: run
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: alerts-pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
       - id: deploy
-        continue-on-error: true
         uses: actions/deploy-pages@v4

@@ -1,18 +1,17 @@
 {
- "updated": 1786232455,
- "opportunities": [
+ "updated": 1786242514,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "welches:fog:1786370400",
    "spot": "welches",
    "phenomenon": "fog",
    "start": 1786370400,
    "end": 1786374000,
    "peak_score": 0.8588235294117648,
    "tier": "notable",
-   "alerted_tier": "notable"
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1786242135.4223888
+  },
   {
    "spot": "oswald-west",
    "phenomenon": "fog",

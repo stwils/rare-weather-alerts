@@ -1,16 +1,5 @@
 {
- "updated": 1786492516,
+ "updated": 1786502336,
  "opportunities": [],
- "archive": [
-  {
-   "spot": "welches",
-   "phenomenon": "fog",
-   "start": 1786370400,
-   "end": 1786374000,
-   "peak_score": 0.8588235294117648,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1786242135.4223888
-  }
- ]
+ "archive": []
 }

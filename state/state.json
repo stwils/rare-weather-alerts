@@ -1,5 +1,16 @@
 {
- "updated": 1786572131,
- "opportunities": [],
+ "updated": 1786575391,
+ "opportunities": [
+  {
+   "id": "oswald-west:fog:1786629600",
+   "spot": "oswald-west",
+   "phenomenon": "fog",
+   "start": 1786629600,
+   "end": 1786633200,
+   "peak_score": 0.8546176470588235,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  }
+ ],
  "archive": []
 }

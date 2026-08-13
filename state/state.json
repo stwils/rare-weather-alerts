@@ -1,18 +1,28 @@
 {
- "updated": 1786648707,
+ "updated": 1786654865,
  "opportunities": [
   {
-   "id": "dufur:storm_light:1786759200",
+   "id": "rowena-crest:storm_light:1786759200",
+   "spot": "rowena-crest",
+   "phenomenon": "storm_light",
+   "start": 1786759200,
+   "end": 1786762800,
+   "peak_score": 0.5204819277108433,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  }
+ ],
+ "archive": [
+  {
    "spot": "dufur",
    "phenomenon": "storm_light",
    "start": 1786759200,
    "end": 1786762800,
    "peak_score": 0.5971153846153846,
    "tier": "exceptional",
-   "alerted_tier": "exceptional"
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1786654485.10705
+  },
   {
    "spot": "oswald-west",
    "phenomenon": "fog",

@@ -1,6 +1,17 @@
 {
- "updated": 1786790277,
- "opportunities": [],
+ "updated": 1786793543,
+ "opportunities": [
+  {
+   "id": "rowena-crest:sunrise_sunset:1786971600",
+   "spot": "rowena-crest",
+   "phenomenon": "sunrise_sunset",
+   "start": 1786971600,
+   "end": 1786975200,
+   "peak_score": 0.769877809627642,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  }
+ ],
  "archive": [
   {
    "spot": "rowena-crest",

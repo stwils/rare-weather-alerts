@@ -1,18 +1,17 @@
 {
- "updated": 1786815310,
- "opportunities": [
+ "updated": 1786819437,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "rowena-crest:sunrise_sunset:1786971600",
    "spot": "rowena-crest",
    "phenomenon": "sunrise_sunset",
    "start": 1786971600,
    "end": 1786975200,
    "peak_score": 0.769877809627642,
    "tier": "notable",
-   "alerted_tier": "notable"
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1786819246.09635
+  },
   {
    "spot": "maupin",
    "phenomenon": "storm_light",

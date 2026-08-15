@@ -1,5 +1,5 @@
 {
- "updated": 1786804518,
+ "updated": 1786807950,
  "opportunities": [
   {
    "id": "rowena-crest:sunrise_sunset:1786971600",
@@ -8,6 +8,16 @@
    "start": 1786971600,
    "end": 1786975200,
    "peak_score": 0.769877809627642,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  },
+  {
+   "id": "maupin:storm_light:1786845600",
+   "spot": "maupin",
+   "phenomenon": "storm_light",
+   "start": 1786845600,
+   "end": 1786849200,
+   "peak_score": 0.5648936170212766,
    "tier": "notable",
    "alerted_tier": "notable"
   }

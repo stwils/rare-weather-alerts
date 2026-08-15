@@ -1,5 +1,5 @@
 {
- "updated": 1786807950,
+ "updated": 1786811880,
  "opportunities": [
   {
    "id": "rowena-crest:sunrise_sunset:1786971600",
@@ -10,19 +10,19 @@
    "peak_score": 0.769877809627642,
    "tier": "notable",
    "alerted_tier": "notable"
-  },
+  }
+ ],
+ "archive": [
   {
-   "id": "maupin:storm_light:1786845600",
    "spot": "maupin",
    "phenomenon": "storm_light",
    "start": 1786845600,
    "end": 1786849200,
    "peak_score": 0.5648936170212766,
    "tier": "notable",
-   "alerted_tier": "notable"
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1786811688.2738256
+  },
   {
    "spot": "rowena-crest",
    "phenomenon": "storm_light",

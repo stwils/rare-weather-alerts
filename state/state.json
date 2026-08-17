@@ -1,5 +1,5 @@
 {
- "updated": 1786985045,
+ "updated": 1786988360,
  "opportunities": [],
  "archive": [
   {
@@ -31,16 +31,6 @@
    "tier": "notable",
    "outcome": "cancelled",
    "archived_at": 1786811688.2738256
-  },
-  {
-   "spot": "rowena-crest",
-   "phenomenon": "storm_light",
-   "start": 1786759200,
-   "end": 1786762800,
-   "peak_score": 0.5012658227848101,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1786726922.9415157
   }
  ]
 }

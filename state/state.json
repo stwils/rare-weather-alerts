@@ -1,18 +1,17 @@
 {
- "updated": 1786931751,
- "opportunities": [
+ "updated": 1786936291,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "oswald-west:fog:1787065200",
    "spot": "oswald-west",
    "phenomenon": "fog",
    "start": 1787065200,
    "end": 1787068800,
    "peak_score": 0.9618529411764706,
    "tier": "exceptional",
-   "alerted_tier": "exceptional"
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1786936095.117695
+  },
   {
    "spot": "rowena-crest",
    "phenomenon": "sunrise_sunset",
@@ -52,16 +51,6 @@
    "tier": "notable",
    "outcome": "cancelled",
    "archived_at": 1786719698.2537775
-  },
-  {
-   "spot": "rowena-crest",
-   "phenomenon": "storm_light",
-   "start": 1786759200,
-   "end": 1786762800,
-   "peak_score": 0.5204819277108433,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1786674958.3429167
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
- "updated": 1787067774,
+ "updated": 1787071474,
  "opportunities": [],
  "archive": [
   {
@@ -21,16 +21,6 @@
    "tier": "notable",
    "outcome": "cancelled",
    "archived_at": 1786819246.09635
-  },
-  {
-   "spot": "maupin",
-   "phenomenon": "storm_light",
-   "start": 1786845600,
-   "end": 1786849200,
-   "peak_score": 0.5648936170212766,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1786811688.2738256
   }
  ]
 }

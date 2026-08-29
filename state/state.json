@@ -1,5 +1,16 @@
 {
- "updated": 1787994041,
- "opportunities": [],
+ "updated": 1788013648,
+ "opportunities": [
+  {
+   "id": "astoria:sunrise_sunset:1788145200",
+   "spot": "astoria",
+   "phenomenon": "sunrise_sunset",
+   "start": 1788145200,
+   "end": 1788148800,
+   "peak_score": 0.9076116509928641,
+   "tier": "exceptional",
+   "alerted_tier": "exceptional"
+  }
+ ],
  "archive": []
 }

@@ -1,5 +1,16 @@
 {
- "updated": 1788304646,
- "opportunities": [],
+ "updated": 1788322813,
+ "opportunities": [
+  {
+   "id": "cannon-beach:storm_light:1788400800",
+   "spot": "cannon-beach",
+   "phenomenon": "storm_light",
+   "start": 1788400800,
+   "end": 1788404400,
+   "peak_score": 0.5158536585365854,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  }
+ ],
  "archive": []
 }

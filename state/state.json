@@ -1,28 +1,27 @@
 {
- "updated": 1788395873,
- "opportunities": [
+ "updated": 1788408870,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "cannon-beach:storm_light:1788397200",
    "spot": "cannon-beach",
    "phenomenon": "storm_light",
    "start": 1788397200,
    "end": 1788400800,
    "peak_score": 0.504604873239211,
    "tier": "notable",
-   "alerted_tier": "notable"
+   "outcome": "ended",
+   "archived_at": 1788408673.9392688
   },
   {
-   "id": "rowena-crest:storm_light:1788483600",
    "spot": "rowena-crest",
    "phenomenon": "storm_light",
    "start": 1788483600,
    "end": 1788487200,
    "peak_score": 0.525,
    "tier": "notable",
-   "alerted_tier": "notable"
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1788408673.9392688
+  },
   {
    "spot": "cannon-beach",
    "phenomenon": "storm_light",

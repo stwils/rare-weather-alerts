@@ -1,6 +1,16 @@
 {
- "updated": 1788387337,
+ "updated": 1788395873,
  "opportunities": [
+  {
+   "id": "cannon-beach:storm_light:1788397200",
+   "spot": "cannon-beach",
+   "phenomenon": "storm_light",
+   "start": 1788397200,
+   "end": 1788400800,
+   "peak_score": 0.504604873239211,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  },
   {
    "id": "rowena-crest:storm_light:1788483600",
    "spot": "rowena-crest",

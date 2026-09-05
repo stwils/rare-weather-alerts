@@ -1,28 +1,27 @@
 {
- "updated": 1788581687,
- "opportunities": [
+ "updated": 1788598854,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "cannon-beach:storm_light:1788570000",
    "spot": "cannon-beach",
    "phenomenon": "storm_light",
    "start": 1788573600,
    "end": 1788577200,
    "peak_score": 0.61875,
    "tier": "exceptional",
-   "alerted_tier": "exceptional"
+   "outcome": "ended",
+   "archived_at": 1788598662.7493336
   },
   {
-   "id": "sauvie-island:fog:1788613200",
    "spot": "sauvie-island",
    "phenomenon": "fog",
    "start": 1788613200,
    "end": 1788620400,
    "peak_score": 0.9529411764705882,
    "tier": "exceptional",
-   "alerted_tier": "exceptional"
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1788598662.7493336
+  },
   {
    "spot": "cannon-beach",
    "phenomenon": "storm_light",

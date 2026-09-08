@@ -1,28 +1,38 @@
 {
- "updated": 1788892486,
+ "updated": 1788904178,
  "opportunities": [
   {
-   "id": "mt-jefferson:lenticular:1789066800",
+   "id": "mt-st-helens:lenticular:1789048800",
+   "spot": "mt-st-helens",
+   "phenomenon": "lenticular",
+   "start": 1789048800,
+   "end": 1789052400,
+   "peak_score": 0.41478005347618796,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  }
+ ],
+ "archive": [
+  {
    "spot": "mt-jefferson",
    "phenomenon": "lenticular",
    "start": 1789088400,
    "end": 1789092000,
    "peak_score": 0.4222466646669504,
    "tier": "notable",
-   "alerted_tier": "notable"
+   "outcome": "cancelled",
+   "archived_at": 1788903983.5977204
   },
   {
-   "id": "mt-hood:lenticular:1789077600",
    "spot": "mt-hood",
    "phenomenon": "lenticular",
    "start": 1789077600,
    "end": 1789081200,
    "peak_score": 0.3906365845035681,
    "tier": "notable",
-   "alerted_tier": "notable"
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1788903983.5977204
+  },
   {
    "spot": "mt-st-helens",
    "phenomenon": "lenticular",

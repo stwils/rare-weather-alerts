@@ -1,26 +1,26 @@
 {
- "updated": 1788841585,
- "opportunities": [],
- "archive": [
+ "updated": 1788860143,
+ "opportunities": [
   {
-   "spot": "cannon-beach",
-   "phenomenon": "storm_light",
-   "start": 1788573600,
-   "end": 1788577200,
-   "peak_score": 0.61875,
-   "tier": "exceptional",
-   "outcome": "ended",
-   "archived_at": 1788598662.7493336
+   "id": "mt-st-helens:lenticular:1789056000",
+   "spot": "mt-st-helens",
+   "phenomenon": "lenticular",
+   "start": 1789056000,
+   "end": 1789059600,
+   "peak_score": 0.4445543889344241,
+   "tier": "notable",
+   "alerted_tier": "notable"
   },
   {
-   "spot": "sauvie-island",
-   "phenomenon": "fog",
-   "start": 1788613200,
-   "end": 1788620400,
-   "peak_score": 0.9529411764705882,
-   "tier": "exceptional",
-   "outcome": "cancelled",
-   "archived_at": 1788598662.7493336
+   "id": "mt-jefferson:lenticular:1789066800",
+   "spot": "mt-jefferson",
+   "phenomenon": "lenticular",
+   "start": 1789066800,
+   "end": 1789070400,
+   "peak_score": 0.39021518384408876,
+   "tier": "notable",
+   "alerted_tier": "notable"
   }
- ]
+ ],
+ "archive": []
 }

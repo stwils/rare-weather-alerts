@@ -1,6 +1,17 @@
 {
- "updated": 1789033107,
- "opportunities": [],
+ "updated": 1789050025,
+ "opportunities": [
+  {
+   "id": "mt-hood:lenticular:1789088400",
+   "spot": "mt-hood",
+   "phenomenon": "lenticular",
+   "start": 1789088400,
+   "end": 1789092000,
+   "peak_score": 0.39457694669377497,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  }
+ ],
  "archive": [
   {
    "spot": "mt-st-helens",

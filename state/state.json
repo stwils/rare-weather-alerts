@@ -1,6 +1,17 @@
 {
- "updated": 1789240593,
- "opportunities": [],
+ "updated": 1789251249,
+ "opportunities": [
+  {
+   "id": "sauvie-island:fog:1789398000",
+   "spot": "sauvie-island",
+   "phenomenon": "fog",
+   "start": 1789398000,
+   "end": 1789401600,
+   "peak_score": 0.9058823529411765,
+   "tier": "notable",
+   "alerted_tier": "notable"
+  }
+ ],
  "archive": [
   {
    "spot": "mt-hood",

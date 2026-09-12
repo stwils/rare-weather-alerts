@@ -1,5 +1,5 @@
 {
- "updated": 1789163185,
+ "updated": 1789171718,
  "opportunities": [],
  "archive": [
   {
@@ -31,26 +31,6 @@
    "tier": "notable",
    "outcome": "cancelled",
    "archived_at": 1788928100.8921876
-  },
-  {
-   "spot": "mt-jefferson",
-   "phenomenon": "lenticular",
-   "start": 1789088400,
-   "end": 1789092000,
-   "peak_score": 0.4222466646669504,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1788903983.5977204
-  },
-  {
-   "spot": "mt-hood",
-   "phenomenon": "lenticular",
-   "start": 1789077600,
-   "end": 1789081200,
-   "peak_score": 0.3906365845035681,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1788903983.5977204
   }
  ]
 }

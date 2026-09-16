@@ -1,16 +1,5 @@
 {
- "updated": 1789538259,
+ "updated": 1789557966,
  "opportunities": [],
- "archive": [
-  {
-   "spot": "sauvie-island",
-   "phenomenon": "fog",
-   "start": 1789398000,
-   "end": 1789401600,
-   "peak_score": 0.9058823529411765,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1789279061.6456163
-  }
- ]
+ "archive": []
 }

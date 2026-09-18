@@ -1,7 +1,8 @@
 """CLI: rare-weather <command>
 
   run            one live pass: fetch, update Opportunities, rebuild dashboard, push Exceptional
-  digest         one push summarizing today's board (run once each morning); silent if empty
+  digest         send today's board now, from committed state (the scheduled one is sent by `run`)
+  watchdog       push only if `run` has stopped updating state; silent otherwise
   status         read-only: current best score per (Spot, Phenomenon) vs thresholds
   daemon         run forever on an interval (for Docker); RWA_INTERVAL_MINUTES (default 60)
   backfill       fetch archives, score history, write thresholds + greatest hits
@@ -21,14 +22,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(prog="rare-weather", description=__doc__)
     parser.add_argument(
         "command",
-        choices=["run", "digest", "status", "daemon", "backfill", "finish", "test-notify"],
+        choices=[
+            "run", "digest", "watchdog", "status", "daemon", "backfill", "finish", "test-notify"
+        ],
     )
     parser.add_argument("--dry-run", action="store_true", help="print alerts instead of pushing")
-    parser.add_argument(
-        "--force",
-        action="store_true",
-        help="digest: send now, ignoring the configured local digest hour",
-    )
     args = parser.parse_args()
 
     if args.command == "run":
@@ -38,26 +36,22 @@ def main() -> None:
     elif args.command == "digest":
         from .pipeline import digest
 
-        digest(dry_run=args.dry_run, force=args.force)
+        digest(dry_run=args.dry_run)
+    elif args.command == "watchdog":
+        from .pipeline import watchdog
+
+        watchdog(dry_run=args.dry_run)
     elif args.command == "status":
         from .pipeline import status
 
         status()
     elif args.command == "daemon":
-        from datetime import datetime
-
-        from .pipeline import digest, run_once
+        from .pipeline import run_once
 
         interval = int(os.environ.get("RWA_INTERVAL_MINUTES", "60"))
-        digest_hour = int(os.environ.get("RWA_DIGEST_HOUR", "6"))  # local hour
-        last_digest_day = None
         while True:
             try:
-                run_once(dry_run=args.dry_run)
-                today = datetime.now().date()
-                if datetime.now().hour >= digest_hour and last_digest_day != today:
-                    digest(dry_run=args.dry_run, force=True)  # daemon does its own scheduling
-                    last_digest_day = today
+                run_once(dry_run=args.dry_run)  # also sends the morning digest when due
             except Exception:
                 traceback.print_exc()
             time.sleep(interval * 60)

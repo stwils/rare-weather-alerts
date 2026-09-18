@@ -1,21 +1,14 @@
 name: digest
 
-# One morning briefing of the day's board. Reads the state committed by the
-# hourly `alerts` run, and reports an outage if that state has gone stale.
+# Manual only: "send me the board now". The scheduled morning digest is sent by
+# the first alert pass on or after digest_hour (see alerts.yml / run_once).
 #
-# Cron is UTC and never shifts for daylight saving, so a single entry drifts an
-# hour every winter. Fire at both candidate times and let `digest` gate on the
-# *local* hour (settings.yaml: digest_hour) — exactly one of the two sends.
+# Why it's no longer scheduled here: GitHub runs scheduled workflows hours late
+# — measured Aug–Sep 2026, the 13:10/14:10 UTC crons landed at 16:14–19:17 UTC.
+# An exact-local-hour gate therefore matched almost never, and the digest was
+# silently skipped from Aug 25 to Sep 17 behind green checkmarks.
 on:
-  schedule:
-    - cron: "10 13 * * *" # 06:10 PDT (summer) / 05:10 PST — sends in summer
-    - cron: "10 14 * * *" # 07:10 PDT / 06:10 PST (winter) — sends in winter
   workflow_dispatch:
-    inputs:
-      force:
-        description: "Send now, ignoring the local digest hour"
-        type: boolean
-        default: true
 
 jobs:
   digest:
@@ -26,11 +19,11 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install .
-      - name: Send daily digest
+      - name: Send the board now
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
           PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
           DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
           RWA_ROOT: ${{ github.workspace }}
-        run: rare-weather digest ${{ inputs.force && '--force' || '' }}
+        run: rare-weather digest

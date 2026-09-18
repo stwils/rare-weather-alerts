@@ -10,7 +10,7 @@ and [ROADMAP.md](ROADMAP.md) for what's known-wrong and what's next.
 
 **How you hear about it** (three surfaces, loudest to quietest):
 - **Exceptional** (regional top 0.5%, ~1×/month) → immediate high-priority push (does not bypass Do Not Disturb).
-- **Digest** → one morning push listing the day's board every morning ("nothing rare today" when empty, and "not updating" if the pipeline has gone stale — silence here always means something definite).
+- **Digest** → one morning push listing the day's board ("nothing rare today" when empty), sent by the first alert pass after 06:00. A separate **watchdog** pushes "not updating" if the pipeline goes stale — so silence always means something definite.
 - **Dashboard** → a GitHub Pages page you tap into anytime; every Notable+ opportunity, the full board, and a 72h history of past opportunities (cancelled / ended). Alerts deep-link to the relevant card.
 
 ## Setup
@@ -36,15 +36,16 @@ python3 -m venv .venv && .venv/bin/pip install -e .
    rare-weather test-notify
    ```
 4. **Dry-run the live pass**: `rare-weather run --dry-run`, `rare-weather digest
-   --dry-run`, and `rare-weather status` for a read-only table of current scores
-   vs regional thresholds — the tuning tool.
+   --dry-run`, `rare-weather watchdog --dry-run`, and `rare-weather status` for
+   a read-only table of current scores vs regional thresholds — the tuning tool.
 
 ## Commands
 
 | Command | Does |
 |---|---|
-| `rare-weather run` | Fetch, score, rebuild the dashboard, push any Exceptional change. Hourly. |
-| `rare-weather digest` | One push summarizing today's board ("nothing rare today" if empty; an outage notice if state is stale). Only sends during the local `digest_hour` — add `--force` to send now. |
+| `rare-weather run` | Fetch, score, rebuild the dashboard, push any Exceptional change — and send the morning digest if it's due. Hourly. |
+| `rare-weather digest` | Send today's board now, from committed state (an outage notice instead, if that state is stale). |
+| `rare-weather watchdog` | Push an outage notice only if state is stale; silent otherwise. |
 | `rare-weather status` | Console table of live scores vs thresholds. |
 | `rare-weather backfill` | Re-score 10 years from the `data/raw/` cache → thresholds + greatest hits. Run after any score-model change. |
 | `rare-weather finish` | Recompute thresholds from already-scored days. Only for changing tier percentiles/floors. |
@@ -54,13 +55,21 @@ python3 -m venv .venv && .venv/bin/pip install -e .
 **GitHub Actions** (default): add `NTFY_TOPIC` (+ optional `PUSHOVER_TOKEN`,
 `PUSHOVER_USER`) as repository secrets, and set the `DASHBOARD_URL` repository
 variable to the Pages URL. [alerts.yml](.github/workflows/alerts.yml) runs
-hourly (fetch, dashboard publish to Pages, Exceptional pushes, commits
-`state/state.json`); [digest.yml](.github/workflows/digest.yml) sends the
-morning digest. Pages must be enabled with **Source: GitHub Actions**.
+hourly (fetch, Exceptional pushes, the morning digest, commits
+`state/state.json`, then publishes the dashboard in a separate job);
+[watchdog.yml](.github/workflows/watchdog.yml) twice a day pushes only if state
+has gone stale; [digest.yml](.github/workflows/digest.yml) is a manual "send me
+the board now" button. Pages must be enabled with **Source: GitHub Actions**.
+
+GitHub runs scheduled workflows late and sparsely — in practice the "hourly"
+cron fires ~6×/day with gaps up to ~13h. Nothing here depends on punctuality,
+but if you want true hourly cadence, the Docker option below provides it.
 
 **Docker (Mac or Synology)**: create a `.env` with the secrets, then
-`docker compose up -d`. The daemon runs hourly and fires the digest once a day
-at `RWA_DIGEST_HOUR` (local, default 6). State persists in `./state`; the
+`docker compose up -d`. The daemon runs hourly; the first pass after
+`digest_hour` (local, default 6) sends the digest. There's no watchdog in this
+mode — a daemon can't report its own death — so glance at the dashboard's
+"updated" line now and then. State persists in `./state`; the
 dashboard is written to `./site` (serve it however you like).
 
 ## Editing spots and thresholds
@@ -71,8 +80,9 @@ dashboard is written to `./site` (serve it however you like).
   `tier_overrides` lowers or raises the bar for one phenomenon — the tiers say
   how often you want interrupting, and that isn't the same answer for each.
   Changing percentiles only needs `rare-weather finish`, not a full backfill.
-- Health knobs, same file: `digest_hour` (local), `stale_after_hours` (when a
-  quiet board starts being reported as an outage instead), and
+- Health knobs, same file: `digest_hour` (local; the first pass on or after it
+  sends the digest), `stale_after_hours` (default 18 — when a quiet board starts
+  being reported as an outage; keep it above GitHub's longest normal gap), and
   `max_spot_failure_fraction` (how many spots may fail before a pass aborts
   rather than publishing a partial board).
 - Tuning rule of thumb: more than ~2 pushes/week means the Exceptional bar is too low.

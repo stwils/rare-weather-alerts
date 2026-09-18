@@ -40,8 +40,12 @@ archive_retention_hours: 72  # how long past opportunities linger in the dashboa
 
 # Health. A quiet board is the normal case here, so it is indistinguishable
 # from a broken pipeline unless something watches the clock.
-digest_hour: 6               # local hour for the morning briefing (RWA_DIGEST_HOUR overrides)
-stale_after_hours: 6         # no successful pass in this long = report the outage, not "nothing rare"
+digest_hour: 6               # the first alert pass on/after this local hour sends the digest
+                             # (RWA_DIGEST_HOUR overrides)
+# No successful pass in this long = report an outage, not "nothing rare". GitHub
+# runs the "hourly" cron ~6x/day with gaps up to 13h (measured Aug–Sep 2026), so
+# anything under that would cry wolf on ordinary throttling.
+stale_after_hours: 18
 max_spot_failure_fraction: 0.34  # above this, abort the pass rather than publish a hollowed-out board
 
 # Delivery. Secrets come from environment variables:

@@ -171,6 +171,13 @@ def load_updated(path: Path) -> float | None:
     return json.loads(path.read_text()).get("updated")
 
 
+def load_last_digest(path: Path) -> str | None:
+    """Local date (ISO) the morning digest was last sent, or None."""
+    if not path.exists():
+        return None
+    return json.loads(path.read_text()).get("last_digest")
+
+
 def load_archive(path: Path) -> list[dict]:
     """Past opportunities (cancelled or elapsed), kept for the retention window."""
     if not path.exists():
@@ -178,11 +185,17 @@ def load_archive(path: Path) -> list[dict]:
     return json.loads(path.read_text()).get("archive", [])
 
 
-def save_state(path: Path, active: list[Opportunity], archive: list[dict] | None = None) -> None:
+def save_state(
+    path: Path,
+    active: list[Opportunity],
+    archive: list[dict] | None = None,
+    last_digest: str | None = None,
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "updated": int(time.time()),
         "opportunities": [asdict(o) for o in active],
         "archive": archive or [],
+        "last_digest": last_digest,
     }
     path.write_text(json.dumps(payload, indent=1))

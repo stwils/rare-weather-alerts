@@ -126,9 +126,10 @@ high payoff, and the domain language is already written.
 
 ## Housekeeping
 
-- **Hourly state commits will reach ~9,000/year on `main`.** Already 40+ of 63
-  commits are `chore: update opportunity state`, and they caused repeated push
-  rejections during development. Move state to an orphan branch, an Actions
+- **State commits are piling up on `main`** — 727 commits by 2026-09-17, nearly
+  all `chore: update opportunity state` (GitHub's sparse scheduling keeps it to
+  ~6/day rather than 24, but it's unbounded), and they cause push rejections
+  whenever you commit by hand. Move state to an orphan branch, an Actions
   cache, or fold it into the published Pages artifact.
 - ~~**Remove `continue-on-error` from the three Pages steps.**~~ Done
   2026-08-06, alongside splitting publishing into its own job — see Shipped.
@@ -140,15 +141,20 @@ high payoff, and the domain language is already written.
   free tier, and fewer independent failure points (see item 2).
 - **Archive can double-count.** An Opportunity that is cancelled and later
   re-detected lands in Recent History twice; dedupe on `(spot, phenomenon, start)`.
+- **Watch: ERA5 vs live-forecast calibration for fog and sunrise/sunset.**
+  Those two are backfilled from ERA5 reanalysis but scored live from forecast
+  models, which have different cloud and humidity biases — so their thresholds
+  could sit systematically out of reach (or too easy) live. Not evidenced yet:
+  Aug 7–Sep 17 2026 produced zero Notable days, but so did the same window in
+  2016 and 2018. If autumn fog season also stays empty, this is the prime
+  suspect; the check is to compare live-score percentiles against ERA5 ones
+  over a few months of logged daily maxima.
 - **Small cleanups**: dead `others = ""` in
   [dashboard.py:148](src/rare_weather/dashboard.py:148); `_fmt_window` duplicated
   between `dashboard.py` and `pipeline.py`.
-- **Lenticular can still tie at the ceiling** — 3 backfilled days score exactly
-  1.00, because `wave_wind`, `moisture`, `view` and `dry` can all hit their
-  maxima at once on integer-valued inputs. Harmless today (0.16% is well under
-  the 0.5% cutoff, so the threshold is a healthy 0.94), but it's the same latent
-  shape as item 1 and would bite if the spot list grew. A continuous factor —
-  as `twilight` now does for sunrise/sunset — would close it.
+- ~~**Lenticular can still tie at the ceiling.**~~ Closed by v2 (2026-08-06):
+  the continuous cross-barrier and stability factors leave one day at the
+  distribution maximum, no ties.
 - **Nothing guards against a degenerate threshold.** Item 1 was invisible until
   measured by hand. `thresholds.compute` should warn when a tier threshold sits
   at the distribution maximum, or when the Notable→Exceptional band collapses.
@@ -156,6 +162,32 @@ high payoff, and the domain language is already written.
 ---
 
 ## Shipped
+
+### The digest stopped silently skipping — 2026-09-17
+
+The DST fix from items 2–4 gated the digest on the *exact* local hour, assuming
+GitHub runs cron schedules roughly on time. It doesn't: the 13:10/14:10 UTC
+entries actually fired at 16:14–19:17 UTC (09:14–12:17 local), matched the
+06:00 gate almost never, and the digest printed "not the digest hour — skipping"
+and exited **green** on every run from Aug 25 to Sep 17 — 13 sends out of 99.
+A health feature failing silently behind green checkmarks is exactly the failure
+mode it was built to prevent.
+
+The fix separates the digest's two jobs, which had been sharing one unreliable
+trigger:
+
+- **Board delivery rides on the alert pass.** The first pass on or after
+  `digest_hour` sends it, and `last_digest` in state makes it once per local day.
+  A late schedule now delays the digest instead of dropping it. Regression tests
+  cover the 10:36-local case that broke, once-per-day, and both DST offsets.
+- **Outage detection moved to an independent watchdog** (`watchdog.yml`). It
+  has to be independent: a digest sent from inside the pass can't report the
+  pass dying. It pushes only when state is stale, so late or duplicated runs cost
+  nothing. `digest.yml` is now a manual "send me the board now" button.
+
+`stale_after_hours` went from 6 to 18. Measured over 200 scheduled runs, GitHub
+fires the "hourly" cron ~6×/day — median gap 2.8h, max 13.3h, 13 gaps over 6h —
+so a 6h threshold would have cried wolf on ordinary throttling.
 
 ### Publishing can no longer block alerting — 2026-08-06
 

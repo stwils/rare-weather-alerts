@@ -1,0 +1,32 @@
+name: watchdog
+
+# Independent outage check. Pushes only if the alert pass has stopped updating
+# state (settings.yaml: stale_after_hours); silent otherwise.
+#
+# It must be a separate trigger from the thing it watches — the morning digest
+# now rides on the alert pass, so it can't report the alert pass dying. And
+# because it only speaks when something is wrong, GitHub running it hours late
+# (routine: see the note in digest.yml) costs nothing.
+on:
+  schedule:
+    - cron: "40 3 * * *"  # ~evening Pacific
+    - cron: "40 15 * * *" # ~morning Pacific
+  workflow_dispatch:
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install .
+      - name: Check state freshness
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
+          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+          RWA_ROOT: ${{ github.workspace }}
+        run: rare-weather watchdog

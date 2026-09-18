@@ -1,4 +1,8 @@
-"""Opportunity lifecycle + coalescing tests. Run: python tests/test_lifecycle.py"""
+"""Opportunity lifecycle, coalescing and digest-scheduling tests.
+Run: python tests/test_lifecycle.py"""
+
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from rare_weather.opportunities import (
     Opportunity,
@@ -6,7 +10,7 @@ from rare_weather.opportunities import (
     reconcile,
     spans_from_scores,
 )
-from rare_weather.pipeline import _coalesce
+from rare_weather.pipeline import _coalesce, digest_due
 
 H = 3600
 TIMES = [i * H for i in range(48)]
@@ -90,6 +94,34 @@ def test_unreachable_spot_still_expires():
     assert [e["type"] for e in ev] == ["expired"]
 
 
+TZ = "America/Los_Angeles"
+
+
+def _at(stamp: str) -> float:
+    return datetime.fromisoformat(stamp).replace(tzinfo=ZoneInfo(TZ)).timestamp()
+
+
+def test_digest_survives_late_runs():
+    """Regression: GitHub ran the 06:xx digest cron at ~10:36 local, and an
+    exact-hour gate skipped it every day from Aug 25 to Sep 17."""
+    assert digest_due(_at("2026-09-17T10:36"), TZ, 6, "2026-09-16")  # the bug case
+    assert digest_due(_at("2026-09-17T06:00"), TZ, 6, None)  # first ever, on time
+    assert not digest_due(_at("2026-09-17T05:59"), TZ, 6, "2026-09-16")  # too early
+
+
+def test_digest_goes_out_once_per_local_day():
+    assert not digest_due(_at("2026-09-17T13:00"), TZ, 6, "2026-09-17")
+    assert digest_due(_at("2026-09-17T23:30"), TZ, 6, "2026-09-16")  # late, but not missed
+    # just after local midnight belongs to the new day, but it's before 06:00
+    assert not digest_due(_at("2026-09-18T00:30"), TZ, 6, "2026-09-17")
+
+
+def test_digest_uses_local_time_across_dst():
+    # 06:30 local in winter (PST, UTC-8) and summer (PDT, UTC-7) both count
+    assert digest_due(_at("2026-12-15T06:30"), TZ, 6, "2026-12-14")
+    assert digest_due(_at("2026-07-15T06:30"), TZ, 6, "2026-07-14")
+
+
 def test_coalesce():
     events = [
         {"type": "detected", "opp": _opp("a", "fog", 10, 14, 0.5), "span": None},
@@ -108,5 +140,8 @@ if __name__ == "__main__":
     test_upgrade()
     test_unreachable_spot_is_not_a_cancellation()
     test_unreachable_spot_still_expires()
+    test_digest_survives_late_runs()
+    test_digest_goes_out_once_per_local_day()
+    test_digest_uses_local_time_across_dst()
     test_coalesce()
     print("all tests pass")

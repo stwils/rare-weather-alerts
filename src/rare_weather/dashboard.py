@@ -129,7 +129,7 @@ def build_data(
         "opportunities": opps,
         "board": board,
         "history": history,
-        "stale_after_hours": cfg.raw.get("stale_after_hours", 6),
+        "stale_after_hours": cfg.raw.get("stale_after_hours", 18),
         "unavailable": [
             spot_by_id[s].name if s in spot_by_id else s for s in (unavailable or [])
         ],
@@ -284,7 +284,7 @@ def render_html(data: dict) -> str:
   var h = Math.round(age / 3600000);
   var el = document.getElementById('stale');
   el.textContent = 'Last updated ' + (h < 48 ? h + ' hours' : Math.round(h / 24) + ' days') +
-    ' ago \\u2014 the hourly pass has stopped. Treat a quiet board as unknown, not calm.';
+    ' ago \\u2014 the alert pass has stopped. Treat a quiet board as unknown, not calm.';
   el.hidden = false;
 }})();
 </script>

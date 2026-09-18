@@ -4,7 +4,9 @@
 reconciles Opportunities against state, regenerates the dashboard, and pushes —
 but only for Exceptional-tier lifecycle changes (regional top 0.5%). Notable
 Opportunities are tracked and shown on the dashboard, and summarized once a day
-by `digest`. `status` is a read-only console view for tuning.
+by the morning digest, which the first pass on or after the digest hour sends.
+`watchdog` is the independent outage check; `status` is a read-only console
+view for tuning.
 """
 
 from __future__ import annotations
@@ -196,10 +198,19 @@ def run_once(dry_run: bool = False) -> None:
             click_url=_dashboard_url(cfg, dashboard.anchor(opp.spot, opp.phenomenon)),
         )
 
+    # The morning digest rides on the pass: the first one on or after the digest
+    # hour sends it, however late GitHub ran the schedule. Recorded in state so
+    # it goes out exactly once per local day.
+    last_digest = opportunities.load_last_digest(state_path)
+    if digest_due(now, tz, _digest_hour(cfg), last_digest):
+        send_digest(cfg, active, now, dry_run)
+        last_digest = datetime.fromtimestamp(now, ZoneInfo(tz)).date().isoformat()
+
     data = dashboard.build_data(cfg, spots, thr, active, collected, now, archive, failed)
     if not dry_run:
         dashboard.write_site(cfg, data)
-        opportunities.save_state(state_path, active, archive)  # dry run must not consume state
+        # dry run must not consume state (including marking the digest sent)
+        opportunities.save_state(state_path, active, archive, last_digest)
 
     n_exc = sum(1 for o in active if o.tier == "exceptional")
     print(
@@ -209,51 +220,28 @@ def run_once(dry_run: bool = False) -> None:
     )
 
 
-def digest(dry_run: bool = False, force: bool = False) -> None:
-    """One morning push summarizing the day's board. Sent every morning, even
-    when nothing qualifies (an explicit "nothing rare today").
+def digest_due(now: float, tz: str, digest_hour: int, last_digest: str | None) -> bool:
+    """True if today's digest hasn't gone out and it's at/after the digest hour.
 
-    Gated on the *local* hour rather than a UTC cron, so the briefing doesn't
-    slide an hour when daylight saving ends. Callers that do their own
-    scheduling (the Docker daemon, a manual run) pass force=True.
+    "At or after", not "at": GitHub runs scheduled workflows hours late (the
+    hourly alert cron lands ~6x/day, gaps up to 13h), so an exact-hour gate
+    silently skipped the digest for weeks behind green checkmarks. Instead,
+    whichever pass first lands on or after the hour sends it, once per local day.
     """
-    cfg = load_settings()
+    local = datetime.fromtimestamp(now, ZoneInfo(tz))
+    return local.hour >= digest_hour and last_digest != local.date().isoformat()
+
+
+def _digest_hour(cfg: Settings) -> int:
+    return int(os.environ.get("RWA_DIGEST_HOUR", cfg.raw.get("digest_hour", 6)))
+
+
+def send_digest(cfg: Settings, active: list, now: float, dry_run: bool = False) -> None:
+    """The morning board: every Notable+ Opportunity in the next 24h, or an
+    explicit "nothing rare" — silence must always mean something definite."""
     tz = cfg.timezone
-    now = time.time()
-
-    digest_hour = int(os.environ.get("RWA_DIGEST_HOUR", cfg.raw.get("digest_hour", 6)))
-    local_hour = datetime.fromtimestamp(now, ZoneInfo(tz)).hour
-    if not force and local_hour != digest_hour:
-        print(f"not the digest hour (local {local_hour:02d}:00, want {digest_hour:02d}:00) — skipping")
-        return
-
-    state_path = cfg.path("state")
     spot_by_id = {s.id: s for s in load_spots()}
-    active = opportunities.load_state(state_path)
     horizon = now + 24 * 3600
-
-    # A quiet board is the normal case, so it can't be trusted without knowing
-    # the pipeline actually ran. Report the outage instead of "nothing rare".
-    stale_after = cfg.raw.get("stale_after_hours", 6) * 3600
-    updated = opportunities.load_updated(state_path)
-    if updated is None or now - updated > stale_after:
-        age = "never" if updated is None else _age(now - updated)
-        when = (
-            ""
-            if updated is None
-            else f" (last good pass {datetime.fromtimestamp(updated, ZoneInfo(tz)):%a %b %-d, %H:%M})"
-        )
-        notify.send(
-            "⚠️ Rare Weather Alerts — not updating",
-            f"The hourly pass hasn't succeeded in {age}{when}.\n"
-            "Today's board is stale; treat a quiet dashboard as unknown, not calm.",
-            "notable",
-            cfg.raw["notify"]["ntfy_url"],
-            dry_run,
-            click_url=_dashboard_url(cfg),
-        )
-        return
-
     todays = [o for o in active if o.start <= horizon and o.end >= now]
     if not todays:
         title = "🌦 Today's board — nothing rare"
@@ -268,11 +256,60 @@ def digest(dry_run: bool = False, force: bool = False) -> None:
         n = len(todays)
         title = f"🌦 Today's board — {n} opportunit{'y' if n == 1 else 'ies'}"
         body = "\n".join(lines)
-
     notify.send(
         title, body, "notable", cfg.raw["notify"]["ntfy_url"], dry_run,
         click_url=_dashboard_url(cfg),
     )
+
+
+def digest(dry_run: bool = False) -> None:
+    """Send the board now, from committed state (manual / on-demand).
+
+    The scheduled digest is sent by `run_once` itself. This reads state from
+    disk, so it reports an outage instead of a board if that state is stale.
+    """
+    cfg = load_settings()
+    now = time.time()
+    if _report_if_stale(cfg, now, dry_run):
+        return
+    send_digest(cfg, opportunities.load_state(cfg.path("state")), now, dry_run)
+
+
+def watchdog(dry_run: bool = False) -> None:
+    """Push only if the alert pass has stopped updating state; otherwise silent.
+
+    Deliberately a separate trigger from the pass it watches: a digest sent
+    from inside `run_once` can't report that `run_once` has died. Because it
+    only speaks when something is wrong, late or duplicated runs cost nothing.
+    """
+    cfg = load_settings()
+    if not _report_if_stale(cfg, time.time(), dry_run):
+        print("state is fresh — nothing to report")
+
+
+def _report_if_stale(cfg: Settings, now: float, dry_run: bool) -> bool:
+    """Push an outage notice if state is stale. Returns True if it was."""
+    tz = cfg.timezone
+    stale_after = cfg.raw.get("stale_after_hours", 18) * 3600
+    updated = opportunities.load_updated(cfg.path("state"))
+    if updated is not None and now - updated <= stale_after:
+        return False
+    age = "ever" if updated is None else f" {_age(now - updated)}"
+    when = (
+        ""
+        if updated is None
+        else f" (last good pass {datetime.fromtimestamp(updated, ZoneInfo(tz)):%a %b %-d, %H:%M})"
+    )
+    notify.send(
+        "⚠️ Rare Weather Alerts — not updating",
+        f"The alert pass hasn't succeeded in{age}{when}.\n"
+        "The board is stale; treat a quiet dashboard as unknown, not calm.",
+        "notable",
+        cfg.raw["notify"]["ntfy_url"],
+        dry_run,
+        click_url=_dashboard_url(cfg),
+    )
+    return True
 
 
 def status() -> None:

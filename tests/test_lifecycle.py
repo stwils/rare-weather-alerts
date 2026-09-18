@@ -4,10 +4,16 @@ Run: python tests/test_lifecycle.py"""
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+import json
+import tempfile
+from pathlib import Path
+
 from rare_weather.opportunities import (
     Opportunity,
+    load_state,
     partition_unknown,
     reconcile,
+    save_state,
     spans_from_scores,
 )
 from rare_weather.pipeline import _coalesce, digest_due
@@ -134,6 +140,36 @@ def test_coalesce():
     assert keys == [("a", "b"), ("c",), ("d",)]
 
 
+WAVE = [{"name": "wave_airmet", "text": "wave AIRMET active"}]
+
+
+def test_signals_ride_along_with_a_tracked_opportunity():
+    spans = spans_from_scores(TIMES, scores_at({10: 0.9}), 0.4, 0.8, 6)
+    active, _ = reconcile([], {("hood", "lenticular"): spans}, now=0, merge_gap_hours=6)
+    assert active[0].signals == []  # a fresh detection has none yet
+    active[0].signals = WAVE
+    refreshed = spans_from_scores(TIMES, scores_at({10: 0.9, 11: 0.85}), 0.4, 0.8, 6)
+    active, _ = reconcile(active, {("hood", "lenticular"): refreshed}, now=0, merge_gap_hours=6)
+    assert active[0].signals == WAVE
+
+
+def test_signals_survive_a_state_round_trip():
+    with tempfile.TemporaryDirectory() as d:
+        path = Path(d) / "state.json"
+        o = _opp("hood", "lenticular", 10, 14)
+        o.signals = WAVE
+        save_state(path, [o])
+        assert load_state(path)[0].signals == WAVE
+
+
+def test_state_written_before_signals_existed_still_loads():
+    with tempfile.TemporaryDirectory() as d:
+        path = Path(d) / "state.json"
+        legacy = {k: v for k, v in _opp("a", "fog", 10, 14).__dict__.items() if k != "signals"}
+        path.write_text(json.dumps({"opportunities": [legacy]}))
+        assert load_state(path)[0].signals == []
+
+
 if __name__ == "__main__":
     test_span_merging()
     test_lifecycle()
@@ -144,4 +180,7 @@ if __name__ == "__main__":
     test_digest_goes_out_once_per_local_day()
     test_digest_uses_local_time_across_dst()
     test_coalesce()
+    test_signals_ride_along_with_a_tracked_opportunity()
+    test_signals_survive_a_state_round_trip()
+    test_state_written_before_signals_existed_still_loads()
     print("all tests pass")

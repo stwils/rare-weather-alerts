@@ -16,7 +16,7 @@ import time
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from . import dashboard, hours, notify, openmeteo, opportunities, thresholds
+from . import aviation, dashboard, hours, notify, openmeteo, opportunities, thresholds
 from .config import Settings, Spot, load_settings, load_spots
 from .scores import MODELS
 
@@ -100,6 +100,29 @@ def _coalesce(events: list[dict], gap_hours: float) -> list[list[dict]]:
     return groups
 
 
+def alert_text(
+    etype: str, opp: opportunities.Opportunity, spot_name: str, explanation: str, others: str, tz: str
+) -> tuple[str, str]:
+    """(title, body) of the push for an Exceptional lifecycle change.
+
+    Confidence signals ride along on detections and upgrades; a cancellation
+    reports only that the window is gone.
+    """
+    model = MODELS[opp.phenomenon]
+    if etype == "cancelled":
+        title = f"{model.EMOJI} {model.LABEL} cancelled — {spot_name}"
+        body = f"The Exceptional window {_fmt_window(opp.start, opp.end, tz)} no longer holds."
+    else:
+        verb = "upgraded to " if etype == "upgraded" else ""
+        title = f"{model.EMOJI} {model.LABEL} {verb}EXCEPTIONAL — {spot_name}"
+        body = f"{_fmt_window(opp.start, opp.end, tz)} · peak score {opp.peak_score:.2f}\n{explanation}"
+        if opp.signals:
+            body += "\n✈️ " + " · ".join(s["text"] for s in opp.signals)
+    if others:
+        body += f"\nAlso: {others}"
+    return title, body
+
+
 def run_once(dry_run: bool = False) -> None:
     cfg = load_settings()
     spots = load_spots()
@@ -145,6 +168,13 @@ def run_once(dry_run: bool = False) -> None:
     active, events = opportunities.reconcile(reconcilable, candidates, now, cfg.merge_gap_hours)
     active.extend(held)
 
+    # Aviation wave reports: one fetch for the whole pass, never per Spot. A
+    # failed fetch (None) leaves last pass's signals in place.
+    wave_spots = [s for s in spots if aviation.PHENOMENA & set(s.phenomena)]
+    if wave_spots:
+        reports = aviation.fetch_reports([(s.latitude, s.longitude) for s in wave_spots])
+        aviation.attach_signals(active, spot_by_id, reports)
+
     # Archive opportunities that just left the active set (cancelled or elapsed),
     # and prune the history to the retention window.
     retention = cfg.raw.get("archive_retention_hours", 72) * 3600
@@ -177,22 +207,12 @@ def run_once(dry_run: bool = False) -> None:
         group.sort(key=lambda e: e["opp"].peak_score, reverse=True)
         best = group[0]
         opp, span, etype = best["opp"], best["span"], best["type"]
-        model = MODELS[opp.phenomenon]
-        spot = spot_by_id[opp.spot]
         others = ", ".join(spot_by_id[e["opp"].spot].name for e in group[1:])
-
-        if etype == "cancelled":
-            title = f"{model.EMOJI} {model.LABEL} cancelled — {spot.name}"
-            body = f"The Exceptional window {_fmt_window(opp.start, opp.end, tz)} no longer holds."
-        else:
-            verb = "upgraded to " if etype == "upgraded" else ""
-            title = f"{model.EMOJI} {model.LABEL} {verb}EXCEPTIONAL — {spot.name}"
-            body = (
-                f"{_fmt_window(opp.start, opp.end, tz)} · peak score {opp.peak_score:.2f}\n"
-                f"{model.explain(collected[opp.spot]['hours'], span.peak_index)}"
-            )
-        if others:
-            body += f"\nAlso: {others}"
+        explanation = (
+            "" if etype == "cancelled"
+            else MODELS[opp.phenomenon].explain(collected[opp.spot]["hours"], span.peak_index)
+        )
+        title, body = alert_text(etype, opp, spot_by_id[opp.spot].name, explanation, others, tz)
         notify.send(
             title, body, "exceptional", cfg.raw["notify"]["ntfy_url"], dry_run,
             click_url=_dashboard_url(cfg, dashboard.anchor(opp.spot, opp.phenomenon)),

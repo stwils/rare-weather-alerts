@@ -77,6 +77,7 @@ def build_data(
                 "end": o.end,
                 "peak_score": round(o.peak_score, 3),
                 "drivers": drivers,
+                "signals": [sig["text"] for sig in o.signals],
             }
         )
 
@@ -152,6 +153,11 @@ def render_html(data: dict) -> str:
         maps = f'https://maps.google.com/?q={o["lat"]},{o["lon"]}'
         others = ""
         drivers = f'<div class="drivers">{_esc(o["drivers"])}</div>' if o["drivers"] else ""
+        signals = (
+            f'<div class="signals">✈️ {_esc(" · ".join(o["signals"]))}</div>'
+            if o.get("signals")
+            else ""
+        )
         op_cards.append(
             f"""<article class="opp" id="{_esc(o['anchor'])}">
   <div class="opp-head">
@@ -162,6 +168,7 @@ def render_html(data: dict) -> str:
   <div class="spot"><a href="{maps}" target="_blank" rel="noopener">{_esc(o['spot'])} ↗</a></div>
   <div class="window">{_esc(o['window'])} · peak {o['peak_score']:.2f}</div>
   {drivers}
+  {signals}
 </article>"""
         )
 
@@ -239,6 +246,7 @@ def render_html(data: dict) -> str:
   .spot a {{ color:inherit; text-decoration:none; font-size:1.05rem; }}
   .window {{ color:var(--muted); font-size:.9rem; margin-top:2px; }}
   .drivers {{ color:var(--muted); font-size:.82rem; margin-top:6px; font-variant-numeric:tabular-nums; }}
+  .signals {{ font-size:.82rem; margin-top:6px; font-weight:600; }}
   .empty {{ color:var(--muted); }}
   table {{ width:100%; border-collapse:collapse; font-size:.85rem; }}
   th,td {{ text-align:left; padding:6px 8px; border-bottom:1px solid var(--line);

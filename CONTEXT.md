@@ -65,6 +65,10 @@ _Avoid_: Warning time, notice
 A contiguous span of above-threshold Quality Scores for one (Spot, Phenomenon) pair — the domain object alerts are about. Detected once, then tracked across forecast refreshes; short below-threshold gaps do not split it.
 _Avoid_: Alert (an alert is a notification about an Opportunity, not the thing itself)
 
+**Confidence Signal**:
+A named, independent piece of corroboration attached to an Opportunity and shown beside its score — e.g. "wave AIRMET active" or "2 PIREPs reporting wave" on a lenticular Opportunity. Never a Quality Score input (these sources have no backfill archive, so no percentile can be taken of them) and never changes tiering. An Opportunity carries a list of them, not a single confidence number.
+_Avoid_: Probability, confidence score
+
 **Alert**:
 A push about an *Exceptional* Opportunity's lifecycle change: detected, upgraded (crossed into Exceptional), or cancelled (forecast fell apart). At most one per lifecycle change — never per forecast refresh. Alerts for the same Phenomenon with overlapping windows coalesce into a single push, led by the highest-scoring Spot. Notable Opportunities never raise an Alert; they surface on the Dashboard and Digest.
 _Avoid_: Notification, message

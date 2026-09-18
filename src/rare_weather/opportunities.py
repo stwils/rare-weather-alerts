@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import json
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 TIER_ORDER = {"notable": 1, "exceptional": 2}
@@ -35,6 +35,10 @@ class Opportunity:
     peak_score: float
     tier: str
     alerted_tier: str
+    # Confidence signals: named, independent corroboration shown beside the
+    # score (e.g. {"name": "wave_airmet", "text": "wave AIRMET active"}).
+    # Never a Quality Score input and never a tiering input.
+    signals: list[dict] = field(default_factory=list)
 
 
 def spans_from_scores(
@@ -107,6 +111,7 @@ def reconcile(
                 peak_score=match.peak_score,
                 tier=match.tier,
                 alerted_tier=match.tier if upgraded else opp.alerted_tier,
+                signals=opp.signals,
             )
             new_active.append(opp)
             if upgraded:

@@ -1,6 +1,18 @@
 {
- "updated": 1789815081,
- "opportunities": [],
+ "updated": 1789827530,
+ "opportunities": [
+  {
+   "id": "multnomah-falls:fog:1789920000",
+   "spot": "multnomah-falls",
+   "phenomenon": "fog",
+   "start": 1789920000,
+   "end": 1789923600,
+   "peak_score": 0.9588235294117647,
+   "tier": "exceptional",
+   "alerted_tier": "exceptional",
+   "signals": []
+  }
+ ],
  "archive": [],
- "last_digest": "2026-09-18"
+ "last_digest": "2026-09-19"
 }

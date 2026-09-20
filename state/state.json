@@ -1,5 +1,5 @@
 {
- "updated": 1789866090,
+ "updated": 1789884368,
  "opportunities": [
   {
    "id": "multnomah-falls:fog:1789920000",
@@ -7,8 +7,8 @@
    "phenomenon": "fog",
    "start": 1789916400,
    "end": 1789923600,
-   "peak_score": 0.9352941176470588,
-   "tier": "exceptional",
+   "peak_score": 0.8705882352941177,
+   "tier": "notable",
    "alerted_tier": "exceptional",
    "signals": []
   }

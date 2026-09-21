@@ -1,6 +1,18 @@
 {
- "updated": 1789987185,
- "opportunities": [],
+ "updated": 1790010078,
+ "opportunities": [
+  {
+   "id": "silver-falls:fog:1790006400",
+   "spot": "silver-falls",
+   "phenomenon": "fog",
+   "start": 1790006400,
+   "end": 1790010000,
+   "peak_score": 0.9529411764705882,
+   "tier": "exceptional",
+   "alerted_tier": "exceptional",
+   "signals": []
+  }
+ ],
  "archive": [
   {
    "spot": "multnomah-falls",
@@ -23,5 +35,5 @@
    "archived_at": 1789902681.3649662
   }
  ],
- "last_digest": "2026-09-20"
+ "last_digest": "2026-09-21"
 }

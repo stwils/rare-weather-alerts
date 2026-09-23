@@ -1,5 +1,5 @@
 {
- "updated": 1790182351,
+ "updated": 1790194459,
  "opportunities": [],
  "archive": [
   {
@@ -11,16 +11,6 @@
    "tier": "exceptional",
    "outcome": "ended",
    "archived_at": 1790024308.3637042
-  },
-  {
-   "spot": "multnomah-falls",
-   "phenomenon": "fog",
-   "start": 1789920000,
-   "end": 1789923600,
-   "peak_score": 0.9058823529411765,
-   "tier": "notable",
-   "outcome": "ended",
-   "archived_at": 1789929688.4841723
   }
  ],
  "last_digest": "2026-09-23"

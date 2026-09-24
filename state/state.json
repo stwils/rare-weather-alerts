@@ -1,5 +1,5 @@
 {
- "updated": 1790276706,
+ "updated": 1790288408,
  "opportunities": [],
  "archive": [
   {
@@ -11,16 +11,6 @@
    "tier": "notable",
    "outcome": "cancelled",
    "archived_at": 1790276475.5266466
-  },
-  {
-   "spot": "silver-falls",
-   "phenomenon": "fog",
-   "start": 1790006400,
-   "end": 1790010000,
-   "peak_score": 0.9529411764705882,
-   "tier": "exceptional",
-   "outcome": "ended",
-   "archived_at": 1790024308.3637042
   }
  ],
  "last_digest": "2026-09-24"

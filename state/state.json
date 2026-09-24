@@ -1,19 +1,17 @@
 {
- "updated": 1790261870,
- "opportunities": [
+ "updated": 1790276706,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "hood-river:sunrise_sunset:1790431200",
    "spot": "hood-river",
    "phenomenon": "sunrise_sunset",
    "start": 1790431200,
    "end": 1790434800,
    "peak_score": 0.7362346491372556,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1790276475.5266466
+  },
   {
    "spot": "silver-falls",
    "phenomenon": "fog",

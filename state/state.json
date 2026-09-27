@@ -1,19 +1,17 @@
 {
- "updated": 1790496201,
- "opportunities": [
+ "updated": 1790517221,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "mt-jefferson:lenticular:1790730000",
    "spot": "mt-jefferson",
    "phenomenon": "lenticular",
    "start": 1790730000,
    "end": 1790733600,
    "peak_score": 0.4323650946406588,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1790517025.4898014
+  },
   {
    "spot": "hood-river",
    "phenomenon": "sunrise_sunset",
@@ -25,5 +23,5 @@
    "archived_at": 1790276475.5266466
   }
  ],
- "last_digest": "2026-09-26"
+ "last_digest": "2026-09-27"
 }

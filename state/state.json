@@ -1,6 +1,18 @@
 {
- "updated": 1790472302,
- "opportunities": [],
+ "updated": 1790496201,
+ "opportunities": [
+  {
+   "id": "mt-jefferson:lenticular:1790730000",
+   "spot": "mt-jefferson",
+   "phenomenon": "lenticular",
+   "start": 1790730000,
+   "end": 1790733600,
+   "peak_score": 0.4323650946406588,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  }
+ ],
  "archive": [
   {
    "spot": "hood-river",

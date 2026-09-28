@@ -1,19 +1,17 @@
 {
- "updated": 1790577799,
- "opportunities": [
+ "updated": 1790608686,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "mt-hood:lenticular:1790730000",
    "spot": "mt-hood",
    "phenomenon": "lenticular",
    "start": 1790730000,
    "end": 1790733600,
    "peak_score": 0.4474956392912849,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1790608679.1427584
+  },
   {
    "spot": "hood-river",
    "phenomenon": "sunrise_sunset",
@@ -65,5 +63,5 @@
    "archived_at": 1790517025.4898014
   }
  ],
- "last_digest": "2026-09-27"
+ "last_digest": "2026-09-28"
 }

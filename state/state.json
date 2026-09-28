@@ -1,28 +1,6 @@
 {
- "updated": 1790546646,
+ "updated": 1790555767,
  "opportunities": [
-  {
-   "id": "mt-hood:lenticular:1790715600",
-   "spot": "mt-hood",
-   "phenomenon": "lenticular",
-   "start": 1790715600,
-   "end": 1790719200,
-   "peak_score": 0.40139842199506015,
-   "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  },
-  {
-   "id": "mt-jefferson:lenticular:1790719200",
-   "spot": "mt-jefferson",
-   "phenomenon": "lenticular",
-   "start": 1790719200,
-   "end": 1790722800,
-   "peak_score": 0.38442649353040664,
-   "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  },
   {
    "id": "hood-river:sunrise_sunset:1790647200",
    "spot": "hood-river",
@@ -36,6 +14,26 @@
   }
  ],
  "archive": [
+  {
+   "spot": "mt-hood",
+   "phenomenon": "lenticular",
+   "start": 1790715600,
+   "end": 1790719200,
+   "peak_score": 0.40139842199506015,
+   "tier": "notable",
+   "outcome": "cancelled",
+   "archived_at": 1790555575.8370924
+  },
+  {
+   "spot": "mt-jefferson",
+   "phenomenon": "lenticular",
+   "start": 1790719200,
+   "end": 1790722800,
+   "peak_score": 0.38442649353040664,
+   "tier": "notable",
+   "outcome": "cancelled",
+   "archived_at": 1790555575.8370924
+  },
   {
    "spot": "crown-point",
    "phenomenon": "sunrise_sunset",

@@ -1,19 +1,17 @@
 {
- "updated": 1790696668,
- "opportunities": [
+ "updated": 1790714788,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "dufur:sunrise_sunset:1790733600",
    "spot": "dufur",
    "phenomenon": "sunrise_sunset",
    "start": 1790733600,
    "end": 1790737200,
    "peak_score": 0.7465529115136437,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1790714408.9145765
+  },
   {
    "spot": "mt-hood",
    "phenomenon": "lenticular",

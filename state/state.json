@@ -1,6 +1,18 @@
 {
- "updated": 1790670165,
- "opportunities": [],
+ "updated": 1790696668,
+ "opportunities": [
+  {
+   "id": "dufur:sunrise_sunset:1790733600",
+   "spot": "dufur",
+   "phenomenon": "sunrise_sunset",
+   "start": 1790733600,
+   "end": 1790737200,
+   "peak_score": 0.7465529115136437,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  }
+ ],
  "archive": [
   {
    "spot": "mt-hood",
@@ -63,5 +75,5 @@
    "archived_at": 1790517025.4898014
   }
  ],
- "last_digest": "2026-09-28"
+ "last_digest": "2026-09-29"
 }

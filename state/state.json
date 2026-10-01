@@ -1,5 +1,5 @@
 {
- "updated": 1790820274,
+ "updated": 1790844643,
  "opportunities": [],
  "archive": [
   {
@@ -21,16 +21,6 @@
    "tier": "notable",
    "outcome": "cancelled",
    "archived_at": 1790608679.1427584
-  },
-  {
-   "spot": "hood-river",
-   "phenomenon": "sunrise_sunset",
-   "start": 1790647200,
-   "end": 1790650800,
-   "peak_score": 0.6896176223956889,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1790577603.9851663
   }
  ],
  "last_digest": "2026-09-30"

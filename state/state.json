@@ -1,5 +1,5 @@
 {
- "updated": 1790844643,
+ "updated": 1790871690,
  "opportunities": [],
  "archive": [
   {
@@ -11,17 +11,7 @@
    "tier": "notable",
    "outcome": "cancelled",
    "archived_at": 1790714408.9145765
-  },
-  {
-   "spot": "mt-hood",
-   "phenomenon": "lenticular",
-   "start": 1790730000,
-   "end": 1790733600,
-   "peak_score": 0.4474956392912849,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1790608679.1427584
   }
  ],
- "last_digest": "2026-09-30"
+ "last_digest": "2026-10-01"
 }

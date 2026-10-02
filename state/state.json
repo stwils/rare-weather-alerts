@@ -1,19 +1,17 @@
 {
- "updated": 1790905059,
- "opportunities": [
+ "updated": 1790929404,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "oswald-west:fog:1790956800",
    "spot": "oswald-west",
    "phenomenon": "fog",
    "start": 1790956800,
    "end": 1790960400,
    "peak_score": 0.9588235294117647,
    "tier": "exceptional",
-   "alerted_tier": "exceptional",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1790929384.6592274
+  },
   {
    "spot": "dufur",
    "phenomenon": "sunrise_sunset",

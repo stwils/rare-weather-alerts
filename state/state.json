@@ -1,5 +1,5 @@
 {
- "updated": 1790973695,
+ "updated": 1790987394,
  "opportunities": [],
  "archive": [
   {
@@ -11,16 +11,6 @@
    "tier": "exceptional",
    "outcome": "cancelled",
    "archived_at": 1790929384.6592274
-  },
-  {
-   "spot": "dufur",
-   "phenomenon": "sunrise_sunset",
-   "start": 1790733600,
-   "end": 1790737200,
-   "peak_score": 0.7465529115136437,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1790714408.9145765
   }
  ],
  "last_digest": "2026-10-02"

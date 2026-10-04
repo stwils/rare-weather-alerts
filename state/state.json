@@ -1,19 +1,17 @@
 {
- "updated": 1791071506,
- "opportunities": [
+ "updated": 1791092618,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "astoria:fog:1791129600",
    "spot": "astoria",
    "phenomenon": "fog",
    "start": 1791129600,
    "end": 1791133200,
    "peak_score": 0.9705882352941176,
    "tier": "exceptional",
-   "alerted_tier": "exceptional",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1791092423.1377165
+  },
   {
    "spot": "oswald-west",
    "phenomenon": "fog",

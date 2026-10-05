@@ -1,5 +1,5 @@
 {
- "updated": 1791183323,
+ "updated": 1791215749,
  "opportunities": [],
  "archive": [
   {
@@ -11,17 +11,7 @@
    "tier": "exceptional",
    "outcome": "cancelled",
    "archived_at": 1791092423.1377165
-  },
-  {
-   "spot": "oswald-west",
-   "phenomenon": "fog",
-   "start": 1790956800,
-   "end": 1790960400,
-   "peak_score": 0.9588235294117647,
-   "tier": "exceptional",
-   "outcome": "cancelled",
-   "archived_at": 1790929384.6592274
   }
  ],
- "last_digest": "2026-10-04"
+ "last_digest": "2026-10-05"
 }

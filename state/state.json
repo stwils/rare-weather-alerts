@@ -1,5 +1,5 @@
 {
- "updated": 1791390210,
+ "updated": 1791410324,
  "opportunities": [
   {
    "id": "mt-jefferson:lenticular:1791565200",
@@ -7,8 +7,8 @@
    "phenomenon": "lenticular",
    "start": 1791565200,
    "end": 1791568800,
-   "peak_score": 0.6665119562695607,
-   "tier": "exceptional",
+   "peak_score": 0.3913295623905081,
+   "tier": "notable",
    "alerted_tier": "exceptional",
    "signals": []
   }

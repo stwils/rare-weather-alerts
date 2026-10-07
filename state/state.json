@@ -1,17 +1,18 @@
 {
- "updated": 1791336498,
- "opportunities": [],
- "archive": [
+ "updated": 1791362141,
+ "opportunities": [
   {
-   "spot": "astoria",
-   "phenomenon": "fog",
-   "start": 1791129600,
-   "end": 1791133200,
-   "peak_score": 0.9705882352941176,
+   "id": "mt-jefferson:lenticular:1791565200",
+   "spot": "mt-jefferson",
+   "phenomenon": "lenticular",
+   "start": 1791565200,
+   "end": 1791572400,
+   "peak_score": 0.7196747755503532,
    "tier": "exceptional",
-   "outcome": "cancelled",
-   "archived_at": 1791092423.1377165
+   "alerted_tier": "exceptional",
+   "signals": []
   }
  ],
+ "archive": [],
  "last_digest": "2026-10-06"
 }

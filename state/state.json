@@ -1,18 +1,17 @@
 {
- "updated": 1791424252,
- "opportunities": [
+ "updated": 1791449704,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "mt-jefferson:lenticular:1791565200",
    "spot": "mt-jefferson",
    "phenomenon": "lenticular",
    "start": 1791572400,
    "end": 1791576000,
    "peak_score": 0.4037912165037138,
    "tier": "notable",
-   "alerted_tier": "exceptional",
-   "signals": []
+   "outcome": "cancelled",
+   "archived_at": 1791449324.9163554
   }
  ],
- "archive": [],
  "last_digest": "2026-10-07"
 }

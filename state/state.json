@@ -1,6 +1,18 @@
 {
- "updated": 1792038635,
- "opportunities": [],
+ "updated": 1792057753,
+ "opportunities": [
+  {
+   "id": "mt-jefferson:lenticular:1792252800",
+   "spot": "mt-jefferson",
+   "phenomenon": "lenticular",
+   "start": 1792252800,
+   "end": 1792256400,
+   "peak_score": 0.5018202940885944,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  }
+ ],
  "archive": [],
  "last_digest": "2026-10-14"
 }

@@ -1,18 +1,29 @@
 {
- "updated": 1792057753,
+ "updated": 1792076124,
  "opportunities": [
   {
-   "id": "mt-jefferson:lenticular:1792252800",
+   "id": "sauvie-island:fog:1792072800",
+   "spot": "sauvie-island",
+   "phenomenon": "fog",
+   "start": 1792072800,
+   "end": 1792076400,
+   "peak_score": 0.8470588235294118,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  }
+ ],
+ "archive": [
+  {
    "spot": "mt-jefferson",
    "phenomenon": "lenticular",
    "start": 1792252800,
    "end": 1792256400,
    "peak_score": 0.5018202940885944,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
+   "outcome": "cancelled",
+   "archived_at": 1792075923.1014972
   }
  ],
- "archive": [],
- "last_digest": "2026-10-14"
+ "last_digest": "2026-10-15"
 }

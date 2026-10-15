@@ -1,19 +1,17 @@
 {
- "updated": 1792076124,
- "opportunities": [
+ "updated": 1792091131,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "sauvie-island:fog:1792072800",
    "spot": "sauvie-island",
    "phenomenon": "fog",
    "start": 1792072800,
    "end": 1792076400,
    "peak_score": 0.8470588235294118,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "ended",
+   "archived_at": 1792090934.923436
+  },
   {
    "spot": "mt-jefferson",
    "phenomenon": "lenticular",

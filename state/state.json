@@ -1,19 +1,29 @@
 {
- "updated": 1792110816,
+ "updated": 1792129850,
  "opportunities": [
   {
-   "id": "mt-adams:lenticular:1792256400",
-   "spot": "mt-adams",
+   "id": "mt-st-helens:lenticular:1792267200",
+   "spot": "mt-st-helens",
    "phenomenon": "lenticular",
-   "start": 1792256400,
-   "end": 1792260000,
-   "peak_score": 0.3891136932036952,
+   "start": 1792267200,
+   "end": 1792270800,
+   "peak_score": 0.4625503943930965,
    "tier": "notable",
    "alerted_tier": "notable",
    "signals": []
   }
  ],
  "archive": [
+  {
+   "spot": "mt-adams",
+   "phenomenon": "lenticular",
+   "start": 1792256400,
+   "end": 1792260000,
+   "peak_score": 0.3891136932036952,
+   "tier": "notable",
+   "outcome": "cancelled",
+   "archived_at": 1792129471.6748562
+  },
   {
    "spot": "sauvie-island",
    "phenomenon": "fog",

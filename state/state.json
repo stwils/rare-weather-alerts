@@ -1,6 +1,18 @@
 {
- "updated": 1792102269,
- "opportunities": [],
+ "updated": 1792110816,
+ "opportunities": [
+  {
+   "id": "mt-adams:lenticular:1792256400",
+   "spot": "mt-adams",
+   "phenomenon": "lenticular",
+   "start": 1792256400,
+   "end": 1792260000,
+   "peak_score": 0.3891136932036952,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  }
+ ],
  "archive": [
   {
    "spot": "sauvie-island",

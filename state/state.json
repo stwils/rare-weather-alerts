@@ -1,19 +1,17 @@
 {
- "updated": 1792220068,
- "opportunities": [
+ "updated": 1792237118,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "mt-st-helens:lenticular:1792267200",
    "spot": "mt-st-helens",
    "phenomenon": "lenticular",
    "start": 1792267200,
    "end": 1792278000,
    "peak_score": 0.435481248346085,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1792236739.20309
+  },
   {
    "spot": "mt-st-helens",
    "phenomenon": "lenticular",

@@ -1,5 +1,5 @@
 {
- "updated": 1792372239,
+ "updated": 1792390090,
  "opportunities": [],
  "archive": [
   {
@@ -21,16 +21,6 @@
    "tier": "notable",
    "outcome": "cancelled",
    "archived_at": 1792149172.3492656
-  },
-  {
-   "spot": "mt-adams",
-   "phenomenon": "lenticular",
-   "start": 1792256400,
-   "end": 1792260000,
-   "peak_score": 0.3891136932036952,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1792129471.6748562
   }
  ],
  "last_digest": "2026-10-18"

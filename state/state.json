@@ -1,17 +1,6 @@
 {
- "updated": 1792490615,
+ "updated": 1792508376,
  "opportunities": [],
- "archive": [
-  {
-   "spot": "mt-st-helens",
-   "phenomenon": "lenticular",
-   "start": 1792267200,
-   "end": 1792278000,
-   "peak_score": 0.435481248346085,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1792236739.20309
-  }
- ],
- "last_digest": "2026-10-19"
+ "archive": [],
+ "last_digest": "2026-10-20"
 }

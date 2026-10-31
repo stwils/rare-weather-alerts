@@ -1,6 +1,18 @@
 {
- "updated": 1793429813,
- "opportunities": [],
+ "updated": 1793453810,
+ "opportunities": [
+  {
+   "id": "larch-mountain:sunrise_sunset:1793494800",
+   "spot": "larch-mountain",
+   "phenomenon": "sunrise_sunset",
+   "start": 1793494800,
+   "end": 1793498400,
+   "peak_score": 0.8370248376705889,
+   "tier": "exceptional",
+   "alerted_tier": "exceptional",
+   "signals": []
+  }
+ ],
  "archive": [],
- "last_digest": "2026-10-30"
+ "last_digest": "2026-10-31"
 }

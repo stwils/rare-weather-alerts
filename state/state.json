@@ -1,19 +1,40 @@
 {
- "updated": 1793498930,
+ "updated": 1793524174,
  "opportunities": [
   {
-   "id": "sauvie-island:fog:1793545200",
-   "spot": "sauvie-island",
+   "id": "pittock-mansion:fog:1793563200",
+   "spot": "pittock-mansion",
    "phenomenon": "fog",
-   "start": 1793545200,
-   "end": 1793548800,
-   "peak_score": 0.9058823529411765,
+   "start": 1793563200,
+   "end": 1793566800,
+   "peak_score": 0.8411764705882353,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  },
+  {
+   "id": "silver-falls:fog:1793552400",
+   "spot": "silver-falls",
+   "phenomenon": "fog",
+   "start": 1793552400,
+   "end": 1793556000,
+   "peak_score": 0.8529411764705882,
    "tier": "notable",
    "alerted_tier": "notable",
    "signals": []
   }
  ],
  "archive": [
+  {
+   "spot": "sauvie-island",
+   "phenomenon": "fog",
+   "start": 1793545200,
+   "end": 1793548800,
+   "peak_score": 0.9058823529411765,
+   "tier": "notable",
+   "outcome": "cancelled",
+   "archived_at": 1793523984.502804
+  },
   {
    "spot": "larch-mountain",
    "phenomenon": "sunrise_sunset",

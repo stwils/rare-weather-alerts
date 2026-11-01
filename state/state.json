@@ -1,30 +1,27 @@
 {
- "updated": 1793524174,
- "opportunities": [
+ "updated": 1793548839,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "pittock-mansion:fog:1793563200",
    "spot": "pittock-mansion",
    "phenomenon": "fog",
    "start": 1793563200,
    "end": 1793566800,
    "peak_score": 0.8411764705882353,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
+   "outcome": "cancelled",
+   "archived_at": 1793548645.9784906
   },
   {
-   "id": "silver-falls:fog:1793552400",
    "spot": "silver-falls",
    "phenomenon": "fog",
    "start": 1793552400,
    "end": 1793556000,
    "peak_score": 0.8529411764705882,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1793548645.9784906
+  },
   {
    "spot": "sauvie-island",
    "phenomenon": "fog",
@@ -46,5 +43,5 @@
    "archived_at": 1793471197.0168235
   }
  ],
- "last_digest": "2026-10-31"
+ "last_digest": "2026-11-01"
 }

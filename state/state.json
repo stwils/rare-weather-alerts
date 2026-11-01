@@ -1,6 +1,18 @@
 {
- "updated": 1793485667,
- "opportunities": [],
+ "updated": 1793498930,
+ "opportunities": [
+  {
+   "id": "sauvie-island:fog:1793545200",
+   "spot": "sauvie-island",
+   "phenomenon": "fog",
+   "start": 1793545200,
+   "end": 1793548800,
+   "peak_score": 0.9058823529411765,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  }
+ ],
  "archive": [
   {
    "spot": "larch-mountain",

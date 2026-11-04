@@ -1,19 +1,29 @@
 {
- "updated": 1793801974,
+ "updated": 1793827049,
  "opportunities": [
   {
-   "id": "cannon-beach:sunrise_sunset:1793926800",
-   "spot": "cannon-beach",
-   "phenomenon": "sunrise_sunset",
-   "start": 1793926800,
-   "end": 1793930400,
-   "peak_score": 0.6980316202921576,
+   "id": "mt-adams:lenticular:1793977200",
+   "spot": "mt-adams",
+   "phenomenon": "lenticular",
+   "start": 1793977200,
+   "end": 1793980800,
+   "peak_score": 0.41192639142139265,
    "tier": "notable",
    "alerted_tier": "notable",
    "signals": []
   }
  ],
  "archive": [
+  {
+   "spot": "cannon-beach",
+   "phenomenon": "sunrise_sunset",
+   "start": 1793926800,
+   "end": 1793930400,
+   "peak_score": 0.6980316202921576,
+   "tier": "notable",
+   "outcome": "cancelled",
+   "archived_at": 1793826842.8809917
+  },
   {
    "spot": "sauvie-island",
    "phenomenon": "fog",
@@ -23,26 +33,6 @@
    "tier": "exceptional",
    "outcome": "cancelled",
    "archived_at": 1793772055.382244
-  },
-  {
-   "spot": "pittock-mansion",
-   "phenomenon": "fog",
-   "start": 1793563200,
-   "end": 1793566800,
-   "peak_score": 0.8411764705882353,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1793548645.9784906
-  },
-  {
-   "spot": "silver-falls",
-   "phenomenon": "fog",
-   "start": 1793552400,
-   "end": 1793556000,
-   "peak_score": 0.8529411764705882,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1793548645.9784906
   }
  ],
  "last_digest": "2026-11-04"

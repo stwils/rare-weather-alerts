@@ -1,13 +1,24 @@
 {
- "updated": 1793875571,
+ "updated": 1793904183,
  "opportunities": [
   {
    "id": "mt-adams:lenticular:1793977200",
    "spot": "mt-adams",
    "phenomenon": "lenticular",
-   "start": 1793977200,
-   "end": 1793984400,
-   "peak_score": 0.4890758907363153,
+   "start": 1793988000,
+   "end": 1793991600,
+   "peak_score": 0.44821667805616755,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  },
+  {
+   "id": "mt-st-helens:lenticular:1793984400",
+   "spot": "mt-st-helens",
+   "phenomenon": "lenticular",
+   "start": 1793984400,
+   "end": 1793988000,
+   "peak_score": 0.4446635601886233,
    "tier": "notable",
    "alerted_tier": "notable",
    "signals": []
@@ -45,5 +56,5 @@
    "archived_at": 1793772055.382244
   }
  ],
- "last_digest": "2026-11-04"
+ "last_digest": "2026-11-05"
 }

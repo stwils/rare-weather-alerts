@@ -1,5 +1,5 @@
 {
- "updated": 1793827049,
+ "updated": 1793845062,
  "opportunities": [
   {
    "id": "mt-adams:lenticular:1793977200",
@@ -8,6 +8,17 @@
    "start": 1793977200,
    "end": 1793980800,
    "peak_score": 0.41192639142139265,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  },
+  {
+   "id": "mt-st-helens:lenticular:1793988000",
+   "spot": "mt-st-helens",
+   "phenomenon": "lenticular",
+   "start": 1793988000,
+   "end": 1793991600,
+   "peak_score": 0.4133036333710908,
    "tier": "notable",
    "alerted_tier": "notable",
    "signals": []

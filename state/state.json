@@ -1,63 +1,59 @@
 {
- "updated": 1793977166,
+ "updated": 1793998315,
  "opportunities": [
-  {
-   "id": "mt-adams:lenticular:1793977200",
-   "spot": "mt-adams",
-   "phenomenon": "lenticular",
-   "start": 1793984400,
-   "end": 1793991600,
-   "peak_score": 0.6421493400342668,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional",
-   "signals": []
-  },
-  {
-   "id": "mt-st-helens:lenticular:1793984400",
-   "spot": "mt-st-helens",
-   "phenomenon": "lenticular",
-   "start": 1793980800,
-   "end": 1793991600,
-   "peak_score": 0.653481654073436,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional",
-   "signals": []
-  },
   {
    "id": "mt-hood:lenticular:1793980800",
    "spot": "mt-hood",
    "phenomenon": "lenticular",
    "start": 1793984400,
    "end": 1793991600,
-   "peak_score": 0.4893400820323052,
-   "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  },
-  {
-   "id": "mt-hood:lenticular:1794153600",
-   "spot": "mt-hood",
-   "phenomenon": "lenticular",
-   "start": 1794153600,
-   "end": 1794157200,
-   "peak_score": 0.5590467968529665,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional",
-   "signals": []
-  },
-  {
-   "id": "mt-jefferson:lenticular:1794157200",
-   "spot": "mt-jefferson",
-   "phenomenon": "lenticular",
-   "start": 1794157200,
-   "end": 1794164400,
-   "peak_score": 0.6188924824527138,
+   "peak_score": 0.6628918211675306,
    "tier": "exceptional",
    "alerted_tier": "exceptional",
    "signals": []
   }
  ],
  "archive": [
+  {
+   "spot": "mt-adams",
+   "phenomenon": "lenticular",
+   "start": 1793984400,
+   "end": 1793991600,
+   "peak_score": 0.6421493400342668,
+   "tier": "exceptional",
+   "outcome": "ended",
+   "archived_at": 1793998121.3456388
+  },
+  {
+   "spot": "mt-st-helens",
+   "phenomenon": "lenticular",
+   "start": 1793980800,
+   "end": 1793991600,
+   "peak_score": 0.653481654073436,
+   "tier": "exceptional",
+   "outcome": "ended",
+   "archived_at": 1793998121.3456388
+  },
+  {
+   "spot": "mt-hood",
+   "phenomenon": "lenticular",
+   "start": 1794153600,
+   "end": 1794157200,
+   "peak_score": 0.5590467968529665,
+   "tier": "exceptional",
+   "outcome": "cancelled",
+   "archived_at": 1793998121.3456388
+  },
+  {
+   "spot": "mt-jefferson",
+   "phenomenon": "lenticular",
+   "start": 1794157200,
+   "end": 1794164400,
+   "peak_score": 0.6188924824527138,
+   "tier": "exceptional",
+   "outcome": "cancelled",
+   "archived_at": 1793998121.3456388
+  },
   {
    "spot": "mt-st-helens",
    "phenomenon": "lenticular",

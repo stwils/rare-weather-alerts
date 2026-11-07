@@ -1,5 +1,5 @@
 {
- "updated": 1794012810,
+ "updated": 1794034991,
  "opportunities": [
   {
    "id": "mt-hood:lenticular:1793980800",
@@ -13,29 +13,28 @@
    "signals": []
   },
   {
-   "id": "mt-hood:lenticular:1794157200",
-   "spot": "mt-hood",
-   "phenomenon": "lenticular",
-   "start": 1794157200,
-   "end": 1794175200,
-   "peak_score": 0.6021956524599759,
-   "tier": "exceptional",
-   "alerted_tier": "exceptional",
-   "signals": []
-  },
-  {
    "id": "mt-jefferson:lenticular:1794160800",
    "spot": "mt-jefferson",
    "phenomenon": "lenticular",
-   "start": 1794160800,
-   "end": 1794164400,
-   "peak_score": 0.3959173068207796,
+   "start": 1794153600,
+   "end": 1794157200,
+   "peak_score": 0.395,
    "tier": "notable",
    "alerted_tier": "notable",
    "signals": []
   }
  ],
  "archive": [
+  {
+   "spot": "mt-hood",
+   "phenomenon": "lenticular",
+   "start": 1794157200,
+   "end": 1794175200,
+   "peak_score": 0.6021956524599759,
+   "tier": "exceptional",
+   "outcome": "cancelled",
+   "archived_at": 1794034797.9246411
+  },
   {
    "spot": "mt-adams",
    "phenomenon": "lenticular",
@@ -95,16 +94,6 @@
    "tier": "notable",
    "outcome": "cancelled",
    "archived_at": 1793826842.8809917
-  },
-  {
-   "spot": "sauvie-island",
-   "phenomenon": "fog",
-   "start": 1793808000,
-   "end": 1793811600,
-   "peak_score": 0.9529411764705882,
-   "tier": "exceptional",
-   "outcome": "cancelled",
-   "archived_at": 1793772055.382244
   }
  ],
  "last_digest": "2026-11-06"

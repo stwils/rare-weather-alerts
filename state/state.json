@@ -1,5 +1,5 @@
 {
- "updated": 1794132740,
+ "updated": 1794157383,
  "opportunities": [],
  "archive": [
   {
@@ -71,17 +71,7 @@
    "tier": "exceptional",
    "outcome": "cancelled",
    "archived_at": 1793998121.3456388
-  },
-  {
-   "spot": "mt-st-helens",
-   "phenomenon": "lenticular",
-   "start": 1793988000,
-   "end": 1793991600,
-   "peak_score": 0.4133036333710908,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1793875377.0533414
   }
  ],
- "last_digest": "2026-11-07"
+ "last_digest": "2026-11-08"
 }

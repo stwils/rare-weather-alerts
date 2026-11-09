@@ -1,6 +1,29 @@
 {
- "updated": 1794185205,
- "opportunities": [],
+ "updated": 1794210871,
+ "opportunities": [
+  {
+   "id": "mt-hood:lenticular:1794351600",
+   "spot": "mt-hood",
+   "phenomenon": "lenticular",
+   "start": 1794351600,
+   "end": 1794355200,
+   "peak_score": 0.39995094986427787,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  },
+  {
+   "id": "mt-jefferson:lenticular:1794344400",
+   "spot": "mt-jefferson",
+   "phenomenon": "lenticular",
+   "start": 1794344400,
+   "end": 1794358800,
+   "peak_score": 0.5163094899863659,
+   "tier": "notable",
+   "alerted_tier": "notable",
+   "signals": []
+  }
+ ],
  "archive": [
   {
    "spot": "mt-hood",

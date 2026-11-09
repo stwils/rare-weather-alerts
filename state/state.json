@@ -1,30 +1,27 @@
 {
- "updated": 1794210871,
- "opportunities": [
+ "updated": 1794249824,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "mt-hood:lenticular:1794351600",
    "spot": "mt-hood",
    "phenomenon": "lenticular",
    "start": 1794351600,
    "end": 1794355200,
    "peak_score": 0.39995094986427787,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
+   "outcome": "cancelled",
+   "archived_at": 1794249631.8067667
   },
   {
-   "id": "mt-jefferson:lenticular:1794344400",
    "spot": "mt-jefferson",
    "phenomenon": "lenticular",
    "start": 1794344400,
    "end": 1794358800,
    "peak_score": 0.5163094899863659,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1794249631.8067667
+  },
   {
    "spot": "mt-hood",
    "phenomenon": "lenticular",
@@ -96,5 +93,5 @@
    "archived_at": 1793998121.3456388
   }
  ],
- "last_digest": "2026-11-08"
+ "last_digest": "2026-11-09"
 }

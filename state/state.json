@@ -1,19 +1,17 @@
 {
- "updated": 1794332769,
- "opportunities": [
+ "updated": 1794352352,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "mt-jefferson:lenticular:1794344400",
    "spot": "mt-jefferson",
    "phenomenon": "lenticular",
    "start": 1794351600,
    "end": 1794355200,
    "peak_score": 0.4190105673191187,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
-  }
- ],
- "archive": [
+   "outcome": "cancelled",
+   "archived_at": 1794352161.1156378
+  },
   {
    "spot": "mt-hood",
    "phenomenon": "lenticular",

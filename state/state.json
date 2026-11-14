@@ -1,17 +1,6 @@
 {
- "updated": 1794606886,
+ "updated": 1794623939,
  "opportunities": [],
- "archive": [
-  {
-   "spot": "mt-jefferson",
-   "phenomenon": "lenticular",
-   "start": 1794351600,
-   "end": 1794355200,
-   "peak_score": 0.4190105673191187,
-   "tier": "notable",
-   "outcome": "cancelled",
-   "archived_at": 1794352161.1156378
-  }
- ],
+ "archive": [],
  "last_digest": "2026-11-13"
 }

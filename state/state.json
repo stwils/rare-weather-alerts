@@ -1,18 +1,17 @@
 {
- "updated": 1795143546,
- "opportunities": [
+ "updated": 1795173589,
+ "opportunities": [],
+ "archive": [
   {
-   "id": "sauvie-island:fog:1795186800",
    "spot": "sauvie-island",
    "phenomenon": "fog",
    "start": 1795186800,
    "end": 1795190400,
    "peak_score": 0.8642529411764706,
    "tier": "notable",
-   "alerted_tier": "notable",
-   "signals": []
+   "outcome": "cancelled",
+   "archived_at": 1795173583.6801665
   }
  ],
- "archive": [],
  "last_digest": "2026-11-19"
 }
